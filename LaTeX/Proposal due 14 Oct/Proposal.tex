@@ -1,0 +1,146 @@
+\documentclass[12pt]{report}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\graphicspath{{../.images/}}
+
+\title{CMP6200 Individual Undergraduate Project}
+\author{Lewis Higgins - Student ID 22133848}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{float} % here for H placement parameter
+\usepackage{subcaption}
+
+\usepackage{filecontents}
+\usepackage[
+    firstinits=true, % render first and middle names as initials
+    useprefix=true,
+    maxcitenames=3,
+    maxbibnames=99,
+    style=authoryear,
+    dashed=false, % re-print recurring author names in bibliography
+    natbib=true,
+    url=false,
+    sorting=none
+]{biblatex} % biblatex config for harvard refs
+
+\renewbibmacro*{volume+number+eid}{%
+    \printfield{volume}%
+%  \setunit*{\adddot}% DELETED
+    \setunit*{\addnbspace}% NEW (optional); there's also \addnbthinspace
+    \printfield{number}%
+    \setunit{\addcomma\space}%
+    \printfield{eid}}
+\DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
+
+\DeclareLabeldate{\field{date}\field{eventdate} \field{origdate}\literal{nodate}}
+
+\addbibresource{logbook.bib}
+
+% Use single quotes around titles:
+\usepackage[british]{babel}
+\usepackage{csquotes}
+
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,
+    urlcolor=blue,
+    citecolor=black,
+}
+
+
+\urlstyle{same}
+
+
+% To prevent "Chapter N" display for each chapter
+\usepackage[compact]{titlesec}
+\usepackage{wasysym}
+\usepackage{import}
+
+\titlespacing*{\chapter}{0pt}{-2cm}{0.5cm}
+\titleformat{\chapter}[display]
+{\normalfont\bfseries}{}{0pt}{\Huge}
+
+\newcommand\blfootnote[1]{
+    \begingroup
+    \renewcommand\thefootnote{}\footnote{#1}
+    \addtocounter{footnote}{-1}
+    \endgroup
+}
+
+\usepackage{fancyhdr}
+\usepackage{calc}
+\pagestyle{fancy}
+
+\usepackage{tcolorbox}
+
+\setlength\headheight{37pt}
+
+\renewcommand{\chaptermark}[1]{%
+    \markboth{#1}{}}
+
+\lhead{Lewis Higgins - ID 22133848~~~~~~~~~~~~~~~\includegraphics[width=1.75cm]{bcu logo}}
+\fancyhead[R]{\leftmark}
+
+
+\begin{document}
+
+    \makeatletter
+    \begin{titlepage}
+        \includegraphics[width=0.3\linewidth]{BCUWide.jpg}\\[4ex]
+        \vspace{1cm}
+        \begin{center}
+            {\huge \bfseries  CMP6200}\\[2ex]
+            {\huge \bfseries  Individual Undergraduate Project}\\[2ex]
+            {\huge \bfseries 2024 - 2025}\\[6ex]
+            {\large \bfseries A1 - Proposal}\\[10ex]
+            {\huge \bfseries University Artifically Intelligent Assistant}\\[6ex]
+            \includegraphics[width=0.1\linewidth]{Symbol.png}\\[50ex]
+            Course: Computer \& Data Science\\
+            Student Name: Lewis Higgins\\
+            Student Number: 22133848\\
+            Supervisor Name: Dr. Atif Azad
+        \end{center}
+    \end{titlepage}
+    \makeatother
+    \thispagestyle{empty}
+    \newpage
+
+    \tableofcontents
+    %\footnotesize{\listoffigures}
+
+    \chapter{Introduction}\label{ch:introduction}
+    \section{Background and Rationale}
+    AAAAAA
+    \section{Key Themes/Topics}
+    AAAAAA
+
+    \chapter{Aims and Objectives}
+    \section{Project Aim}
+    AAAAAA
+    \section{Project Objectives}
+
+    \chapter{Project Planning}
+    \section{Initial Project Plan}
+    AAAAAA
+    \section{Resources}
+    AAAAAA
+    \section{Risk Assessments}
+    AAAAAA
+
+    \chapter{Project Review and Methodology}
+    \section{Critique of Past Similar Projects}
+    AAAAAA
+    \section{Literature Search Methodology}
+    AAAAAA
+    \section{Initial Literature Search Results}
+    AAAAAA
+
+    \addcontentsline{toc}{chapter}{Bibliography}
+    \printbibliography
+
+\end{document}
