@@ -72,22 +72,15 @@
     \endgroup
 }
 
-\usepackage{fancyhdr}
-\usepackage{calc}
-\pagestyle{fancy}
 
-\usepackage{tcolorbox}
-
-\setlength\headheight{37pt}
-
-\renewcommand{\chaptermark}[1]{%
-    \markboth{#1}{}}
-
-\lhead{Lewis Higgins - ID 22133848~~~~~~~~~~~~~~~\includegraphics[width=1.75cm]{bcu logo}}
-\fancyhead[R]{\leftmark}
+%\lhead{Lewis Higgins - ID 22133848~~~~~~~~~~~~~~~\includegraphics[width=1.75cm]{bcu logo}}
+%\fancyhead[R]{\leftmark}
 
 \usepackage{xcolor} % Might be useful
 
+\usepackage{colortbl}
+\usepackage{longtable}
+\usepackage{amssymb}
 
 \begin{document}
 
@@ -168,7 +161,23 @@
 
     \chapter{Project Planning}
     \section{Initial Project Plan}
-    
+    \begin{enumerate}
+        \item Research
+        \begin{enumerate}
+            \item Conduct heavy research into machine learning and natural language processing to bolster my 
+            knowledge of the topics to assist in the development of the chatbot.
+            \item Identify similar projects that already exist to understand where challenges may arise in 
+            development and how to differentiate my work to make it stand out and provide unique value.
+        \end{enumerate}
+
+        \item Data collection
+        \begin{enumerate}
+            \item To present users with information from the university, I must first collect this information
+            for myself from sources such as the university website and the Student Union.
+        \end{enumerate}
+
+        \item \large \textbf{Section WIP.}
+    \end{enumerate}
 
     \section{Resources}
     \begin{itemize}
@@ -199,8 +208,45 @@
         \end{itemize}
 
     \end{itemize}
+
     \section{Risk Assessments}
-    AAAAAA
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{ |p{0.3\textwidth}|p{0.12\textwidth}|p{0.1\textwidth}|p{0.1\textwidth}|p{0.25\textwidth}|}
+            \hline
+            \cellcolor{blue!25}Risk & \cellcolor{blue!25}Likelihood  &
+            \cellcolor{blue!25}Severity & \cellcolor{blue!25}Overall & \cellcolor{blue!25}Mitigation\\
+            \hline
+
+            The devices used to write code and documentation could encounter hard drive corruption, potentially 
+            losing considerable amounts of work. & 2 & 5 & Medium & Ensure that all work is regularly backed up to 
+            the cloud and/or a secondary device. Github will be used as a version control system for the project 
+            to keep an audit trail of all changes.\\
+           
+            \hline
+
+            Time constraints could potentially cause rushed and poor-quality work if development is not to a 
+            consistent and regular schedule balanced with other university modules. & 3 & 4 & Medium-High &
+            Ensure that work is completed at regular intervals, even if the amount at each interval is small. 
+            In doing so, it will be much easier to balance three simultaneous deadlines. \\
+
+            \hline
+
+            Personal circumstances could cause progress to slow or halt if something unexpected were to occur
+            during the year. & 3 & 4 & Medium-High & Try to be ahead of deadlines where possible to ensure that
+            there is free time that could be used in the event of a sudden break becoming necessary.\\
+            
+            \hline
+
+            Budget constraints could be an issue during development. & 2 & 2 & Low & Use open-source or lower
+            cost resources during development, and create a budget to adhere to. \\ 
+            
+            \hline
+
+            
+
+        \end{tabular}\label{tab:risks}
+    \end{table}
 
     \chapter{Project Review and Methodology}
     \section{Critique of Past Similar Projects}
