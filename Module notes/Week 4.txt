@@ -1,0 +1,33 @@
+Atif:
+
+Look into something called "bedrock", might be by openAI?
+It doesn't actually have to be a subscription LLM; you might be able to use one you download like what you have on your desktop.
+However, in doing so you would directly contradict your proposal, look like an idiot, and require your home desktop to be remoted to. Don't bother.
+
+Islah (You recorded ~half of this on your phone):
+
+Use an LLM, it's stupid not to with how powerful they are.
+THIS DOES NOT MEAN "WRITE YOUR REVIEW WITH AN LLM". It means "use it to analyse things and research".
+Engineer the prompts you give to an LLM. "Summarise this paper", then "summarise how it fits into the subject area" (?)
+"Rate the quality of the paper", "How well is it rated in the subject area?"
+Consider an OpenAI subscription perhaps. £20/month, you can do so much with it.
+Google's is also £20/month but I'm not sure if it's actually as good.
+
+25 November, with draft meetings 31 Oct, 21 Nov.
+Your aims and objectives will change as you do the research; that's fine.
+What you write here will be in your final dissertation.
+Using but not citing = references, Using with citing = bibliography??? (might be the other way around)
+Breadth-first, meaning only read abstracts to begin with.
+It's fine to not know what a paper is talking about to begin with, you may come to learn it as you read others. 
+An LLM can explain equations, you can put images of them.
+See what "zoterro" (?) is. Something about references.
+Use the specific terminology that you find in papers, makes you sound smart.
+Find "classics", old papers with thousands of citations, alongside your modern ones to sound knowledgeable on the area.
+In doing so, you can talk about the new research that superseded the old ones to show expertise of the subject.
+Might be good to identify specific authors to look at.
+Islah doesn't seem to think books are that good of a source, "they're where dead research goes". He specified how long it takes for books to be published.
+While it's worth mentioning historical findings in the field, don't make it too long - there's millions of words to write but it's not what this is about.
+This is THE semester 1 CMP6200 assignment, akin to the big reports you'd do for other modules.
+If you start having issues with Atif or anyone else, remember that you are paying £9250 for this.
+
+

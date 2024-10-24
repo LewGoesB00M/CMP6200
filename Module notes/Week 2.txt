@@ -1,0 +1,29 @@
+Atif meeting (Very brief due to circumstances this week):
+
+Working with LLMs, working with databases, setting them up, etc
+Query protection?
+
+----------------
+My fear of AI checking sounds plausible: keep your finger on the commit button CONSTANTLY for all your changes so that you've got the evidence log. 
+----------------
+
+Islah Lecture:
+
+Don't be railroaded into something you don't care about.
+Islah isn't here week 3, but he has some other bloke covering who has also done dissertation lectures.
+You're likely to recycle work done in your proposal into other documents throughout this year.
+There are templates for every document you're expected to do this year. If they're word docs convert them to LaTeX.
+Use the templates for the best odds; don't reinvent the wheel.
+Your project has ONE aim, and probably 4 - 5 SMART objectives.
+The aim is what you want to achieve, not how to do it - that's the objectives.
+Aim is one sentence.
+Things like "I will document XXX in a report" is not an objective; it's already implied by you doing this module.
+He seems to be aware of how nobody does anything anymore and it's all chatGPT. 
+In the specific part of SMART specify the audience. "Design an app that does..." "Design an app FOR STUDENTS that does..."
+If you made a mobile app, it wouldn't need to be for both operating systems.
+You need some kind of timeline tool i.e. Gantt chart. Make it all up, who actually cares?
+Talk about three (?) past projects and how they screwed up and how you won't.
+But also identify where they went right and how you'll follow that.
+Literature search methodology - Google Scholar / BCU library?
+If you reference a journal, maybe mention the journal itself and how good it is
+IEEE Xplore is considered good.
