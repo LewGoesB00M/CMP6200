@@ -17,6 +17,9 @@
                     % positions them relative to their location within my LaTeX code.
 \usepackage{subcaption}
 
+\usepackage{pdflscape} % Enables the page to be rotated 
+                       % landscape for easier image viewing.
+
 % -------------------------------------------------------------------------------
 % Declare biblatex with custom Harvard BCU styling for referencing.
 \usepackage[
@@ -78,7 +81,12 @@
 \lhead{Lewis Higgins - ID 22133848~~~~~~~~~~~~~~~\includegraphics[width=1.75cm]{BCU}}
 \fancyhead[R]{\leftmark}
 
-% -------------------------------------------------------------------------------
+% ------------------REMOVE ME ----------------------------------------------------
+
+% Temp, using to add notes for the draft edition.
+\usepackage{tcolorbox}
+
+% ----------------- REMOVE ME ---------------------------------------------------
 
 \begin{document}
 
@@ -110,7 +118,23 @@
 
     \section{Aims and Objectives}
 
-    AAA
+    \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Copied from proposal]
+        These are still subject to change pending the feedback from my proposal.
+    \end{tcolorbox}
+
+    This project aims to aid new and existing students alike while they are attending university with 
+    helpful information about the university itself, such as university societies, locations/campuses, 
+    and policies through the medium of a digital chatbot companion to converse with.
+    Its objectives are to:
+
+    \begin{itemize}
+        \item Develop a chatbot capable of accurately answering user queries related to university 
+        buildings, policies, and societies with a minimum 95\% accuracy rate.
+        \item Conduct a thorough literature review on the surrounding topics, namely AI, LLMs and NLP.
+        \item Create effective documentation for all stages of development, highlighting challenges faced during the process.
+        \item Manage time effectively to ensure all project milestones are met on a consistent and regular timeframe.
+        \item Evaluate the effectiveness of an AI assistant on university student acclimatization.
+    \end{itemize}
 
     \section{Literature Search Methodology}
 
@@ -134,12 +158,27 @@
     
     \section{Summary}
 
-
     
+    \begin{landscape}
+
     \chapter{Appendix}
+    
+    \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Copied from proposal]
+        This is still subject to change pending the feedback from my proposal.
+    \end{tcolorbox}
 
     \section{Gantt Chart}
 
+
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=.75\linewidth]{ProposalGantt.png}
+        \caption{A conceptual Gantt chart of a development timeline.}
+        \label{fig:gantt}
+    \end{figure}
+
+    \end{landscape}
 
     \chapter{References}
 
