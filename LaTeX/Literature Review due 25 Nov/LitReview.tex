@@ -81,12 +81,25 @@
 \lhead{Lewis Higgins - ID 22133848~~~~~~~~~~~~~~~\includegraphics[width=1.75cm]{BCU}}
 \fancyhead[R]{\leftmark}
 
-% ------------------REMOVE ME ----------------------------------------------------
+% ------------------------------------------------------------------------------
+% Used to add PDF hyperlinks for figures and the contents page.
+
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,
+    urlcolor=blue,
+    citecolor=black,
+}
+
+% ------------------REMOVE ME --------------------------------------------------
 
 % Temp, using to add notes for the draft edition.
 \usepackage{tcolorbox}
 
-% ----------------- REMOVE ME ---------------------------------------------------
+% ----------------- REMOVE ME --------------------------------------------------
 
 \begin{document}
 
@@ -147,15 +160,39 @@
 
     \section{Literature Search Methodology}
 
-    \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,title=Uncertainty]
+    \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,title=Uncertainty - Unfinished section]
         I assumed that I should include the exact search terms including special characters
         like asterisks as well as AND + OR queries, but I'm not sure how to best display that
         in this document. I'm also aware that a few of these are parts of each other (Deep learning
         and NLP for example) though I would surely need to research both anyway?
     \end{tcolorbox}
 
-    \noindent All searches performed will be on papers published during or after 2020, due to the 
-    constantly evolving fields my project is based on.
+    \noindent 
+    My literature search will be performed using multiple reputable databases for academic papers, including:
+    \begin{itemize}
+        \item IEEE Xplore
+        \item Scopus / Elsevier
+        \item Google Scholar
+        \item BCU Online Library
+    \end{itemize}
+    
+    \noindent By using multiple different databases to source my information from, I can ensure that
+    any potentially relevant literature will be found. Figure \ref{fig:litSearch} depicts 
+    how in a search for 1685 articles about employee retention strategies and turnover, only 582 (25.7\%) appeared in multiple databases
+    \autocite{litSearch}, meaning that the remaining 74.3\% of articles were exclusive to the single 
+    database in which they were found, emphasising the importance of searching multiple databases.  
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=.6\linewidth]{litSearchDBs.jpg}
+        \caption{Distribution of searched articles across databases. \autocite{litSearch}}
+        \label{fig:litSearch}
+    \end{figure}
+   
+    \noindent 
+    All searches performed will be on papers published during or after 2020, due to the 
+    constantly evolving fields my project is based on. The search terms I will use to retrieve
+    the data I will be studying are:
 
     \begin{itemize}
         \item Artifical Intelligence OR AI 
@@ -184,6 +221,11 @@
         \end{itemize}
         \item Information retrieval
     \end{itemize}
+
+    \noindent
+    By using these specific terms that are directly relevant to the core themes of my project,
+    I will be ensuring that I only retrieve literature that will be of crucial use in its 
+    development.
 
 
     \chapter{Literature Review}
@@ -224,17 +266,14 @@
 
     \end{landscape}
 
-    \chapter{References}
-
     References and bibliographies aren't the same thing. Your references 
     are your directly cited sources, whereas your bibliography is everything you 
     consulted for information, even if you didn't directly cite it. \\
 
-    \noindent \url{https://en.wikibooks.org/wiki/LaTeX/Bibliographies_with_biblatex_and_biber#Splitting_into_different_topics}
-    \\ \noindent \large \textbf{That link shows how you can add a "keyword"
-    entry to the bibliography entries. In doing so, you could add a "refs" keyword for your 
-    references, and a "bib" for your bibliography.}
+    \printbibliography[keyword={refs}, title = {References}]
+    \addcontentsline{toc}{chapter}{References}
 
-    \printbibliography
+    \printbibliography[keyword={bib}] % Will show an error until you have an actual "bib" source.
+    \addcontentsline{toc}{chapter}{Bibliography}
 
 \end{document}
