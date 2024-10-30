@@ -16,6 +16,7 @@
 \usepackage{float}  % Allows for floats to be positioned using [H], which correctly
                     % positions them relative to their location within my LaTeX code.
 \usepackage{subcaption}
+\usepackage[british]{babel}
 
 \usepackage{pdflscape} % Enables the page to be rotated 
                        % landscape for easier image viewing.
@@ -149,6 +150,7 @@
         These are still subject to change pending the feedback from my proposal.
     \end{tcolorbox}
 
+    \noindent
     This project aims to aid new and existing students alike while they are attending university with 
     helpful information about the university itself, such as university societies, locations/campuses, 
     and policies through the medium of a digital chatbot companion to converse with.
@@ -166,13 +168,6 @@
     \pagebreak % REMOVE ME IF UNNECESSARY
 
     \section{Literature Search Methodology}
-
-    \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,title=Uncertainty - Unfinished section]
-        I assumed that I should include the exact search terms including special characters
-        like asterisks as well as AND + OR queries, but I'm not sure how to best display that
-        in this document. I'm also aware that a few of these are parts of each other (Deep learning
-        and NLP for example) though I would surely need to research both anyway?
-    \end{tcolorbox}
 
     \noindent 
     My literature search will be performed using multiple reputable databases for academic papers, including:
@@ -244,7 +239,7 @@
 
     \begin{table}[H]
         \centering
-        \begin{tabular}{|p{0.2\textwidth}|p{0.5\textwidth} | p{0.2\textwidth}|}
+        \begin{tabular}{|p{0.2\textwidth}|p{0.52\textwidth} | p{0.2\textwidth}|}
             \hline
             \cellcolor{blue!25}Theme & \cellcolor{blue!25}Description &
             \cellcolor{blue!25}Keywords \\
@@ -265,9 +260,10 @@
             \hline
             Chatbot \newline Digital Assistant & Software that simulates a natural conversation between the 
             computer and end user. Many chatbots, including the one I intend to develop, utilise recent
-            developments such as Generative AI and NLP to interpret and respond to user queries.
+            developments such as Generative AI and natural language processing (NLP) to interpret and respond to user queries.
             \autocite{IBMChatbotDef}
-            & User Experience, Conversational Design, Microsoft Bot Framework, Watson Assistant, ChatGPT \\
+            & NLP, 
+            Microsoft Bot Framework, Watson Assistant, ChatGPT \\
 
             \hline 
 
@@ -275,15 +271,26 @@
             As suggested by their name, they are trained on enormous amounts of text data, which allows them 
             to have active conversations with users. There are many different LLMs, and as their size and 
             complexity increases, so too does the necessary processing power. &
-            GPT4o, LLaMA, Gemini, Claude
+            NLP, GPT4o, LLaMA, Gemini, Claude
 
             \\
 
             \hline
 
+            User Experience (UX) & The end user's overall experience of using a system, such as its ease of use and 
+            whether it is enjoyable to use \autocite{UXDict}. In the context of my project, it will refer to the user's 
+            ability to smoothly converse with the chatbot and how human-like it is. 
+            & Conversational design, usability, market research
+
+            \\
+
+            \hline 
+
         \end{tabular}\label{tab:themes}
     \end{table}
 
+
+    \pagebreak % REMOVE IF NECESSARY
 
     \section{Review of Literature}
 
@@ -318,10 +325,6 @@
     \end{figure}
 
     \end{landscape}
-
-    References and bibliographies aren't the same thing. Your references 
-    are your directly cited sources, whereas your bibliography is everything you 
-    consulted for information, even if you didn't directly cite it. \\
 
     \printbibliography[keyword={refs}, title = {References}]
     \addcontentsline{toc}{chapter}{References}
