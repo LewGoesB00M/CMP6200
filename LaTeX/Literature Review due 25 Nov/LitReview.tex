@@ -94,6 +94,13 @@
     citecolor=black,
 }
 
+% ------------------------------------------------------------------------------
+\usepackage{xcolor} 
+\usepackage{colortbl}
+\usepackage{longtable}
+\usepackage{amssymb}
+% ------------------------------------------------------------------------------
+
 % ------------------REMOVE ME --------------------------------------------------
 
 % Temp, using to add notes for the draft edition.
@@ -195,29 +202,30 @@
     the data I will be studying are:
 
     \begin{itemize}
-        \item Artifical Intelligence OR AI 
+        \item Artifical Intelligence / AI 
         \begin{itemize}
-            \item AND Ethics
+            \item Ethics
             \begin{itemize}
-                \item AND Bias
-                \item AND Fairness
-                \item AND Privacy
+                \item Bias
+                \item Fairness
+                \item Privacy
             \end{itemize}
         \end{itemize}
-        \item Chatbot OR Digital assistant
-        \item Large Language Model* OR LLM
+        \item Chatbots / Digital Assistants
+        \item Generative AI
+        \item Large Language Models / LLMs
         \begin{itemize}
-            \item AND fine tuning
+            \item Fine tuning
         \end{itemize}
-        \item Natural Language Processing OR NLP
+        \item Natural Language Processing / NLP
         \begin{itemize}
             \item Intent recognition
             \item Entity extraction
         \end{itemize}
         \item Deep learning
-        \item User Experience OR UX
+        \item User Experience / UX
         \begin{itemize}
-            \item AND Design
+            \item Design
         \end{itemize}
         \item Information retrieval
     \end{itemize}
@@ -231,6 +239,51 @@
     \chapter{Literature Review}
 
     \section{Themes}
+
+    My project has many underlying themes, including:
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|p{0.2\textwidth}|p{0.5\textwidth} | p{0.2\textwidth}|}
+            \hline
+            \cellcolor{blue!25}Theme & \cellcolor{blue!25}Description &
+            \cellcolor{blue!25}Keywords \\
+
+            \hline
+
+            AI & A field of computing dedicated to allowing computers to simulate human
+            learning by training them on large amounts of data so that they can recognise patterns to classify or 
+            predict unknown data. AI can only be as good as the data it is trained upon, and can 
+            develop biases if it is fed too much data of a certain type. & Generative AI, AI Ethics, AI Bias \\
+
+            \hline
+
+            Generative AI & AI dedicated to the generation of content rather than prediction or 
+            classification. It is possible for generative AI to produce text, images and 
+            more recently, even video and sound. & LLMs, Tokens, Embedding \\
+
+            \hline
+            Chatbot \newline Digital Assistant & Software that simulates a natural conversation between the 
+            computer and end user. Many chatbots, including the one I intend to develop, utilise recent
+            developments such as Generative AI and NLP to interpret and respond to user queries.
+            \autocite{IBMChatbotDef}
+            & User Experience, Conversational Design, Microsoft Bot Framework, Watson Assistant, ChatGPT \\
+
+            \hline 
+
+            LLM & Large Language Models are a type of AI dedicated to the recognition and generation of text.
+            As suggested by their name, they are trained on enormous amounts of text data, which allows them 
+            to have active conversations with users. There are many different LLMs, and as their size and 
+            complexity increases, so too does the necessary processing power. &
+            GPT4o, LLaMA, Gemini, Claude
+
+            \\
+
+            \hline
+
+        \end{tabular}\label{tab:themes}
+    \end{table}
+
 
     \section{Review of Literature}
 
@@ -273,7 +326,14 @@
     \printbibliography[keyword={refs}, title = {References}]
     \addcontentsline{toc}{chapter}{References}
 
-    \printbibliography[keyword={bib}] % Will show an error until you have an actual "bib" source.
+    % Invisible citing sources so that they get printed here
+    \nocite{IBMAIDef}
+    \nocite{ICOAIDef}
+    \nocite{IBMGenAI}
+    \nocite{MITGenAI}
+    \nocite{CloudflareLLM}
+
+    \printbibliography[keyword={bib}] % Will show an error until you cite an actual "bib" source.
     \addcontentsline{toc}{chapter}{Bibliography}
 
 \end{document}
