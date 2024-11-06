@@ -16,7 +16,8 @@
 \usepackage{float}  % Allows for floats to be positioned using [H], which correctly
                     % positions them relative to their location within my LaTeX code.
 \usepackage{subcaption}
-\usepackage[british]{babel}
+% \usepackage[british]{babel}
+\usepackage{csquotes}
 
 \usepackage{pdflscape} % Enables the page to be rotated 
                        % landscape for easier image viewing.
@@ -147,7 +148,7 @@
     \section{Aims and Objectives}
 
     \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Copied from proposal]
-        These are still subject to change pending the feedback from my proposal.
+        These are still subject to change pending the grade from my proposal.
     \end{tcolorbox}
 
     \noindent
@@ -192,17 +193,17 @@
     \end{figure}
    
     \noindent 
-    All searches performed will be on papers published during or after 2020, due to the 
-    constantly evolving fields my project is based on. The search terms I will use to retrieve
-    the data I will be studying are:
+    All searches performed for recent literature will be on papers published during or after 2017, with a preference 
+    to more recent literature, due to the constantly evolving fields my project is based on. 
+    The search terms I will use to retrieve the data I will be studying are:
 
     \begin{itemize}
         \item Artifical Intelligence / AI 
         \item Chatbots / Digital Assistants
-        \item Generative AI
+        \item Natural Language Processing / NLP
         \item Large Language Models / LLMs
+        % \item Human-Computer Interaction
         % \item Knowledge Bases
-        % \item Natural Language Processing / NLP
         % \item Deep learning
         \item User Experience / UX
         % \item Information retrieval
@@ -245,13 +246,14 @@
             AI & A field of computing dedicated to allowing computers to simulate human
             learning by training them on large amounts of data so that they can recognise patterns to classify or 
             predict unknown data. AI can only be as good as the data it is trained upon, and can 
-            develop biases if it is fed too much data of a certain type. & Generative AI, Human-Centred AI, AI Ethics, AI Bias \\
+            develop biases if it is fed too much data of a certain type. & Generative AI, 
+            Human-Centred AI, AI Ethics, AI Bias \\
 
-            \hline
+            % \hline
 
-            Generative AI & AI dedicated to the generation of content rather than prediction or 
-            classification. It is possible for generative AI to produce text, images and 
-            more recently, even video and sound. & LLMs, Tokens, Embedding \\
+            % Generative AI & AI dedicated to the generation of content rather than prediction or 
+            % classification. It is possible for generative AI to produce text, images and 
+            % more recently, even video and sound. & LLMs, Tokens, Embedding \\
 
             \hline
             Chatbot \newline Digital Assistant & Software that simulates a natural conversation between the 
@@ -263,12 +265,22 @@
 
             \hline 
 
+            Natural Language Processing & NLP refers to the use of machine learning to encode and 
+            process text to understand it in a similar way to humans, which can be used to allow direct 
+            two-way conversation between users and computers. & Tokenization, Sentiment analysis,
+            Entity linking
+
+            \\
+
+            \hline
+            
             LLM & Large Language Models are a type of AI dedicated to the recognition and generation of text.
             As suggested by their name, they are trained on enormous amounts of text data, which allows them 
             to have active conversations with users. There are many different LLMs, and as their size and 
             complexity increases, so too does the necessary processing power. &
-            Retrieval augmented generation (RAG), Fine-tuning, GPT4o, LLaMA, Gemini, Claude
-
+            Retrieval augmented generation (RAG), Fine-tuning, Prompt engineering 
+            %GPT4o, LLaMA, Gemini, Claude
+            
             \\
 
             \hline
@@ -295,13 +307,20 @@
         You need to reconsider your project's themes. RAG and fine-tuning LLMs are such key elements 
         here that it could be worth having them as themes rather than keywords.
         Remember you can talk about your sub-points, like for LLMs you can branch into NLP.
+        Consult week 6 A and B notes.
+        \textbf{Zotero is an obscenely useful tool. It's somewhat poor at citing websites, but excellent
+        for papers.} Consider Litmap to see referenced papers.
     \end{tcolorbox}
 
     \subsection{Artificial Intelligence (AI)}
 
-    AI is a constantly evolving field that is seeing bleeding-edge developments on a 
-    highly frequent basis, and is becoming a key part of many people's work and private lives \autocite{AIDigitalAssistants}. 
-    It is important that AI-related projects are ethical and 
+    Researchers have always wanted to harness the processing power of computers to act in a similar manner 
+    indistinguishable from that of humans, most notably from as long ago as 1950, where the question was posed 
+    'Can machines think?' \autocite{turing_icomputing_1950}. Even now, AI is a constantly evolving field that is seeing bleeding-edge developments on a 
+    highly frequent basis, and more recently, is becoming instrumental in many people's work and private lives \autocite{AIDigitalAssistants}.
+    AI is used across many disciplines and for different purposes. For example, AI can be used to predict 
+    sales based on trends, or classify images to identify defective products in manufacturing. However,
+    when developing a project that utilises AI, it is important that they are ethical and 
     human-centred, which is known as Human-Centred AI (HCAI), and the actions they perform 
     are explainable (XAI). In doing so, the focus 
     shifts from the machine executing the algorithms, and instead to the user and their experience 
@@ -310,13 +329,26 @@
     structure in the development of AI from the software engineering level to independent overseers 
     to ensure privacy, accountability and fairness, shown in Figure \ref{fig:govStructure}. 
 
-    
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=.6\linewidth]{shneidermanStructure.png}
-        \caption{Shneiderman's proposed governance structure for HCAI development.}
-        \label{fig:govStructure}
-    \end{figure}
+    \subsection{Chatbots / Digital assistants}
+    I don't think I've got any papers relating to this yet.
+
+    \subsection{Natural language processing (NLP)}
+    Talk about \autocite{vaswani_attention_2017} here. It's a key paper and was the foundation
+    of GPT (I think)
+
+    \subsection{Large language models}
+    I don't think I've got any papers relating to this yet.
+
+    \subsection{User experience}
+    I don't think I've got any papers relating to this yet.
+
+
+    % \begin{figure}[H]
+    %     \centering
+    %     \includegraphics[width=.6\linewidth]{shneidermanStructure.png}
+    %     \caption{Shneiderman's proposed governance structure for HCAI development.}
+    %     \label{fig:govStructure}
+    % \end{figure}
 
     \subsection{Theory}
 
@@ -330,7 +362,7 @@
     \chapter{Appendix}
     
     \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Copied from proposal]
-        This is still subject to change pending the feedback from my proposal.
+        This is still subject to change pending the grade from my proposal.
     \end{tcolorbox}
 
     \section{Gantt Chart}
@@ -355,6 +387,7 @@
     \nocite{IBMGenAI}
     \nocite{MITGenAI}
     \nocite{CloudflareLLM}
+    \nocite{IBMNLP}
 
     \printbibliography[keyword={bib}] % Will show an error until you cite an actual "bib" source.
     \addcontentsline{toc}{chapter}{Bibliography}
