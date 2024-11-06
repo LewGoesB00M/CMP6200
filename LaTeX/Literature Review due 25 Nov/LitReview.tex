@@ -233,6 +233,12 @@
     %     of being a dissertation project at all, and if it would be better to try with my own fine-tuned model of something 
     %     like LLaMA. I'd have much more to write about that way.
     % \end{tcolorbox}
+\pagebreak
+    \begin{tcolorbox}[colback=red!5!white,colframe=orange!75!black,title=Uncertainty]
+        Chatbots / Digital assistants are highlighted red due to my uncertainty of whether they should 
+        be a key theme of the literature review. This is because they use NLP and LLMs, which already have
+        their own themes I intend to review.
+    \end{tcolorbox}
 
     \begin{table}[H]
         \centering
@@ -247,7 +253,7 @@
             learning by training them on large amounts of data so that they can recognise patterns to classify or 
             predict unknown data. AI can only be as good as the data it is trained upon, and can 
             develop biases if it is fed too much data of a certain type. & Generative AI, 
-            Human-Centred AI, AI Ethics, AI Bias \\
+            Human-Centred AI, Explaianble AI, AI Ethics, AI Bias \\
 
             % \hline
 
@@ -256,11 +262,11 @@
             % more recently, even video and sound. & LLMs, Tokens, Embedding \\
 
             \hline
-            Chatbot \newline Digital Assistant & Software that simulates a natural conversation between the 
+            \cellcolor{red!25} Chatbot \newline Digital Assistant & \cellcolor{red!25} Software that simulates a natural conversation between the 
             computer and end user. Many chatbots, including the one I intend to develop, utilise recent
             developments such as Generative AI and natural language processing (NLP) to interpret and respond to user queries.
             \autocite{IBMChatbotDef}
-            & NLP, 
+            & \cellcolor{red!25} NLP, 
             Microsoft Bot Framework, Watson Assistant, ChatGPT \\
 
             \hline 
@@ -274,7 +280,7 @@
 
             \hline
             
-            LLM & Large Language Models are a type of AI dedicated to the recognition and generation of text.
+            LLMs & Large Language Models are a type of AI dedicated to the recognition and generation of text.
             As suggested by their name, they are trained on enormous amounts of text data, which allows them 
             to have active conversations with users. There are many different LLMs, and as their size and 
             complexity increases, so too does the necessary processing power. &
@@ -314,23 +320,47 @@
 
     \subsection{Artificial Intelligence (AI)}
 
+    % You may notice that some of these autocites are formatted differently. This is because I switched to using Zotero which 
+    % generates them for me with different naming schemes.
+
     Researchers have always wanted to harness the processing power of computers to act in a similar manner 
     indistinguishable from that of humans, most notably from as long ago as 1950, where the question was posed 
-    'Can machines think?' \autocite{turing_icomputing_1950}. Even now, AI is a constantly evolving field that is seeing bleeding-edge developments on a 
-    highly frequent basis, and more recently, is becoming instrumental in many people's work and private lives \autocite{AIDigitalAssistants}.
-    AI is used across many disciplines and for different purposes. For example, AI can be used to predict 
-    sales based on trends, or classify images to identify defective products in manufacturing. However,
-    when developing a project that utilises AI, it is important that they are ethical and 
-    human-centred, which is known as Human-Centred AI (HCAI), and the actions they perform 
+    'Can machines think?' \autocite{turing_icomputing_1950}. Ever since, constant innovations were made in computer 
+    intelligence and machine learning, from playing games of checkers at a better level than human players \autocite{samuel_studies_1959}
+    to classifying the contents of millions of images using convolutional neural networks \autocite{krizhevsky_imagenet_2012}.
+    Recently, AI is used across many disciplines and for different purposes to complete tasks faster than, and in some cases better than,
+    human workers. \textcite{wirtz_brave_2018} write that 'service robots'~\footnote{Defined as "system-based autonomous and adaptable interfaces that 
+    interact, communicate and deliver service to an organization’s customers" \autocite{wirtz_brave_2018}} can complete a variety of 
+    tangible or intangible actions seen in Figure \ref{fig:serviceBots}, all of which utilise developments in AI over the years.
+    
+    \begin{figure} % No placement argument because otherwise the footnote looks weird.
+        \centering
+        \includegraphics[width=.8\linewidth]{serviceBots.png}
+        \caption{Service robots categorization by task-type and recipient of service \autocite{wirtz_brave_2018}.}
+        \label{fig:serviceBots}
+    \end{figure}
+
+    Today, AI is still a constantly evolving field that is seeing bleeding-edge developments on a 
+    highly frequent basis, and more recently, is becoming instrumental in many people's work and private lives 
+    with the introduction of large language models (LLMs) \autocite{AIDigitalAssistants}.
+    However, when developing a project that utilises AI, it is important that 
+    they are ethical and human-centred in the development process, which is known as Human-Centred AI (HCAI), and the actions they perform 
     are explainable (XAI). In doing so, the focus 
     shifts from the machine executing the algorithms, and instead to the user and their experience 
     using the AI \autocite{AIEthics}. In his article, Shneiderman strongly advocates for the 
-    promotion of HCAI for the benefit of both companies and their users, and proposes a governance 
-    structure in the development of AI from the software engineering level to independent overseers 
-    to ensure privacy, accountability and fairness, shown in Figure \ref{fig:govStructure}. 
+    promotion of HCAI for the benefit of both companies and their users, which is a commonly accepted 
+    idea due to the ethical risks of using AI. Because AI calculates outcomes from its training data rather 
+    than understanding social norms and perspectives, the use of it in sociotechnical systems poses serious risks 
+    due to the 'traps' it can fall into, because it cannot account for every possibility such as the personal tendencies 
+    and biases of its users \autocite{selbst_fairness_2019}, and therefore developers require a shift in focus - from the final product
+    at the end of development to the development process itself and end users, which also echoes Shneiderman's views. 
 
     \subsection{Chatbots / Digital assistants}
-    I don't think I've got any papers relating to this yet.
+    \begin{tcolorbox}[colback=red!5!white,colframe=orange!75!black,title=Uncertainty]
+        This theme overlaps too heavily with NLP and LLMs to really be its own theme, as it would just be a repetition
+        of what is said in those sections. However, it is undeniably a core aspect of this project, so I'm not sure what 
+        to do for it.
+    \end{tcolorbox}
 
     \subsection{Natural language processing (NLP)}
     Talk about \autocite{vaswani_attention_2017} here. It's a key paper and was the foundation
@@ -342,13 +372,6 @@
     \subsection{User experience}
     I don't think I've got any papers relating to this yet.
 
-
-    % \begin{figure}[H]
-    %     \centering
-    %     \includegraphics[width=.6\linewidth]{shneidermanStructure.png}
-    %     \caption{Shneiderman's proposed governance structure for HCAI development.}
-    %     \label{fig:govStructure}
-    % \end{figure}
 
     \subsection{Theory}
 
@@ -362,7 +385,8 @@
     \chapter{Appendix}
     
     \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Copied from proposal]
-        This is still subject to change pending the grade from my proposal.
+        This is still subject to change pending the grade from my proposal. 
+        \textbf{It also needs to be updated to reflect that the proposal is now done and lit review is in progress.}
     \end{tcolorbox}
 
     \section{Gantt Chart}
