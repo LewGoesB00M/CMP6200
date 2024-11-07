@@ -236,13 +236,13 @@
 \pagebreak
     \begin{tcolorbox}[colback=red!5!white,colframe=orange!75!black,title=Uncertainty]
         Chatbots / Digital assistants are highlighted red due to my uncertainty of whether they should 
-        be a key theme of the literature review. This is because they use NLP and LLMs, which already have
+        be a key theme of the literature review. This is because recent ones use NLP and LLMs, which already have
         their own themes I intend to review.
     \end{tcolorbox}
 
     \begin{table}[H]
         \centering
-        \begin{tabular}{|p{0.2\textwidth}|p{0.52\textwidth} | p{0.2\textwidth}|}
+        \begin{tabular}{|p{0.2\textwidth}|p{0.52\textwidth} | p{0.23\textwidth}|}
             \hline
             \cellcolor{blue!25}Theme & \cellcolor{blue!25}Description &
             \cellcolor{blue!25}Keywords \\
@@ -273,7 +273,7 @@
 
             Natural Language Processing & NLP refers to the use of machine learning to encode and 
             process text to understand it in a similar way to humans, which can be used to allow direct 
-            two-way conversation between users and computers. & Tokenization, Sentiment analysis,
+            two-way conversation between users and computers. & Deep learning, Tokenization, Sentiment analysis,
             Entity linking
 
             \\
@@ -321,7 +321,8 @@
     \subsection{Artificial Intelligence (AI)}
 
     % You may notice that some of these autocites are formatted differently. This is because I switched to using Zotero which 
-    % generates them for me with different naming schemes.
+    % generates them for me with different naming schemes. Ones in camelCase were my original ones, then the new ones 
+    % formatted as NAME_TITLE_DATE are Zotero.
 
     Researchers have always wanted to harness the processing power of computers to act in a similar manner 
     indistinguishable from that of humans, most notably from as long ago as 1950, where the question was posed 
@@ -330,8 +331,8 @@
     to classifying the contents of millions of images using convolutional neural networks \autocite{krizhevsky_imagenet_2012}.
     Recently, AI is used across many disciplines and for different purposes to complete tasks faster than, and in some cases better than,
     human workers. \textcite{wirtz_brave_2018} write that 'service robots'~\footnote{Defined as "system-based autonomous and adaptable interfaces that 
-    interact, communicate and deliver service to an organization’s customers" \autocite{wirtz_brave_2018}} can complete a variety of 
-    tangible or intangible actions seen in Figure \ref{fig:serviceBots}, all of which utilise developments in AI over the years.
+    interact, communicate and deliver service to an organization’s customers" \autocite[p.909]{wirtz_brave_2018}} can complete a variety of 
+    tangible or intangible actions, such as reading and sending text as a chatbot, seen in Figure \ref{fig:serviceBots}.
     
     \begin{figure} % No placement argument because otherwise the footnote looks weird.
         \centering
@@ -344,9 +345,10 @@
     highly frequent basis, and more recently, is becoming instrumental in many people's work and private lives 
     with the introduction of large language models (LLMs) \autocite{AIDigitalAssistants}.
     However, when developing a project that utilises AI, it is important that 
-    they are ethical and human-centred in the development process, which is known as Human-Centred AI (HCAI), and the actions they perform 
-    are explainable (XAI). In doing so, the focus 
-    shifts from the machine executing the algorithms, and instead to the user and their experience 
+    they are ethical and human-centred in the development process, which is known as Human-Centred AI (HCAI). 
+    Another issue is the "black-box problem" - the inability to know an AI's reasoning, meaning that 
+    eXplainable AI (XAI) is a growing necessity \autocite{miro-nicolau_comprehensive_2025}. In focusing on 
+    HCAI and XAI, the focus shifts from the machine executing the algorithms, and instead to the user and their experience 
     using the AI \autocite{AIEthics}. In his article, Shneiderman strongly advocates for the 
     promotion of HCAI for the benefit of both companies and their users, which is a commonly accepted 
     idea due to the ethical risks of using AI. Because AI calculates outcomes from its training data rather 
@@ -362,13 +364,25 @@
         to do for it.
     \end{tcolorbox}
 
+    \pagebreak 
     \subsection{Natural language processing (NLP)}
-    Talk about \autocite{vaswani_attention_2017} here. It's a key paper and was the foundation
-    of GPT (I think)
+    The ability for a computer to interpret and understand human language greatly enhances the scale of their capabilities. This was 
+    recognised during the 1950s, where machine translation was demonstrated for the first time, albeit in a basic form \autocite{zampolli_natural_1994}.
+    NLP has become an extremely popular topic in recent years, and its applications have become very wide in scope with modern processing power, 
+    performing tasks such as sentiment analysis, which is the classification of the intent of a sentence, whether positive or negative for
+    example, using recent developments in AI such as recurrent neural networks (RNNs) via TensorFlow \autocite{abadi_tensorflow_2016}. To do so, 
+    the training data required is immense, and often harvested from social media due to it being one of the largest repositories of 
+    opinionated text data \autocite{wang_fine-grained_2016}, such as posts on platforms like Facebook and X. Another use of NLP, as previously 
+    mentioned in a rudimentary form in the 1950s, is language translation. Back then, there were very limited technical options compared to 
+    those that exist today, and with today's RNNs, translation can be extremely accurate, albeit more computationally intensive. 
+    Both of these applications use RNNs, which are neural networks that are often superior to their alternatives such as convolutional (CNNs)
+    and feedforward neural networks (FNNs) for text analysis due to the fact that they can retain information in their internal memory, which can allow them 
+    to recall context, allowing them to determine the linguistic relations between sentences within a document \autocite{tang_document_2015} 
+    which is especially useful in conversational interfaces where the user may say "it" to refer to a previous noun from their last prompt.
 
     \subsection{Large language models}
-    I don't think I've got any papers relating to this yet.
-
+    Talk about \autocite{vaswani_attention_2017} here. It's a key paper and was the foundation
+    of GPT (I think)
     \subsection{User experience}
     I don't think I've got any papers relating to this yet.
 
