@@ -380,15 +380,17 @@
 
     The ability for a computer to interpret and understand human language greatly enhances the scale of their capabilities. This was 
     recognised during the 1950s, where machine translation from Russian to English was demonstrated for the first time, albeit in a basic form \autocite{zampolli_natural_1994}.
-    NLP has persistently been a key topic in computing, and even more so become in recent years, with its applications becoming very wide in scope with modern processing power, 
+    NLP has persistently been a key topic in computing, and even more so become in recent years, with its applications becoming very wide in scope with modern processing power.
     performing tasks such as sentiment analysis, which is the classification of the intent of a sentence, whether positive or negative for
     example, using recent developments in AI such as recurrent neural networks (RNNs) via libraries like TensorFlow \autocite{abadi_tensorflow_2016}.
     Another use of NLP, as previously mentioned in a rudimentary form in the 1950s, is language translation. Back then, there were very limited technical options compared to 
-    those that exist today, and with today's RNNs, translation can be extremely accurate, albeit more computationally intensive. 
+    those that exist today, and with today's AI, translation can be extremely accurate, albeit more computationally intensive. 
     Both of these applications use RNNs, which are neural networks that are often superior to their alternatives such as convolutional (CNNs)
     and feedforward neural networks (FNNs) when analysing text due to the fact that they can retain information in their internal memory, which can allow them 
     to recall context, allowing them to determine the linguistic relations between sentences within a document \autocite{tang_document_2015}, 
-    which is especially useful in conversational interfaces where the user may say "it" to contextually refer to a previous noun from their last prompt.
+    which is especially useful in conversational interfaces where the user may say "it" to contextually refer to a previous noun from their last prompt. However,
+    an even better option is a long short-term memory (LSTM), an updated form of an RNN with an even greater memory capacity that allows it to solve problems 
+    with long-term dependencies \autocite{hochreiter_long_1997} that often produce excellent results \autocite{sherstinsky_fundamentals_2020}.
 
     % Didn't RNNs develop into LSTMs? You've missed so much in this section.
 
