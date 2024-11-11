@@ -143,6 +143,7 @@
         over the next month. I've marked sections that I've taken from the proposal, or ones that 
         I'm currently uncertain of, with boxes similar to this one. The format of the document is currently 
         quite strange, with often random page breaks - this is temporary as I edit the draft and will be fixed in future versions.
+        Furthermore, this draft is over the word count even WITH missing sections.
     \end{tcolorbox}
 
 
@@ -335,7 +336,7 @@
     interact, communicate and deliver service to an organization’s customers" \autocite[p.909]{wirtz_brave_2018}} can complete a variety of 
     tangible or intangible actions, such as reading and sending text as a chatbot, seen in Figure \ref{fig:serviceBots}.
     
-    \begin{figure} % No placement argument because otherwise the footnote looks weird.
+    \begin{figure}[H]
         \centering
         \includegraphics[width=.8\linewidth]{serviceBots.png}
         \caption{Service robots categorization by task-type and recipient of service \autocite{wirtz_brave_2018}.}
@@ -373,9 +374,8 @@
     %     in NLP over time, such as Word2Vec and Seq2Seq.
     % \end{tcolorbox}
 
-    \begin{tcolorbox}[colback=red!5!white,colframe=green!75!black,title=Rewrite section]
-        Reread this before submission.
-    \end{tcolorbox}
+    % You've barely cited anything here, this section absolutely needs to be rewritten somewhat; reference
+    % the above colorbox for what to put there.
 
 
     The ability for a computer to interpret and understand human language greatly enhances the scale of their capabilities. This was 
@@ -389,6 +389,8 @@
     and feedforward neural networks (FNNs) when analysing text due to the fact that they can retain information in their internal memory, which can allow them 
     to recall context, allowing them to determine the linguistic relations between sentences within a document \autocite{tang_document_2015}, 
     which is especially useful in conversational interfaces where the user may say "it" to contextually refer to a previous noun from their last prompt.
+
+    % Didn't RNNs develop into LSTMs? You've missed so much in this section.
 
     \subsection{Large language models}
     LLMs are colossal machine learning models that leverage NLP to generate text. To do so, the training data required is immense, 
@@ -419,20 +421,56 @@
 
     % Talk about \autocite{vaswani_attention_2017} here. It's a key paper and was the foundation
     % of GPT (I think). Pivot into RAG, as you're not training your own LLM due to lack of processing power. Decide between Gemini or OpenAI.
-    % IIRC Gemini will be far cheaper, possibly free.
+    % IIRC Gemini will be far cheaper, possibly free. Maybe go out of your way to speak to Dan about his ideas of a shared OpenAI account to 
+    % split costs.
 
-    \subsection{User experience}
-    Digital products and services will all eventually be used by their targeted userbase, meaning it is therefore crucial to understand 
-    the requirements and expectations of users.
+    \subsection{User experience and Human-Computer Interaction}
+    % I'm not too happy with this section. Find some figures or something to bloat it with.
+    The way people interact with their devices has drastically evolved over the years, from early MS-DOS command-line 
+    interfaces (CLIs) to mouse-based graphical user interfaces (GUIs), to touch screens \autocite{kotian_systematic_2024}, greatly broadening
+    the userbase of computers as a whole from exclusively those heavily invested in tech to a vast majority of the world's 
+    population. As such, inclusive and accessible design is increasingly important to maximise the audience of any software,
+    especially considering the growing disabled population \autocite{putnam_how_2012}. As well as being inclusive, the design 
+    should also be user-centred, meaning it should be an iterative process that is constantly taking user feedback 
+    into account \autocite{chammas_closer_2015}. However, there are some barriers in this process when developing 
+    chatbots, as studied by \textcite{clark_what_2019} in their survey of university students who stated that they would 
+    always view a chatbot as a tool, and would not converse with them in the same way as they would a person. 
+    In this same context, it is also important to understand that users may struggle
+    to get the chatbot to respond with information they want, as their prompts may be poorly understood
+    due to issues like overgeneralisation \autocite{zamfirescu-pereira_why_2023}, and that users can quickly 
+    grow impatient after around 2 to 6 failed attempts, often branding the product as poor if this occurs \autocite{luger_like_2016}.
 
 
-    \subsection{Theory}
 
-    AAAA
+
+    \section{Theory}
+
+    % Not sure what this section really is, even from seeing the examples. Maybe leave it blank for the time being
+    % so you can find out in the meeting?
+
+    \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Missing section - To be done in future draft/final]
+        I am unsure of what this section should necessarily look like; examples provided on Moodle 
+        do not particularly help at all, and some of them simply don't even have this section.
+    \end{tcolorbox}
     
     \section{Summary}
 
+    % Dead simple section, single paragraph explaining your findings and how you'll apply them to the bot. This section
+    % is going to change once you've written the Chatbot/Digital assistant theme analysis, anyway, so don't sweat it 
+    % too much.
+
+    \begin{tcolorbox}[colback=red!5!white,colframe=orange!75!black,title=To be changed]
+        Due to Section 2.2.2 not being in this draft, this summary will be updated once I have completed
+        it with its findings, too.
+    \end{tcolorbox}
     
+    In conclusion, this literature review has revealed multiple key areas of focus for the development of the 
+    chatbot. The overall design of the chatbot must be iterative and human-centred, and user feedback should 
+    be obtained at every possible opportunity to ensure the resultant product is high quality. A deep exploration 
+    into AI, specifically in its applications in NLP and LLMs, has revealed that the likely best option for the chatbot 
+    will be to leverage a pre-existing powerful LLM's RAG capabilities to attach it to a database of university information,
+    as to do so on a local machine would require an infeasible amount of processing power.
+
     \begin{landscape}
 
     \chapter{Appendix}
@@ -458,7 +496,7 @@
     \printbibliography[keyword={refs}, title = {References}]
     \addcontentsline{toc}{chapter}{References}
 
-    % Invisible citing sources so that they get printed here
+    % Invisible citing bib sources so that they'll appear in the bibliography, as they won't show up unless cited.
     \nocite{IBMAIDef}
     \nocite{ICOAIDef}
     \nocite{IBMGenAI}
@@ -466,7 +504,7 @@
     \nocite{CloudflareLLM}
     \nocite{IBMNLP}
 
-    \printbibliography[keyword={bib}] % Will show an error until you cite an actual "bib" source.
+    \printbibliography[keyword={bib}]
     \addcontentsline{toc}{chapter}{Bibliography}
 
 \end{document}
