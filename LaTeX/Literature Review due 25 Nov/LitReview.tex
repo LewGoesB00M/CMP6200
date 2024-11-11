@@ -141,7 +141,8 @@
     \begin{tcolorbox}[colback=orange!5!white,colframe=orange!75!black,title=Draft notice]
         This is a very early draft of this literature review and will be subject to major change
         over the next month. I've marked sections that I've taken from the proposal, or ones that 
-        I'm currently uncertain of, with boxes similar to this one.
+        I'm currently uncertain of, with boxes similar to this one. The format of the document is currently 
+        quite strange, with often random page breaks - this is temporary as I edit the draft and will be fixed in future versions.
     \end{tcolorbox}
 
 
@@ -284,7 +285,7 @@
             As suggested by their name, they are trained on enormous amounts of text data, which allows them 
             to have active conversations with users. There are many different LLMs, and as their size and 
             complexity increases, so too does the necessary processing power. &
-            Retrieval augmented generation (RAG), Fine-tuning, Prompt engineering, 
+            Retrieval augmented generation (RAG), Fine-tuning, Prompt engineering, Impact on industry,
             GPT4o, LLaMA, Gemini, Claude
             
             \\
@@ -358,10 +359,11 @@
     at the end of development to the development process itself and end users, which also echoes Shneiderman's views. 
 
     \subsection{Chatbots / Digital assistants}
-    \begin{tcolorbox}[colback=red!5!white,colframe=orange!75!black,title=Uncertainty]
+    \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Missing section - To be done in future draft/final.]
         This theme overlaps too heavily with NLP and LLMs to really be its own theme, as it would just be a repetition
-        of what is said in those sections. However, it is undeniably a core aspect of this project, so I'm not sure what 
-        to do for it.
+        of what is said in those sections. Shortly before submitting this draft, I did form an idea for how I would write 
+        this section, though I have already delayed this draft once already and would likely have had to do so again to implement
+        this section.
     \end{tcolorbox}
 
     \pagebreak 
@@ -371,38 +373,57 @@
     %     in NLP over time, such as Word2Vec and Seq2Seq.
     % \end{tcolorbox}
 
-    \begin{tcolorbox}[colback=red!5!white,colframe=orange!75!black,title=Rewrite section]
-        This section may need an entire rewrite. You've referred to "training data", but that isn't NLP, that's LLMs.
+    \begin{tcolorbox}[colback=red!5!white,colframe=green!75!black,title=Rewrite section]
+        Reread this before submission.
     \end{tcolorbox}
 
 
     The ability for a computer to interpret and understand human language greatly enhances the scale of their capabilities. This was 
     recognised during the 1950s, where machine translation from Russian to English was demonstrated for the first time, albeit in a basic form \autocite{zampolli_natural_1994}.
-    NLP has become an extremely popular topic in recent years, and its applications have become very wide in scope with modern processing power, 
+    NLP has persistently been a key topic in computing, and even more so become in recent years, with its applications becoming very wide in scope with modern processing power, 
     performing tasks such as sentiment analysis, which is the classification of the intent of a sentence, whether positive or negative for
-    example, using recent developments in AI such as recurrent neural networks (RNNs) via libraries like TensorFlow \autocite{abadi_tensorflow_2016}. To do so, 
-    the training data required is immense, and often harvested from social media due to it being one of the largest repositories of 
-    opinionated text data \autocite{wang_fine-grained_2016}, such as posts on platforms like Facebook and X. Another use of NLP, as previously 
-    mentioned in a rudimentary form in the 1950s, is language translation. Back then, there were very limited technical options compared to 
+    example, using recent developments in AI such as recurrent neural networks (RNNs) via libraries like TensorFlow \autocite{abadi_tensorflow_2016}.
+    Another use of NLP, as previously mentioned in a rudimentary form in the 1950s, is language translation. Back then, there were very limited technical options compared to 
     those that exist today, and with today's RNNs, translation can be extremely accurate, albeit more computationally intensive. 
     Both of these applications use RNNs, which are neural networks that are often superior to their alternatives such as convolutional (CNNs)
-    and feedforward neural networks (FNNs) for text analysis due to the fact that they can retain information in their internal memory, which can allow them 
-    to recall context, allowing them to determine the linguistic relations between sentences within a document \autocite{tang_document_2015} 
+    and feedforward neural networks (FNNs) when analysing text due to the fact that they can retain information in their internal memory, which can allow them 
+    to recall context, allowing them to determine the linguistic relations between sentences within a document \autocite{tang_document_2015}, 
     which is especially useful in conversational interfaces where the user may say "it" to contextually refer to a previous noun from their last prompt.
 
     \subsection{Large language models}
-    LLMs are colossal machine learning models that leverage NLP to generate text. They are currently used widely across 
+    LLMs are colossal machine learning models that leverage NLP to generate text. To do so, the training data required is immense, 
+    reaching 45 terabytes of pure text data for ChatGPT in 2023 \autocite{dwivedi_so_2023}. This data is harvested from the web \autocite{dubey_llama_2024}
+    and social media due to it being one of the largest repositories of opinionated text data \autocite{wang_fine-grained_2016}, 
+    such as posts on platforms like Facebook and X. However, meticulous care is taken into the specific sources used to remove 
+    Personally Identifiable Information (PII) to minimise privacy and ethical concerns \autocite{dubey_llama_2024}. They are currently used widely across 
     an assortment of industries in place of technical support and human resources systems, and can be supplied with text 
-    prompts from users which will cause the LLM to generate a response. The system architecture of LLMs has long been a point 
-    of contention due to the sheer processing power required to run them, requiring more than 8 top-range server-grade GPUs to run some of the 
-    most powerful high-parameter open-source models like LLaMA 3.1 405B \autocite{dubey_llama_2024}.
+    prompts from users which will cause the LLM to generate a response. \textcite{vaswani_attention_2017} proposed the 
+    Transformer architecture, which became a staple in LLMs due to the major reduction in necessary processing power to produce higher-quality 
+    results. The architecture they proposed underpins many massive LLMs today, including ChatGPT. Even with this revelation, however, LLMs are still extremely performance-intensive,
+    requiring more than 8 top-range server-grade GPUs to run some of the most powerful high-parameter open-source models of today like LLaMA 3.1's 405 billion parameter model \autocite{dubey_llama_2024}.
+    However, it is also important to note that the amount of parameters in a model does not entirely account for the quality of its responses, as studied by \textcite{ouyang_training_2022}
+    in Figure \ref{fig:LLMPref} wherein their surveys revealed their fine-tuned LLM with over 100x less parameters than a 175 billion parameter 
+    GPT3 model would often give answers preferred by its human assessors, which reveals that the fine-tuning of an LLM is of vital importance 
+    to the quality of its responses, even moreso than the amount of parameters. Another major innovation in LLM came in the form of Retrieval-Augmented 
+    Generation (RAG), which allows LLMs to generate answers based on an additional external data source \autocite{lewis_retrieval-augmented_2021}, such as a company's own database.
+    RAG therefore allows pre-trained LLMs to be attached to another data source and generate text based on the source, which can help to reduce 
+    LLM "hallucinations", which are occurrences where the LLM will fabricate false information as though it were correct \autocite{lewis_retrieval-augmented_2021}, 
+    due to the fact that it can find this information for itself.
 
+    \begin{figure} 
+        \centering
+        \includegraphics[width=.8\linewidth]{ouyangLLMPreference.png}
+        \caption{Human evaluations of the GPT models produced by \textcite{ouyang_training_2022}. PPO and PPO-ptx are their models.}
+        \label{fig:LLMPref}
+    \end{figure}
 
-    Talk about \autocite{vaswani_attention_2017} here. It's a key paper and was the foundation
-    of GPT (I think). Pivot into RAG, as you're not training your own LLM due to lack of processing power. Decide between Gemini or OpenAI.
-    IIRC Gemini will be far cheaper, possibly free.
+    % Talk about \autocite{vaswani_attention_2017} here. It's a key paper and was the foundation
+    % of GPT (I think). Pivot into RAG, as you're not training your own LLM due to lack of processing power. Decide between Gemini or OpenAI.
+    % IIRC Gemini will be far cheaper, possibly free.
+
     \subsection{User experience}
-    I don't think I've got any papers relating to this yet.
+    Digital products and services will all eventually be used by their targeted userbase, meaning it is therefore crucial to understand 
+    the requirements and expectations of users.
 
 
     \subsection{Theory}
