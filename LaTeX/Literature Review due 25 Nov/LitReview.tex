@@ -137,20 +137,7 @@
     %\footnotesize{\listoffigures}
 
     \chapter{Report Introduction}\label{ch:introduction}
-
-    \begin{tcolorbox}[colback=orange!5!white,colframe=orange!75!black,title=Draft notice]
-        This is a very early draft of this literature review and will be subject to major change. 
-        I've marked sections that I've taken directly from the proposal, or ones that 
-        I'm currently uncertain of, with boxes similar to this one.
-        Furthermore, this draft is over the word count even WITH missing sections.
-    \end{tcolorbox}
-
-
     \section{Aims and Objectives}
-
-    \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Copied from proposal]
-        These are still subject to change pending the grade from my proposal.
-    \end{tcolorbox}
 
     \noindent
     This project aims to aid new and existing students alike while they are attending university with 
@@ -194,15 +181,15 @@
     \end{figure}
    
     \noindent 
-    All searches performed for recent literature will be on papers published during or after 2017, with a preference 
+    All searches performed for recent literature will have a heavy preference 
     to more recent literature, due to the constantly evolving fields my project is based on. 
     The search terms I will use to retrieve the data I will be studying are:
 
     \begin{itemize}
         \item Artifical Intelligence / AI 
-        \item Chatbots / Digital Assistants
         \item Natural Language Processing / NLP
         \item Large Language Models / LLMs
+        \item Chatbots / Digital Assistants
         % \item Human-Computer Interaction
         % \item Knowledge Bases
         % \item Deep learning
@@ -235,12 +222,6 @@
     %     like LLaMA. I'd have much more to write about that way.
     % \end{tcolorbox}
 \pagebreak
-    \begin{tcolorbox}[colback=red!5!white,colframe=orange!75!black,title=Uncertainty]
-        Chatbots / Digital assistants are highlighted red due to my uncertainty of whether they should 
-        be a key theme of the literature review. This is because recent ones use NLP and LLMs, which already have
-        their own themes I intend to review.
-    \end{tcolorbox}
-
     \begin{table}[H]
         \centering
         \begin{tabular}{|p{0.2\textwidth}|p{0.52\textwidth} | p{0.23\textwidth}|}
@@ -263,14 +244,6 @@
             % more recently, even video and sound. & LLMs, Tokens, Embedding \\
 
             \hline
-            \cellcolor{red!25} Chatbot \newline Digital Assistant & \cellcolor{red!25} Software that simulates a natural conversation between the 
-            computer and end user. Many chatbots, including the one I intend to develop, utilise recent
-            developments such as Generative AI and natural language processing (NLP) to interpret and respond to user queries.
-            \autocite{IBMChatbotDef}
-            & \cellcolor{red!25} NLP, 
-            Microsoft Bot Framework, Watson Assistant, ChatGPT \\
-
-            \hline 
 
             Natural Language Processing & NLP refers to the use of machine learning to encode and 
             process text to understand it in a similar way to humans, which can be used to allow direct 
@@ -291,6 +264,13 @@
             \\
 
             \hline
+            Chatbot \newline Digital Assistant & Software that simulates a natural conversation between the 
+            computer and end user. Many chatbots, including the one I intend to develop, utilise recent
+            developments such as Generative AI and natural language processing (NLP) to interpret and respond to user queries.
+            \autocite{IBMChatbotDef}
+            & NLP, ChatGPT, Impact on industry \\
+
+            \hline 
 
             User Experience (UX) & The end user's overall experience of using a system, such as its ease of use and 
             whether it is enjoyable to use \autocite{UXDict}. In the context of my project, it will refer to the user's 
@@ -308,16 +288,6 @@
     \pagebreak % REMOVE IF NECESSARY
 
     \section{Review of Literature}
-
-    % \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=To-do for each theme]
-    %     Past developments, developments over time to now, many sources (Example 3 uses 9).
-    %     You need to reconsider your project's themes. RAG and fine-tuning LLMs are such key elements 
-    %     here that it could be worth having them as themes rather than keywords.
-    %     Remember you can talk about your sub-points, like for LLMs you can branch into NLP.
-    %     Consult week 6 A and B notes.
-    %     \textbf{Zotero is an obscenely useful tool. It's somewhat poor at citing websites, but excellent
-    %     for papers.} Consider Litmap to see referenced papers.
-    % \end{tcolorbox}
 
     \subsection{Artificial Intelligence (AI)}
 
@@ -358,15 +328,6 @@
     and biases of its users \autocite{selbst_fairness_2019}, and therefore developers require a shift in focus - from the final product
     at the end of development to the development process itself and end users, which also echoes Shneiderman's views. 
 
-    \subsection{Chatbots / Digital assistants}
-    \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Missing section - To be done in future draft/final.]
-        This theme overlaps too heavily with NLP and LLMs to really be its own theme, as it would just be a repetition
-        of what is said in those sections. Shortly before submitting this draft, I did form an idea for how I would write 
-        this section, though I have already delayed this draft once already and would likely have had to do so again to implement
-        this section.
-    \end{tcolorbox}
-
-    \pagebreak 
     \subsection{Natural language processing (NLP)}
     % \begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Will be rewritten in final]
     %     I'm somewhat happy with what I've written here, though I plan to go back and talk about more technical developments
@@ -391,8 +352,6 @@
     an even better option is a long short-term memory (LSTM), an updated form of an RNN with an even greater memory capacity that allows it to solve problems 
     with long-term dependencies \autocite{hochreiter_long_1997} that often produce excellent results \autocite{sherstinsky_fundamentals_2020}.
 
-    % Didn't RNNs develop into LSTMs? You've missed so much in this section.
-
     \subsection{Large language models}
     LLMs are colossal machine learning models that leverage NLP to generate text. To do so, the training data required is immense, 
     reaching 45 terabytes of pure text data for ChatGPT in 2023 \autocite{dwivedi_so_2023}. This data is harvested from the web \autocite{dubey_llama_2024}
@@ -402,18 +361,18 @@
     an assortment of industries in place of technical support and human resources systems, and can be supplied with text 
     prompts from users which will cause the LLM to generate a response. \textcite{vaswani_attention_2017} proposed the 
     Transformer architecture, which became a staple in LLMs due to the major reduction in necessary processing power to produce higher-quality 
-    results. The architecture they proposed underpins many massive LLMs today, including ChatGPT. Even with this revelation, however, LLMs are still extremely performance-intensive,
+    results. The architecture they proposed underpins many massive LLMs today, including ChatGPT \autocite{brown_language_2020}. Even with this revelation, however, LLMs are still extremely performance-intensive,
     requiring more than 8 top-range server-grade GPUs to run some of the most powerful high-parameter open-source models of today like LLaMA 3.1's 405 billion parameter model \autocite{dubey_llama_2024}.
     However, it is also important to note that the amount of parameters in a model does not entirely account for the quality of its responses, as studied by \textcite{ouyang_training_2022}
     in Figure \ref{fig:LLMPref} wherein their surveys revealed their fine-tuned LLM with over 100x less parameters than a 175 billion parameter 
     GPT3 model would often give answers preferred by its human assessors, which reveals that the fine-tuning of an LLM is of vital importance 
     to the quality of its responses, even moreso than the amount of parameters. Another major innovation in LLM came in the form of Retrieval-Augmented 
     Generation (RAG), which allows LLMs to generate answers based on an additional external data source \autocite{lewis_retrieval-augmented_2021}, such as a company's own database.
-    RAG therefore allows pre-trained LLMs to be attached to another data source and generate text based on the source, which can help to reduce 
-    LLM "hallucinations", which are occurrences where the LLM will fabricate false information as though it were correct \autocite{lewis_retrieval-augmented_2021}, 
-    due to the fact that it can find this information for itself.
+    RAG therefore allows pre-trained LLMs to be attached to another data source and generate text based on that source, which can help to reduce 
+    LLM "hallucinations" \autocite{lewis_retrieval-augmented_2021}, which are occurrences where the LLM will fabricate false information as though it were correct, 
+    due to the fact that it can retrieve the relevant information it otherwise may not have had.
 
-    \begin{figure} 
+    \begin{figure}[b] 
         \centering
         \includegraphics[width=.8\linewidth]{ouyangLLMPreference.png}
         \caption{Human evaluations of the GPT models produced by \textcite{ouyang_training_2022}. PPO and PPO-ptx are their models.}
@@ -425,6 +384,23 @@
     % IIRC Gemini will be far cheaper, possibly free. Maybe go out of your way to speak to Dan about his ideas of a shared OpenAI account to 
     % split costs.
 
+    \subsection{Chatbots / Digital assistants}
+    Chatbots leverage natural language processing in order to simulate a conversational flow 
+    between a user and machine, and have become mainstream products in recent years \autocite{liao_all_2018},
+    though have existed as far back as 1966 with the creation of "ELIZA" for the IBM-7094 \autocite{weizenbaum_elizacomputer_1966}.
+    As time has passed, the capabilities of chatbots have greatly enhanced with developments in AI such as LLMs, and are used widely 
+    across industries such as education \autocite{kuhail_interacting_2023}. However, the use of LLM-based
+    chatbots, especially in educational settings, poses significant risks as studied by \textcite{neumann_llm-driven_2024}
+    due to the risk of hallucinations being interpreted as absolute fact, although \textcite{shuster_retrieval_2021} 
+    argued that this risk can be greatly reduced through introducing RAG to the backend LLM, which is further backed 
+    by the RAG-based chatbot created by \textcite{ge_development_2023}, which they found to give superior answers
+    in their medical field of study to those of a general-purpose LLM-based chatbot like ChatGPT.  
+
+    % \subsection{Information Retrieval Systems}
+    % Either this or RAG should have been a theme, I think. However, to do so would mean either the removal of 
+    % another theme (Probably UX) or going over the word count.
+    
+
     \subsection{User experience and Human-Computer Interaction}
     % I'm not too happy with this section. Find some figures or something to bloat it with.
     The way people interact with their devices has drastically evolved over the years, from early MS-DOS command-line 
@@ -435,51 +411,48 @@
     should also be user-centred, meaning it should be an iterative process that is constantly taking user feedback 
     into account \autocite{chammas_closer_2015}. However, there are some barriers in this process when developing 
     chatbots, as studied by \textcite{clark_what_2019} in their survey of university students who stated that they would 
-    always view a chatbot as a tool, and would not converse with them in the same way as they would a person. 
+    always view a chatbot as a tool, and would not converse with them in the same way as they would a person, which would 
+    limit their potential use and hinder the overall design process. 
     In this same context, it is also important to understand that users may struggle
     to get the chatbot to respond with information they want, as their prompts may be poorly understood
     due to issues like overgeneralisation \autocite{zamfirescu-pereira_why_2023}, and that users can quickly 
     grow impatient after around 2 to 6 failed attempts, often branding the product as poor if this occurs \autocite{luger_like_2016}.
 
 
-
-
     \section{Theory}
 
-    % Not sure what this section really is, even from seeing the examples. Maybe leave it blank for the time being
-    % so you can find out in the meeting?
+    % Not sure what this section really is, even from seeing the examples.
 
-    \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Missing section - To be done in future draft/final]
-        I am unsure of what this section should necessarily look like; examples provided on Moodle 
-        do not particularly help at all, and some of them simply don't even have this section.
-    \end{tcolorbox}
     
     \section{Summary}
 
-    % Dead simple section, single paragraph explaining your findings and how you'll apply them to the bot. This section
-    % is going to change once you've written the Chatbot/Digital assistant theme analysis, anyway, so don't sweat it 
-    % too much.
-
-    \begin{tcolorbox}[colback=red!5!white,colframe=orange!75!black,title=To be changed]
-        Due to Section 2.2.2 not being in this draft, this summary will be updated once I have completed
-        it with its findings, too.
-    \end{tcolorbox}
+    % Dead simple section, single paragraph explaining your findings and how you'll apply them to the bot.
     
     In conclusion, this literature review has revealed multiple key areas of focus for the development of the 
     chatbot. The overall design of the chatbot must be iterative and human-centred, and user feedback should 
     be obtained at every possible opportunity to ensure the resultant product is high quality. A deep exploration 
-    into AI, specifically in its applications in NLP and LLMs, has revealed that the likely best option for the chatbot 
-    will be to leverage a pre-existing powerful LLM's RAG capabilities to attach it to a database of university information,
-    as to do so on a local machine would require an infeasible amount of processing power.
+    into AI, specifically in its applications in NLP and LLMs, has revealed that the best option for the chatbot 
+    will be to leverage a pre-existing cloud-based LLM's RAG capabilities to attach it to a database of 
+    university information, as to do so on a local machine would require an infeasible amount of processing power.
+    In doing so, the LLM-based chatbot will be able to give good general answers as well as accurate 
+    university-specific answers regarding policies and societies.
+
+    Additionally, the discovery of many issues in the development of chatbots will greatly influence the design 
+    process, such as the need for users to be able to access the information they want in as few queries as 
+    possible to ensure user retention. Doing so will require prompt engineering to ensure that the LLM backend 
+    is generating specific information relevant to university rather than generic information that it may 
+    have been pre-trained with that would not be directly relevant.
 
     \begin{landscape}
 
     \chapter{Appendix}
     
     \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Copied from proposal]
-        This is still subject to change pending the grade from my proposal. 
-        \textbf{It also needs to be updated to reflect that the proposal is now done and lit review is in progress.}
+        \textbf{This will be updated to reflect that the proposal is now done and lit review is in progress.}
     \end{tcolorbox}
+
+    % ALSO UPDATE IT TO SAY DRAFT 1 WAS SUBMITTED BEFORE IT HAD TO BE! SHOWS YOU WERE 
+    % ACTIVELY UPDATING THE CHART
 
     \section{Gantt Chart}
 
@@ -488,7 +461,7 @@
     \begin{figure}[H]
         \centering
         \includegraphics[width=.75\linewidth]{ProposalGantt.png}
-        \caption{A conceptual Gantt chart of a development timeline.}
+        \caption{The proposed Gantt Chart for the development timeline.}
         \label{fig:gantt}
     \end{figure}
 
@@ -505,7 +478,7 @@
     \nocite{CloudflareLLM}
     \nocite{IBMNLP}
 
-    \printbibliography[keyword={bib}]
+    \printbibliography[keyword={bib}, title = {Bibliography~~~~~~~~~~~~~~\small{Sources consulted but not directly cited}}]
     \addcontentsline{toc}{chapter}{Bibliography}
 
 \end{document}

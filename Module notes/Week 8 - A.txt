@@ -1,0 +1,43 @@
+It seemed quite apparent from the meeting that he hadn't actually read 
+the draft you'd given him, as he made blanket statements that didn't really 
+have direct relevance to your specific work. I still don't know what the 
+Theory section is. The play is to smash out CMP6230 Fri - Mon, and 
+CMP6200 Tue - Thur. Following week is the ethics form which isn't 
+too major for you (?) but also more importantly it's CMP6202.
+
+
+Daniel says he's looking into Google Colab for cloud processing,
+and as such data would likely be stored on Google Drive.
+
+Identify data sources.
+Where is it? What does it look like?
+
+"Standard desk exercise" (?) Clean dataset, properly labelled, using ML for classification.
+Classifying query type? Do I do that or does the LLM?
+
+Likely going to be criticised on your literature review being impractical. Should not be a
+"laundry list" of loads of references for the sake of it. Say what you learned from EVERY 
+REFERENCE, and avoid giving a "hazy description". If he is unconvinced it's helping you,
+you will get a bad grade. Be practical, be honest, have you learned something from the review?
+Will that learning filter into your development?
+
+Wants something more concrete, hello world LLM app. 
+
+Word count not crazily important, he's not counting but don't go overboard.
+
+Have you put together a good plan of how to proceed further?
+
+Your planning should reflect good evaluation.
+
+Amount of sources isn't essential to him, and he is moreso assessing the value of your work and references. Use common sense, he says.
+
+The easiest way to do so is "are you convinced you've learnt the best practice to implement the project that comes next"
+
+Credit early works in each topic as you have. Have you for LLMs?
+
+RAG Pipelines??????? You've not mentioned that, so apparently there's a hole in it.
+
+You've also not mentioned infrastructure.
+
+If you don't know if you need something and it's hard to understand and you're not going to implement it, then what's the point?
+Next week, present newer draft. Assessed based on your preparedness for that deadline.
