@@ -366,13 +366,13 @@
     However, it is also important to note that the amount of parameters in a model does not entirely account for the quality of its responses, as studied by \textcite{ouyang_training_2022}
     in Figure \ref{fig:LLMPref} wherein their surveys revealed their fine-tuned LLM with over 100x less parameters than a 175 billion parameter 
     GPT3 model would often give answers preferred by its human assessors, which reveals that the fine-tuning of an LLM is of vital importance 
-    to the quality of its responses, even moreso than the amount of parameters. Another major innovation in LLM came in the form of Retrieval-Augmented 
+    to the quality of its responses, even moreso than the amount of parameters. Another major innovation in LLMs came in the form of Retrieval-Augmented 
     Generation (RAG), which allows LLMs to generate answers based on an additional external data source \autocite{lewis_retrieval-augmented_2021}, such as a company's own database.
     RAG therefore allows pre-trained LLMs to be attached to another data source and generate text based on that source, which can help to reduce 
     LLM "hallucinations" \autocite{lewis_retrieval-augmented_2021}, which are occurrences where the LLM will fabricate false information as though it were correct, 
     due to the fact that it can retrieve the relevant information it otherwise may not have had.
 
-    \begin{figure}[b] 
+    \begin{figure}[H] 
         \centering
         \includegraphics[width=.8\linewidth]{ouyangLLMPreference.png}
         \caption{Human evaluations of the GPT models produced by \textcite{ouyang_training_2022}. PPO and PPO-ptx are their models.}
@@ -421,7 +421,15 @@
 
     \section{Theory}
 
-    % Not sure what this section really is, even from seeing the examples.
+    % As it turns out, you have actually GRAVELY misunderstood this section.
+    % This is PART OF EVERY THEME. Technique here will be to find the equations 
+    % and algorithms that it's all based on. I expect the word count to go to 
+    % 2500 off of this, though given your lengthy intro to the document 
+    % that should actually bring the review itself to 2000.
+    "Details of how things work. This is very different from the Review, which provides 
+    cursory links between research. It should include design methods (e.g., equations, algorithms) 
+    that will be used and so on. There is no need to start from basics (e.g., V=IR, syntax error) 
+    as the reader will have some knowledge"
 
     
     \section{Summary}
@@ -478,7 +486,7 @@
     \nocite{CloudflareLLM}
     \nocite{IBMNLP}
 
-    \printbibliography[keyword={bib}, title = {Bibliography~~~~~~~~~~~~~~\small{Sources consulted but not directly cited}}]
+    \printbibliography[keyword={bib}, title = {Bibliography~~~~~~~~~~~~\small{Sources consulted but not directly cited}}]
     \addcontentsline{toc}{chapter}{Bibliography}
 
 \end{document}
