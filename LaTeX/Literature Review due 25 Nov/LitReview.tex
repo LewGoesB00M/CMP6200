@@ -313,7 +313,7 @@
     to classifying the contents of millions of images using convolutional neural networks \autocite{krizhevsky_imagenet_2012}.
 
     Recently, AI is used across many disciplines for different purposes to complete tasks faster than, and in some cases better than,
-    human workers. \textcite{wirtz_brave_2018} write that 'service robots'~\footnote{Defined as "system-based autonomous and adaptable interfaces that 
+    human workers, especially with the introduction of large language models (LLMs) \autocite{AIDigitalAssistants}. \textcite{wirtz_brave_2018} write that 'service robots'~\footnote{Defined as "system-based autonomous and adaptable interfaces that 
     interact, communicate and deliver service to an organization’s customers" \autocite[p.909]{wirtz_brave_2018}} can complete a variety of 
     tangible or intangible actions, such as two-way conversation with chatbots.
     
@@ -324,23 +324,18 @@
         \label{fig:serviceBots}
     \end{figure}
 
-    AI is still a constantly evolving field that is seeing bleeding-edge developments on a 
-    highly frequent basis and is becoming instrumental in many people's work and private lives 
-    with the introduction of large language models (LLMs) \autocite{AIDigitalAssistants}.
-
-
-    However, when developing a project that utilises AI, it is important that the development process
+    When developing a project that utilises AI, it is important that the development process
     is ethical and human-centred, which is known as Human-Centred AI (HCAI). 
     Another issue is the "black-box problem" - the inability to know an AI's reasoning, meaning that 
     eXplainable AI (XAI) is a growing necessity \autocite{miro-nicolau_comprehensive_2025}. 
     
-    In focusing on HCAI and XAI, the focus shifts from the machine executing the algorithms, and instead to the user and their experience 
+    In focusing on HCAI and XAI, the focus shifts from the machine to the user and their experience 
     using the AI. \textcite{AIEthics} strongly advocates for the 
     promotion of HCAI for the benefit of both companies and their users, which is a commonly accepted 
     idea due to the ethical risks of using AI. 
     
     Because AI calculates outcomes from its training data rather 
-    than understanding social norms and perspectives, the use of it in sociotechnical systems poses serious risks 
+    than understanding social norms and perspectives, using it in sociotechnical systems poses serious risks 
     due to the 'traps' it can fall into, because it cannot account for every possibility such as the personal tendencies 
     and biases of its users \autocite{selbst_fairness_2019}, and therefore developers require a shift in focus - from the final product
     at the end of development to the development process itself and end users, which also echoes Shneiderman's views. 
@@ -348,7 +343,7 @@
     \subsection{Natural language processing (NLP)}
     The ability for a computer to interpret and understand human language greatly enhances the scale of their capabilities. This was 
     recognised during the 1950s, where machine translation from Russian to English was demonstrated for the first time, albeit in a basic form \autocite{zampolli_natural_1994}.
-    Ever since, NLP has persistently been a key topic in computing, and even more so become in recent years, with its applications becoming very wide 
+    Ever since, NLP has been a key topic in computing, espeically in recent years, with its applications becoming very wide 
     in scope with modern processing power.
 
     One of the key advancements in NLP is vectorisation, a process where data is embedded into a numerical equivalent that a computer can interpret, 
@@ -358,7 +353,7 @@
     entire documents into semantically searchable vectorised forms.
     
     Embedding models have further improved since, most notably with \textcite{vaswani_attention_2017}'s Transformer architecture enhancing models such as 
-    BERT \autocite{devlin_bert_2019}, which is able to analyse context through analysing multiple neighbours of a word rather than reading from left to right,
+    BERT \autocite{devlin_bert_2019}, which establishes context through analysing multiple neighbours of a word rather than reading from left to right,
     gaining a higher understanding of the text it processes. Many embedding models have since been developed, though one of the most reputable is OpenAI's 
     recent text-embeddings-3 model \autocite{openai_vector_nodate}, which can be used in the development of the chatbot at a low cost. 
     
@@ -377,7 +372,7 @@
     However, meticulous care is taken into the specific sources used to remove 
     Personally Identifiable Information (PII) to minimise privacy and ethical concerns \autocite{dubey_llama_2024}.
     
-    The previously mentioned Transformer from \textcite{vaswani_attention_2017} 
+    The previously mentioned Transformer by \textcite{vaswani_attention_2017} 
     became a staple in LLMs due to the major reduction in necessary processing power to produce higher-quality 
     results, and it continues to underpin many LLMs today, including ChatGPT \autocite{brown_language_2020}. 
     Even with these enhancements, LLMs are still extremely performance intensive,
@@ -403,7 +398,7 @@
     \end{figure}
 
     The simplest way to measure the accuracy and quality of an LLM's responses is through human evaluation surveys such as that conducted by \textcite{ouyang_training_2022}, though
-    software approaches such as the open-source DeepEval can be used. DeepEval offers 14 metrics to test LLM outputs with \autocite{deepeval_introduction_2024},
+    software approaches such as DeepEval can be used. DeepEval offers 14 metrics to test LLM outputs with \autocite{deepeval_introduction_2024},
     with a notable metric being "G-Eval", originally introduced by \textcite{liu_g-eval_2023}, which uses an "LLM-as-a-judge" approach where an LLM will evaluate
     and grade the quality of the output.
 
@@ -434,8 +429,8 @@
     a RAG-enabled chatbot as studied by \textcite{odede_jaybot_2024}. 
     
     Many software options exist for
-    vector databases, such as Milvus \autocite{wang_milvus_2021}, Pinecone \autocite{pinecone_pinecone_nodate} and Chroma\footnote{Also known as ChromaDB.} \autocite{chroma_chroma_nodate}.
-    A study by \textcite{xie_brief_2023} compared these three, citing Pinecone's 'robust distributed computing capabilities and scalability', and its common usage 
+    vector databases, such as Milvus \autocite{wang_milvus_2021}, Pinecone \autocite{pinecone_pinecone_nodate} and Chroma \autocite{chroma_chroma_nodate}.
+    \textcite{xie_brief_2023} compared these three, citing Pinecone's 'robust distributed computing capabilities and scalability', and its common usage 
     in real-time searching scenarios.
     
     Pinecone was also used in chatbots by \textcite{odede_jaybot_2024} and \textcite{singer_development_2024}, showcasing its potential as a vector database solution
@@ -464,13 +459,13 @@
         \label{fig:ChatbotWaves}
     \end{figure}
 
-    As a product of the considerable developments in the field, chatbots are now widely used 
+    Due to these considerable developments in the field, chatbots are now widely used 
     across industries such as education \autocite{kuhail_interacting_2023}. However, the use of the latest wave of chatbots based on LLMs,
     especially in educational settings, poses significant risks as studied by \textcite{neumann_llm-driven_2024}
     due to the risk of hallucinations being interpreted as absolute fact, although \textcite{shuster_retrieval_2021} 
     argued that this risk can be greatly reduced through introducing RAG to the backend LLM, which is further backed 
     by the RAG-based chatbot created by \textcite{ge_development_2023}, which they found to also give superior answers
-    in their medical field of study to those of a general-purpose chatbot without RAG.  
+    to those of a general-purpose chatbot without RAG.  
 
 
     Many platforms exist to aid chatbot development, though they are typically aimed at users from non-IT backgrounds 
@@ -484,23 +479,22 @@
     \subsection{User experience and Human-Computer Interaction}
     % Debating the removal of this section.
     % Even if you don't delete it, I still think it's the weakest section of the review.
+    % The inclusion of this section puts you to 2260 words. Presuming a 10% allowance that makes you 60 over.
 
     The way people interact with their devices has drastically evolved over the years, from early MS-DOS command-line 
     interfaces (CLIs) to mouse-based graphical user interfaces (GUIs), to touch screens \autocite{kotian_systematic_2024}, greatly broadening
-    the userbase of computers to a vast majority of the world's 
-    population. Therefore, inclusive and accessible design is increasingly important to maximise the audience of any software,
+    the userbase of computers worldwide. Therefore, inclusive and accessible design is increasingly important to maximise the audience of any software,
     especially considering the growing disabled population \autocite{putnam_how_2012}. 
     
     As well as being inclusive, the design 
     should also be user-centred, meaning it should be an iterative process that is constantly taking user feedback 
     into account \autocite{chammas_closer_2015}. However, there are some barriers in this process when developing 
-    chatbots, as studied by \textcite{clark_what_2019} in their survey of university students who stated that they would 
-    always view a chatbot as a tool, and would not converse with them in the same way as they would a person, which would 
+    chatbots, as studied by \textcite{clark_what_2019} in their survey of university students who stated that they view 
+    chatbots as tools, and would not converse with them in the same way as they would a person, which would 
     limit their potential use and hinder the overall design process. 
 
-    In this same context, it is also important to understand that users may struggle
-    to get the chatbot to respond with information they want, as their prompts may be poorly understood
-    due to issues like overgeneralisation \autocite{zamfirescu-pereira_why_2023}, and that users can quickly 
+    Users also often struggle to get chatbots to respond how they want, as their prompts may be poorly understood
+    due to issues like overgeneralisation \autocite{zamfirescu-pereira_why_2023}, and studies show that they
     grow impatient after around 2 to 6 failed attempts, often branding the product as poor if this occurs \autocite{luger_like_2016}.
 
 
@@ -531,8 +525,8 @@
 
     \begin{figure}[H]
         \centering
-        \includegraphics[width=.9\linewidth]{LitReviewGantt.png}
-        \caption{The updated Gantt Chart for the development timeline.}
+        \includegraphics[width=.9\linewidth]{LitReviewGantt2.png}
+        \caption{The updated Gantt Chart for the development timeline as of November 25th.}
         \label{fig:gantt}
     \end{figure}
 
