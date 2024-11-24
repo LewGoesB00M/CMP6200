@@ -26,7 +26,7 @@
 % Declare biblatex with custom Harvard BCU styling for referencing.
 \usepackage[
     useprefix=true,
-    maxcitenames=3,
+    maxcitenames=2,
     maxbibnames=99,
     style=authoryear,
     dashed=false, 
@@ -140,17 +140,17 @@
     \section{Aims and Objectives}
 
     \noindent
-    This project aims to aid new and existing students alike while they are attending university with 
-    helpful information about the university itself, such as university societies, locations/campuses, 
+    This project aims to leverage to aid new and existing students alike while they are attending university with 
+    helpful information about university itself, such as university societies, locations/campuses, 
     and policies through the medium of a digital chatbot companion to converse with.
-    Its objectives are to:
+    The project's objectives are to:
 
     \begin{itemize}
-        \item Develop a chatbot capable of accurately answering user queries related to university 
-        buildings, policies, and societies with a minimum 95\% accuracy rate.
         \item Conduct a thorough literature review on the surrounding topics, namely AI, LLMs and NLP.
         \item Create effective documentation for all stages of development, highlighting challenges faced during the process.
-        \item Manage time effectively to ensure all project milestones are met on a consistent and regular timeframe.
+        \item Leverage Retrieval-Augmented Generation alongside a cloud-based LLM to query a vector database of university-related data.
+        \item Develop a chatbot capable of accurately answering user queries related to university 
+        buildings, policies, and societies with a minimum 95\% accuracy rate.
         \item Evaluate the effectiveness of an AI assistant on university student acclimatization.
     \end{itemize}
 
@@ -164,6 +164,7 @@
         \item IEEE Xplore
         \item Scopus / Elsevier
         \item Google Scholar
+        \item arXiv
         \item BCU Online Library
     \end{itemize}
     
@@ -190,11 +191,16 @@
         \item Natural Language Processing / NLP
         \item Large Language Models / LLMs
         \item Chatbots / Conversational Agents
-        % \item Human-Computer Interaction
-        % \item Knowledge Bases
-        % \item Deep learning
+        \item Retrieval-Augmented Generation / RAG
+        
+        
+        % =========================================================
+        % To be removed?
         \item User Experience / UX
-        % \item Information retrieval
+        \begin{itemize}
+            \item Human-Computer Interaction
+        \end{itemize}
+        % =========================================================
     \end{itemize}
 
     \noindent
@@ -247,19 +253,19 @@
 
             Natural Language Processing & NLP refers to the use of machine learning to encode and 
             process text to understand it in a similar way to humans, which can be used to allow direct 
-            two-way conversation between users and computers. & Deep learning, Tokenization, Sentiment analysis,
-            Entity linking
+            two-way conversation between users and computers. & Deep learning, Vectorisation
+            Sentiment analysis, Entity linking
 
             \\
 
             \hline
             
-            LLMs & Large Language Models are a type of AI dedicated to the recognition and generation of text.
+            LLMs & Large Language Models are a type of machine learning model dedicated to the recognition and generation of text.
             As suggested by their name, they are trained on enormous amounts of text data, which allows them 
             to have active conversations with users. There are many different LLMs, and as their size and 
             complexity increases, so too does the necessary processing power. &
             Retrieval augmented generation (RAG), Fine-tuning, Prompt engineering, Impact on industry,
-            GPT4o, LLaMA, Gemini, Claude
+            GPT4o, LLaMA, Gemini, Evaluation
             
             \\
 
@@ -271,6 +277,12 @@
             & NLP, Digital assistant, ChatGPT, Risks, Impact on industry \\
 
             \hline 
+
+            Retrieval-Augmented Generation \newline (RAG) & The optimisation of the generated text output of an LLM, incorporating
+            an external data source to enhance its contextual knowledge and enhancing the subject relevancy of outputs.
+            & Embedding, Vector databases, Document retrieval, Prompt engineering\\
+
+            \hline
 
             User Experience (UX) & The end user's overall experience of using a system, such as its ease of use and 
             whether it is enjoyable to use \autocite{UXDict}. In the context of this project, it will refer to the user's 
@@ -291,9 +303,7 @@
 
     \subsection{Artificial Intelligence (AI)}
 
-    % You may notice that some of these autocites are formatted differently. This is because I switched to using Zotero which 
-    % generates them for me with different naming schemes. Ones in camelCase were my original ones, then the new ones 
-    % formatted as NAME_TITLE_DATE are Zotero.
+    % Restructure, and likely cut down on the word count if you can? It does seem like this could all be relevant.
 
     Researchers have always wanted to harness the processing power of computers to act in a similar manner 
     indistinguishable from that of humans, most notably from as long ago as 1950, where the question was posed 
@@ -329,14 +339,9 @@
     at the end of development to the development process itself and end users, which also echoes Shneiderman's views. 
 
     \subsection{Natural language processing (NLP)}
-    % \begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Will be rewritten in final]
-    %     I'm somewhat happy with what I've written here, though I plan to go back and talk about more technical developments
-    %     in NLP over time, such as Word2Vec and Seq2Seq.
-    % \end{tcolorbox}
-
-    % You've barely cited anything here, this section absolutely needs to be rewritten somewhat; reference
-    % the above colorbox for what to put there.
-
+    % Restructure, and talk about Vectorisation! 
+    % Vectorisation absolutely key. Word2Vec, Seq2Vec, etc. Perhaps RAG's Vector DB talk can go here too?
+    % Finish by becoming increasingly specific to the applications of NLP for an LLM-based RAG chatbot.
 
     The ability for a computer to interpret and understand human language greatly enhances the scale of their capabilities. This was 
     recognised during the 1950s, where machine translation from Russian to English was demonstrated for the first time, albeit in a basic form \autocite{zampolli_natural_1994}.
@@ -355,6 +360,9 @@
     \pagebreak 
 
     \subsection{Large language models}
+    % Restructure, and talk about the evaluation of generated answers!
+    % TALK ABOUT EMBEDDING MODELS. MASSIVE KEY POINT FOR CHATBOT DEVELOPMENT.
+
     LLMs are colossal machine learning models that leverage NLP to generate text. To do so, the training data required is immense, 
     reaching 45 terabytes of pure text data for ChatGPT in 2023 \autocite{dwivedi_so_2023}. This data is harvested from the web \autocite{dubey_llama_2024}
     and social media due to it being one of the largest repositories of opinionated text data \autocite{wang_fine-grained_2016}, 
@@ -368,11 +376,13 @@
     However, it is also important to note that the amount of parameters in a model does not entirely account for the quality of its responses, as studied by \textcite{ouyang_training_2022}
     in Figure \ref{fig:LLMPref} wherein their surveys revealed their fine-tuned LLM with over 100x less parameters than a 175 billion parameter 
     GPT3 model would often give answers preferred by its human assessors, which reveals that the fine-tuning of an LLM is of vital importance 
-    to the quality of its responses, even moreso than the amount of parameters. Another major innovation in LLMs came in the form of Retrieval-Augmented 
-    Generation (RAG), which allows LLMs to generate answers based on an additional external data source \autocite{lewis_retrieval-augmented_2021}, such as a company's own database.
-    RAG therefore allows pre-trained LLMs to be attached to another data source and generate text based on that source, which can help to reduce 
-    LLM "hallucinations" \autocite{lewis_retrieval-augmented_2021}, which are occurrences where the LLM will fabricate false information as though it were correct, 
-    due to the fact that it can retrieve the relevant information it otherwise may not have had.
+    to the quality of its responses, even moreso than the amount of parameters.  
+    
+    % Another major innovation in LLMs came in the form of Retrieval-Augmented 
+    % Generation (RAG), which allows LLMs to generate answers based on an additional external data source \autocite{lewis_retrieval-augmented_2021}, such as a company's own database.
+    % RAG therefore allows pre-trained LLMs to be attached to another data source and generate text based on that source, which can help to reduce 
+    % LLM "hallucinations" \autocite{lewis_retrieval-augmented_2021}, which are occurrences where the LLM will fabricate false information as though it were correct, 
+    % due to the fact that it can retrieve the relevant information it otherwise may not have had.
 
     \begin{figure}[H] 
         \centering
@@ -387,6 +397,9 @@
     % split costs.
 
     \subsection{Chatbots / Conversational Agents}
+    % I was quite confident in this section given how short and direct it is. However, you've put too much about RAG in here.
+    % You'll therefore need to find something else to write about here, perhaps things like Siri and Google Assistant?
+
     Conversational agents, better known as chatbots, leverage natural language processing in order to simulate a conversational flow 
     between a user and machine, and have become mainstream products in recent years \autocite{liao_all_2018},
     though have existed as far back as 1966 with the creation of "ELIZA" for the IBM-7094 \autocite{weizenbaum_elizacomputer_1966}.
@@ -406,13 +419,47 @@
         \label{fig:ChatbotWaves}
     \end{figure}
 
-    % \subsection{Information Retrieval Systems}
-    % Either this or RAG should have been a theme, I think. However, to do so would mean either the removal of 
-    % another theme (Probably UX) or going over the word count.
+    Many platforms exist to aid chatbot development
+    % Watson Assistant, MS Bot Framework, etc.
+
+    
+    \subsection{Retrieval-Augmented Generation}
+    % Does UX/HCI get axed in favour of this? The AI section is really long and takes up a lot of the word count,
+    % so shortening that is also an option.
+    
+    % Talk about the evaluation of generated answers here maybe?
+    While LLMs are highly useful tools across many industries, they are not without limitations. The most notable 
+    of these limitations are hallucinations \autocite{lewis_retrieval-augmented_2021}, where the LLM will fabricate 
+    information that conflicts with user input, earlier conversation context or true facts \autocite{zhang_sirens_2023}. This occurs as a direct result of the LLM's parametric memory\footnote{Knowledge that the LLM has from its training data \autocite{siriwardhana_improving_2023}.}
+    being overfitted or biased, which can be counteracted through introducing an external knowledge source, known as non-parametric memory (\textcite{komeili_internet-augmented_2022}, \textcite{siriwardhana_improving_2023}).
+    
+    \begin{figure}[H] 
+        \centering
+        \includegraphics[width=.8\linewidth]{RAGProcess.png}
+        \caption{A basic overview of a RAG workflow \autocite{openai_retrieval_nodate}.}
+        \label{fig:RAGProcess}
+    \end{figure}
+
+    \textcite{siriwardhana_improving_2023} expanded upon the earlier works of \textcite{karpukhin_dense_2020} and \textcite{lewis_pre-training_2020} by creating 
+    "RAG-end2end", an open-source model that allowed for dynamic updates to its attached knowledge base during training and also performed better than older 
+    RAG models in their evaluations.
+
+    
+    RAG is often dependent upon vector databases, which store and process the vectors produced by embedding models 
+    for non-parametric memory \autocite{li_modernization_2023}, which will make them an essential part of the backend of 
+    a RAG-enabled chatbot as studied by \textcite{odede_jaybot_2024}. Many options exist for the creation of 
+    vector databases, such as Milvus \autocite{wang_milvus_2021}, Pinecone and Chroma. A study by 
+    \textcite{xie_brief_2023} compared these three, and cited Pinecone's 'robust distributed computing capabilities and scalability'.
+    Pinecone was also used in \textcite{odede_jaybot_2024}'s RAG chatbot, showcasing its potential as a vector database solution.
     
 
+
+ 
+
+
     \subsection{User experience and Human-Computer Interaction}
-    % I'm not too happy with this section. Find some figures or something to bloat it with.
+    % Debating the removal of this section.
+
     The way people interact with their devices has drastically evolved over the years, from early MS-DOS command-line 
     interfaces (CLIs) to mouse-based graphical user interfaces (GUIs), to touch screens \autocite{kotian_systematic_2024}, greatly broadening
     the userbase of computers as a whole from exclusively those heavily invested in tech to a vast majority of the world's 
@@ -448,7 +495,7 @@
 
     \section{Summary}
 
-    % Dead simple section, single paragraph explaining your findings and how you'll apply them to the bot.
+    % Likely requires a full rewrite given that everything's being altered.
     
     In conclusion, this literature review has revealed multiple key areas of focus for the development of the 
     chatbot. The overall design of the chatbot must be iterative and human-centred, and user feedback should 
@@ -468,9 +515,6 @@
     \begin{landscape}
 
     \chapter{Appendix}
-
-    % ALSO UPDATE IT TO SAY DRAFT 1 WAS SUBMITTED BEFORE IT HAD TO BE! SHOWS YOU WERE 
-    % ACTIVELY UPDATING THE CHART
 
     \section{Gantt Chart}
 
@@ -493,6 +537,8 @@
     \nocite{MITGenAI}
     \nocite{CloudflareLLM}
     \nocite{IBMNLP}
+    \nocite{aws_what_nodate}
+    \nocite{databricks_retrieval_2023}
 
     \printbibliography[keyword={bib}, title = {Bibliography~~~~~~~~~~~~\small{Sources consulted but not directly cited}}]
     \addcontentsline{toc}{chapter}{Bibliography}
