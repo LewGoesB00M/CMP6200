@@ -150,7 +150,7 @@
         \item Create effective documentation for all stages of development, highlighting challenges faced during the process.
         \item Leverage Retrieval-Augmented Generation alongside a cloud-based LLM to query a vector database of university-related data.
         \item Develop a chatbot capable of accurately answering user queries related to university 
-        buildings, policies, and societies with a minimum 95\% accuracy rate.
+        buildings, policies, and societies with a minimum 80\% accuracy rate.
         \item Evaluate the effectiveness of an AI assistant on university student acclimatization.
     \end{itemize}
 
@@ -214,7 +214,7 @@
     \section{Themes}
 
     To develop the artefact and conduct thorough background research on relevant literature to further my 
-    knowledge of the subject areas, key general themes of the project were identified. From these themes, further 
+    knowledge of the subject areas, key general themes of the project were identified in Table \ref{tab:themes}. From these themes, further 
     keywords to be used in the literature search were derived to ensure that retrieved literature is directly relevant 
     to my research and development of the final artefact. Due to the constantly evolving fields the project focuses 
     on, it will be necessary to limit the results to primarily those written in recent years as there are 
@@ -253,8 +253,8 @@
 
             Natural Language Processing & NLP refers to the use of machine learning to encode and 
             process text to understand it in a similar way to humans, which can be used to allow direct 
-            two-way conversation between users and computers. & Deep learning, Vectorisation
-            Sentiment analysis, Entity linking
+            two-way conversation between users and computers. & Embedding models, Vectorisation
+            Semantic search, Entity linking
 
             \\
 
@@ -264,10 +264,15 @@
             As suggested by their name, they are trained on enormous amounts of text data, which allows them 
             to have active conversations with users. There are many different LLMs, and as their size and 
             complexity increases, so too does the necessary processing power. &
-            Retrieval augmented generation (RAG), Fine-tuning, Prompt engineering, Impact on industry,
+            Fine-tuning, Prompt engineering, Impact on industry,
             GPT4o, LLaMA, Gemini, Evaluation
             
             \\
+            \hline 
+
+            Retrieval-Augmented Generation \newline (RAG) & The optimisation of the generated text output of an LLM, incorporating
+            an external data source to enhance its contextual knowledge and enhancing the subject relevancy of outputs.
+            & Embedding, Vector databases, Document retrieval, Prompt engineering\\
 
             \hline
             Chatbot \newline Conversational Agent & Software that simulates a natural conversation between the 
@@ -276,24 +281,20 @@
             \autocite{IBMChatbotDef}
             & NLP, Digital assistant, ChatGPT, Risks, Impact on industry \\
 
-            \hline 
-
-            Retrieval-Augmented Generation \newline (RAG) & The optimisation of the generated text output of an LLM, incorporating
-            an external data source to enhance its contextual knowledge and enhancing the subject relevancy of outputs.
-            & Embedding, Vector databases, Document retrieval, Prompt engineering\\
-
             \hline
 
             User Experience (UX) & The end user's overall experience of using a system, such as its ease of use and 
             whether it is enjoyable to use \autocite{UXDict}. In the context of this project, it will refer to the user's 
             ability to smoothly converse with the chatbot and how human-like it is. 
-            & Conversational design, usability, market research, human-computer interaction
+            & Conversational design, usability, accessibility, human-computer interaction
 
             \\
 
             \hline 
 
-        \end{tabular}\label{tab:themes}
+        \end{tabular}
+        \caption{The themes and keywords used in the literature search.}
+        \label{tab:themes}
     \end{table}
 
 
@@ -310,10 +311,12 @@
     'Can machines think?' \autocite{turing_icomputing_1950}. Ever since, constant innovations were made in computer 
     intelligence and machine learning, from playing games of checkers at a better level than human players \autocite{samuel_studies_1959}
     to classifying the contents of millions of images using convolutional neural networks \autocite{krizhevsky_imagenet_2012}.
+
+
     Recently, AI is used across many disciplines and for different purposes to complete tasks faster than, and in some cases better than,
     human workers. \textcite{wirtz_brave_2018} write that 'service robots'~\footnote{Defined as "system-based autonomous and adaptable interfaces that 
     interact, communicate and deliver service to an organization’s customers" \autocite[p.909]{wirtz_brave_2018}} can complete a variety of 
-    tangible or intangible actions, such as reading and sending text as a chatbot, seen in Figure \ref{fig:serviceBots}.
+    tangible or intangible actions, such as reading and sending text as a chatbot.
     
     \begin{figure}[H]
         \centering
@@ -328,11 +331,14 @@
     However, when developing a project that utilises AI, it is important that 
     they are ethical and human-centred in the development process, which is known as Human-Centred AI (HCAI). 
     Another issue is the "black-box problem" - the inability to know an AI's reasoning, meaning that 
-    eXplainable AI (XAI) is a growing necessity \autocite{miro-nicolau_comprehensive_2025}. In focusing on 
-    HCAI and XAI, the focus shifts from the machine executing the algorithms, and instead to the user and their experience 
-    using the AI \autocite{AIEthics}. In his article, Shneiderman strongly advocates for the 
+    eXplainable AI (XAI) is a growing necessity \autocite{miro-nicolau_comprehensive_2025}. 
+    
+    In focusing on HCAI and XAI, the focus shifts from the machine executing the algorithms, and instead to the user and their experience 
+    using the AI. \textcite{AIEthics} strongly advocates for the 
     promotion of HCAI for the benefit of both companies and their users, which is a commonly accepted 
-    idea due to the ethical risks of using AI. Because AI calculates outcomes from its training data rather 
+    idea due to the ethical risks of using AI. 
+    
+    Because AI calculates outcomes from its training data rather 
     than understanding social norms and perspectives, the use of it in sociotechnical systems poses serious risks 
     due to the 'traps' it can fall into, because it cannot account for every possibility such as the personal tendencies 
     and biases of its users \autocite{selbst_fairness_2019}, and therefore developers require a shift in focus - from the final product
@@ -345,21 +351,20 @@
 
     The ability for a computer to interpret and understand human language greatly enhances the scale of their capabilities. This was 
     recognised during the 1950s, where machine translation from Russian to English was demonstrated for the first time, albeit in a basic form \autocite{zampolli_natural_1994}.
-    NLP has persistently been a key topic in computing, and even more so become in recent years, with its applications becoming very wide in scope with modern processing power.
-    performing tasks such as sentiment analysis, which is the classification of the intent of a sentence, whether positive or negative for
-    example, using recent developments in AI such as recurrent neural networks (RNNs) via libraries like TensorFlow \autocite{abadi_tensorflow_2016}.
+    Ever since, NLP has persistently been a key topic in computing, and even more so become in recent years, with its applications becoming very wide 
+    in scope with modern processing power.
 
-
-    Another use of NLP, as previously mentioned in a rudimentary form in the 1950s, is language translation. Previously, there were very limited technical options compared to 
-    those that exist today, and with today's AI, translation can be extremely accurate, albeit more computationally intensive.
+    One of the key advancements in NLP is vectorisation, a process where data is embedded into a numerical equivalent that a computer can interpret, 
+    enabling Natural Language Understanding (NLU) and the identification of semantic similarities between words through the use of an embedding model 
+    like Word2Vec \autocite{mikolov_efficient_2013} without the need to manually label data. 
+    Word2Vec was a key innovation in NLP, and Mikolov and Le went on to improve it further with Doc2Vec \autocite{le_distributed_2014}, which could embed 
+    entire documents into semantically searchable vectorised forms.
     
+    Embedding models have further improved since, most notably with \textcite{vaswani_attention_2017}'s Transformer architecture enhancing models such as 
+    BERT \autocite{devlin_bert_2019}, which is able to analyse context through analysing multiple neighbours of a word rather than reading from left to right,
+    gaining a higher understanding of the text it processes. Many embedding models have since been developed, though one of the most reputable is OpenAI's 
+    recent text-embeddings-3 model \autocite{openai_vector_nodate}, which can be used in the development of the chatbot at a low cost. 
     
-    Both of these applications use RNNs, which are neural networks that are often superior to their alternatives such as convolutional (CNNs)
-    and feedforward neural networks (FNNs) when analysing text due to the fact that they can retain information in their internal memory, which can allow them 
-    to recall context, allowing them to determine the linguistic relations between sentences within a document \autocite{tang_document_2015}, 
-    which is especially useful in conversational interfaces where the user may say "it" to contextually refer to a previous noun from their last prompt. However,
-    an even better option is a long short-term memory (LSTM), an updated form of an RNN with an even greater memory capacity that allows it to solve problems 
-    with long-term dependencies \autocite{hochreiter_long_1997} that often produce excellent results \autocite{sherstinsky_fundamentals_2020}.
 
     \pagebreak 
 
@@ -367,20 +372,27 @@
     % Restructure, and talk about the evaluation of generated answers!
     % TALK ABOUT EMBEDDING MODELS. MASSIVE KEY POINT FOR CHATBOT DEVELOPMENT.
 
-    LLMs are colossal machine learning models that leverage NLP to generate text. To do so, the training data required is immense, 
-    reaching 45 terabytes of pure text data for ChatGPT in 2023 \autocite{dwivedi_so_2023}. This data is harvested from the web \autocite{dubey_llama_2024}
+    LLMs are colossal machine learning models that leverage NLP to generate text, and have become widely used across 
+    an assortment of industries in place of technical support and human resources systems \autocite{vrontis_artificial_2022}. The training data required for an LLM is immense, 
+    reaching 45 terabytes of pure text data for ChatGPT in 2023 \autocite{dwivedi_so_2023}. 
+    
+    This data is harvested from the web \autocite{dubey_llama_2024}
     and social media due to it being one of the largest repositories of opinionated text data \autocite{wang_fine-grained_2016}, 
     such as posts on platforms like Facebook and X. However, meticulous care is taken into the specific sources used to remove 
-    Personally Identifiable Information (PII) to minimise privacy and ethical concerns \autocite{dubey_llama_2024}. They are currently used widely across 
-    an assortment of industries in place of technical support and human resources systems, and can be supplied with text 
-    prompts from users which will cause the LLM to generate a response. \textcite{vaswani_attention_2017} proposed the 
-    Transformer architecture, which became a staple in LLMs due to the major reduction in necessary processing power to produce higher-quality 
-    results. The architecture they proposed underpins many massive LLMs today, including ChatGPT \autocite{brown_language_2020}. Even with this revelation, however, LLMs are still extremely performance-intensive,
-    requiring more than 8 top-range server-grade GPUs to run some of the most powerful high-parameter open-source models of today like LLaMA 3.1's 405 billion parameter model \autocite{dubey_llama_2024}.
-    However, it is also important to note that the amount of parameters in a model does not entirely account for the quality of its responses, as studied by \textcite{ouyang_training_2022}
-    in Figure \ref{fig:LLMPref} wherein their surveys revealed their fine-tuned LLM with over 100x less parameters than a 175 billion parameter 
-    GPT3 model would often give answers preferred by its human assessors, which reveals that the fine-tuning of an LLM is of vital importance 
-    to the quality of its responses, even moreso than the amount of parameters.  
+    Personally Identifiable Information (PII) to minimise privacy and ethical concerns \autocite{dubey_llama_2024}.
+    
+    The previously mentioned Transformer from \textcite{vaswani_attention_2017} 
+    became a staple in LLMs due to the major reduction in necessary processing power to produce higher-quality 
+    results, and it continues to underpin many LLMs today, including ChatGPT \autocite{brown_language_2020}. 
+    Even with these enhancements, however, LLMs are still extremely performance-intensive,
+    requiring more than 8 top-range server-grade GPUs to run some of the most powerful high-parameter open-source models of today like LLaMA 3.1's 405 billion parameter model \autocite{dubey_llama_2024},
+    and many therefore use cloud API solutions to access these LLMs such as those from OpenAI and Google.
+    
+    
+    It is also important to note that the amount of parameters in a model does not entirely account for the quality of its responses, as studied by \textcite{ouyang_training_2022}
+    in Figure \ref{fig:LLMPref} wherein their surveys revealed their fine-tuned LLM "InstructGPT" with over 100x less parameters than a 175 billion parameter 
+    GPT3 model would often give answers preferred by its human assessors, which reveals that the fine-tuning and prompt engineering of an LLM is as vitally important
+    to the quality of its responses as the amount of parameters.  
     
     % Another major innovation in LLMs came in the form of Retrieval-Augmented 
     % Generation (RAG), which allows LLMs to generate answers based on an additional external data source \autocite{lewis_retrieval-augmented_2021}, such as a company's own database.
@@ -390,43 +402,16 @@
 
     \begin{figure}[H] 
         \centering
-        \includegraphics[width=.8\linewidth]{ouyangLLMPreference.png}
+        \includegraphics[width=.85\linewidth]{ouyangLLMPreference.png}
         \caption{Human evaluations of the GPT models produced by \textcite{ouyang_training_2022}. PPO and PPO-ptx are their models.}
         \label{fig:LLMPref}
     \end{figure}
 
-    % Talk about \autocite{vaswani_attention_2017} here. It's a key paper and was the foundation
-    % of GPT (I think). Pivot into RAG, as you're not training your own LLM due to lack of processing power. Decide between Gemini or OpenAI.
-    % IIRC Gemini will be far cheaper, possibly free. Maybe go out of your way to speak to Dan about his ideas of a shared OpenAI account to 
-    % split costs.
+    The simplest way to measure the accuracy and quality of an LLM's responses is through human evaluation surveys such as that conducted by \textcite{ouyang_training_2022}, though
+    software approaches such as the open-source DeepEval can be used. DeepEval offers 14 metrics to test LLM outputs with \autocite{deepeval_introduction_2024},
+    with a notable metric being "G-Eval", originally introduced by \textcite{liu_g-eval_2023}, which uses an "LLM-as-a-judge" approach where an LLM will evaluate
+    and grade the quality of the output.
 
-    \subsection{Chatbots / Conversational Agents}
-    % I was quite confident in this section given how short and direct it is. However, you've put too much about RAG in here.
-    % You'll therefore need to find something else to write about here, perhaps things like Siri and Google Assistant?
-
-    Conversational agents, better known as chatbots, leverage natural language processing in order to simulate a conversational flow 
-    between a user and machine, and have become mainstream products in recent years \autocite{liao_all_2018},
-    though have existed as far back as 1966 with the creation of "ELIZA" for the IBM-7094 \autocite{weizenbaum_elizacomputer_1966}.
-    As time has passed, advancements in chatbots have occurred in "waves", where each new wave has brought a major innovation \autocite{schobel_charting_2024}.
-    As a product of the considerable developments in the field, chatbots are now widely used 
-    across industries such as education \autocite{kuhail_interacting_2023}. However, the use of the latest wave of chatbots based on LLMs,
-    especially in educational settings, poses significant risks as studied by \textcite{neumann_llm-driven_2024}
-    due to the risk of hallucinations being interpreted as absolute fact, although \textcite{shuster_retrieval_2021} 
-    argued that this risk can be greatly reduced through introducing RAG to the backend LLM, which is further backed 
-    by the RAG-based chatbot created by \textcite{ge_development_2023}, which they found to also give superior answers
-    in their medical field of study to those of a general-purpose chatbot without RAG.  
-
-    \begin{figure}[H] 
-        \centering
-        \includegraphics[width=.8\linewidth]{ChatbotWaves.png}
-        \caption{The five waves of conversational agent research \autocite{schobel_charting_2024}.}
-        \label{fig:ChatbotWaves}
-    \end{figure}
-
-    Many platforms exist to aid chatbot development
-    % Watson Assistant, MS Bot Framework, etc.
-
-    
     \subsection{Retrieval-Augmented Generation}
     % Does UX/HCI get axed in favour of this? The AI section is really long and takes up a lot of the word count,
     % so shortening that is also an option.
@@ -445,38 +430,74 @@
     \end{figure}
 
     \textcite{siriwardhana_improving_2023} expanded upon the earlier works of \textcite{karpukhin_dense_2020} and \textcite{lewis_pre-training_2020} by creating 
-    "RAG-end2end", an open-source model that allowed for dynamic updates to its attached knowledge base during training and also performed better than older 
-    RAG models in their evaluations.
-
+    "RAG-end2end", which explored the capabilities of RAG on a dynamically updating knowledge store. Through this, the LLM itself does not have to be retrained 
+    every time the data updates, saving enormous amounts of processing power.
     
-    RAG is often dependent upon vector databases, which store and process the vectors produced by embedding models 
-    for non-parametric memory \autocite{li_modernization_2023}, which will make them an essential part of the backend of 
-    a RAG-enabled chatbot as studied by \textcite{odede_jaybot_2024}. Many options exist for the creation of 
-    vector databases, such as Milvus \autocite{wang_milvus_2021}, Pinecone and Chroma. A study by 
-    \textcite{xie_brief_2023} compared these three, and cited Pinecone's 'robust distributed computing capabilities and scalability'.
-    Pinecone was also used in \textcite{odede_jaybot_2024}'s RAG chatbot, showcasing its potential as a vector database solution.
+    RAG is dependent upon external knowledge stores such as vector databases, which store and process vectorised data
+    for non-parametric memory \autocite{li_modernization_2023}, which makes them an essential part of the backend of 
+    a RAG-enabled chatbot as studied by \textcite{odede_jaybot_2024}. 
     
-    % Pinecone is not free, nor is it open source. Just because one guy in the history of ever has used it doesn't mean you have to.
-    % Open-source ones exist. ChromaDB. Additionally, you WILL be using Langchain I'm almost certain.
+    Many software options exist for the creation of 
+    vector databases, such as Milvus \autocite{wang_milvus_2021}, Pinecone \autocite{pinecone_pinecone_nodate} and Chroma\footnote{Also known as ChromaDB.} \autocite{chroma_chroma_nodate}.
+    A study by \textcite{xie_brief_2023} compared these three, and cited Pinecone's 'robust distributed computing capabilities and scalability', and its common usage 
+    in real-time searching scenarios, though they noted it is the only closed-source proprietary option of the three.
+    Pinecone was also used in chatbots by \textcite{odede_jaybot_2024} and \textcite{singer_development_2024}, showcasing its potential as a vector database solution
+    for chatbots.
+
+    LangChain \autocite{langchain_introduction_nodate} is a popular open-source framework for RAG pipelines that can be used to connect their backend elements 
+    together, as described by \textcite{singer_development_2024} when they used it to chunk their text data and connect to their Pinecone vector database to store 
+    the embedded data. 
     
+    % Pinecone has a free option, though I'm not sure if this project could use it? Sounds like an Ethics Form problem.
 
 
- 
+    \subsection{Chatbots / Conversational Agents}
+    % I was quite confident in this section given how short and direct it is. However, you've put too much about RAG in here.
+    % You'll therefore need to find something else to write about here, perhaps things like Siri and Google Assistant?
 
+    Conversational agents, better known as chatbots, leverage natural language processing in order to simulate a conversational flow 
+    between a user and machine, and have become mainstream products in recent years \autocite{liao_all_2018},
+    though have existed as far back as 1966 with the creation of "ELIZA" for the IBM-7094 \autocite{weizenbaum_elizacomputer_1966}.
+    As time has passed, advancements in chatbots have occurred in "waves", where each new wave has brought a major innovation \autocite{schobel_charting_2024}.
+
+    \begin{figure}[H] 
+        \centering
+        \includegraphics[width=.8\linewidth]{ChatbotWaves.png}
+        \caption{The five waves of conversational agent research \autocite{schobel_charting_2024}.}
+        \label{fig:ChatbotWaves}
+    \end{figure}
+
+    As a product of the considerable developments in the field, chatbots are now widely used 
+    across industries such as education \autocite{kuhail_interacting_2023}. However, the use of the latest wave of chatbots based on LLMs,
+    especially in educational settings, poses significant risks as studied by \textcite{neumann_llm-driven_2024}
+    due to the risk of hallucinations being interpreted as absolute fact, although \textcite{shuster_retrieval_2021} 
+    argued that this risk can be greatly reduced through introducing RAG to the backend LLM, which is further backed 
+    by the RAG-based chatbot created by \textcite{ge_development_2023}, which they found to also give superior answers
+    in their medical field of study to those of a general-purpose chatbot without RAG.  
+
+
+    Many platforms exist to aid chatbot development, though they are typically aimed at users from non-IT backgrounds 
+    \autocite{srivastava_desirable_2020}. Popular platforms include IBM's watsonx Assistant \autocite{ibm_ibm_2024},
+    Google's Dialogflow \autocite{google_conversational_nodate} and Microsoft's Bot Framework \autocite{microsoft_microsoft_nodate}.
 
     \subsection{User experience and Human-Computer Interaction}
     % Debating the removal of this section.
+    % Even if you don't delete it, I still think it's the weakest section of the review.
 
     The way people interact with their devices has drastically evolved over the years, from early MS-DOS command-line 
     interfaces (CLIs) to mouse-based graphical user interfaces (GUIs), to touch screens \autocite{kotian_systematic_2024}, greatly broadening
     the userbase of computers as a whole from exclusively those heavily invested in tech to a vast majority of the world's 
     population. As such, inclusive and accessible design is increasingly important to maximise the audience of any software,
-    especially considering the growing disabled population \autocite{putnam_how_2012}. As well as being inclusive, the design 
+    especially considering the growing disabled population \autocite{putnam_how_2012}. 
+    
+    As well as being inclusive, the design 
     should also be user-centred, meaning it should be an iterative process that is constantly taking user feedback 
     into account \autocite{chammas_closer_2015}. However, there are some barriers in this process when developing 
     chatbots, as studied by \textcite{clark_what_2019} in their survey of university students who stated that they would 
     always view a chatbot as a tool, and would not converse with them in the same way as they would a person, which would 
     limit their potential use and hinder the overall design process. 
+
+
     In this same context, it is also important to understand that users may struggle
     to get the chatbot to respond with information they want, as their prompts may be poorly understood
     due to issues like overgeneralisation \autocite{zamfirescu-pereira_why_2023}, and that users can quickly 
@@ -546,6 +567,8 @@
     \nocite{IBMNLP}
     \nocite{aws_what_nodate}
     \nocite{databricks_retrieval_2023}
+    \nocite{elastic_what_nodate}
+    \nocite{confident_ai_llm_nodate}
 
     \printbibliography[keyword={bib}, title = {Bibliography~~~~~~~~~~~~\small{Sources consulted but not directly cited}}]
     \addcontentsline{toc}{chapter}{Bibliography}
