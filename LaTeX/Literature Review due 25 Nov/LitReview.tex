@@ -140,10 +140,10 @@
     \section{Aims and Objectives}
 
     \noindent
-    This project aims to leverage to aid new and existing students alike while they are attending university with 
+    This project aims to aid new and existing students alike while they are attending university with 
     helpful information about university itself, such as university societies, locations/campuses, 
     and policies through the medium of a digital chatbot companion to converse with.
-    The project's objectives are to:
+    The project's objectives are:
 
     \begin{itemize}
         \item Conduct a thorough literature review on the surrounding topics, namely AI, LLMs and NLP.
@@ -307,16 +307,15 @@
     % Restructure, and likely cut down on the word count if you can? It does seem like this could all be relevant.
 
     Researchers have always wanted to harness the processing power of computers to act in a similar manner 
-    indistinguishable from that of humans, most notably from as long ago as 1950, where the question was posed 
+    indistinguishable from that of humans from as long ago as 1950, where the question was posed 
     'Can machines think?' \autocite{turing_icomputing_1950}. Ever since, constant innovations were made in computer 
     intelligence and machine learning, from playing games of checkers at a better level than human players \autocite{samuel_studies_1959}
     to classifying the contents of millions of images using convolutional neural networks \autocite{krizhevsky_imagenet_2012}.
 
-
-    Recently, AI is used across many disciplines and for different purposes to complete tasks faster than, and in some cases better than,
+    Recently, AI is used across many disciplines for different purposes to complete tasks faster than, and in some cases better than,
     human workers. \textcite{wirtz_brave_2018} write that 'service robots'~\footnote{Defined as "system-based autonomous and adaptable interfaces that 
     interact, communicate and deliver service to an organization’s customers" \autocite[p.909]{wirtz_brave_2018}} can complete a variety of 
-    tangible or intangible actions, such as reading and sending text as a chatbot.
+    tangible or intangible actions, such as two-way conversation with chatbots.
     
     \begin{figure}[H]
         \centering
@@ -325,11 +324,13 @@
         \label{fig:serviceBots}
     \end{figure}
 
-    Today, AI is still a constantly evolving field that is seeing bleeding-edge developments on a 
-    highly frequent basis, and more recently, is becoming instrumental in many people's work and private lives 
+    AI is still a constantly evolving field that is seeing bleeding-edge developments on a 
+    highly frequent basis and is becoming instrumental in many people's work and private lives 
     with the introduction of large language models (LLMs) \autocite{AIDigitalAssistants}.
-    However, when developing a project that utilises AI, it is important that 
-    they are ethical and human-centred in the development process, which is known as Human-Centred AI (HCAI). 
+
+
+    However, when developing a project that utilises AI, it is important that the development process
+    is ethical and human-centred, which is known as Human-Centred AI (HCAI). 
     Another issue is the "black-box problem" - the inability to know an AI's reasoning, meaning that 
     eXplainable AI (XAI) is a growing necessity \autocite{miro-nicolau_comprehensive_2025}. 
     
@@ -345,10 +346,6 @@
     at the end of development to the development process itself and end users, which also echoes Shneiderman's views. 
 
     \subsection{Natural language processing (NLP)}
-    % Restructure, and talk about Vectorisation! 
-    % Vectorisation absolutely key. Word2Vec, Seq2Vec, etc. Perhaps RAG's Vector DB talk can go here too?
-    % Finish by becoming increasingly specific to the applications of NLP for an LLM-based RAG chatbot.
-
     The ability for a computer to interpret and understand human language greatly enhances the scale of their capabilities. This was 
     recognised during the 1950s, where machine translation from Russian to English was demonstrated for the first time, albeit in a basic form \autocite{zampolli_natural_1994}.
     Ever since, NLP has persistently been a key topic in computing, and even more so become in recent years, with its applications becoming very wide 
@@ -370,22 +367,21 @@
 
     \subsection{Large language models}
     % Restructure, and talk about the evaluation of generated answers!
-    % TALK ABOUT EMBEDDING MODELS. MASSIVE KEY POINT FOR CHATBOT DEVELOPMENT.
 
     LLMs are colossal machine learning models that leverage NLP to generate text, and have become widely used across 
     industries in place of technical support and human resources \autocite{vrontis_artificial_2022}. The training data required for an LLM is immense, 
     reaching 45 terabytes of text data for ChatGPT in 2023 \autocite{dwivedi_so_2023}. 
     
-    This data is harvested from the web \autocite{dubey_llama_2024}
-    and social media due to it being one of the largest repositories of opinionated text data \autocite{wang_fine-grained_2016}, 
-    such as posts on platforms like Facebook and X. However, meticulous care is taken into the specific sources used to remove 
+    This data is harvested from websites \autocite{dubey_llama_2024}
+    and social media due to it being one of the largest repositories of opinionated text data \autocite{wang_fine-grained_2016}. 
+    However, meticulous care is taken into the specific sources used to remove 
     Personally Identifiable Information (PII) to minimise privacy and ethical concerns \autocite{dubey_llama_2024}.
     
     The previously mentioned Transformer from \textcite{vaswani_attention_2017} 
     became a staple in LLMs due to the major reduction in necessary processing power to produce higher-quality 
     results, and it continues to underpin many LLMs today, including ChatGPT \autocite{brown_language_2020}. 
     Even with these enhancements, LLMs are still extremely performance intensive,
-    requiring more than 8 top-range server-grade GPUs to run some of the most powerful high-parameter open-source models like LLaMA 3.1's 405 billion parameter model \autocite{dubey_llama_2024},
+    requiring more than 8 top-range server-grade GPUs to run some of the most powerful high-parameter models like LLaMA 3.1's 405 billion parameter model \autocite{dubey_llama_2024},
     and many therefore use cloud API solutions to access LLMs.
     
     The amount of parameters in a model does not entirely account for the quality of its responses, as studied by \textcite{ouyang_training_2022}
@@ -485,43 +481,28 @@
 
     
 
-    % \subsection{User experience and Human-Computer Interaction}
-    % % Debating the removal of this section.
-    % % Even if you don't delete it, I still think it's the weakest section of the review.
+    \subsection{User experience and Human-Computer Interaction}
+    % Debating the removal of this section.
+    % Even if you don't delete it, I still think it's the weakest section of the review.
 
-    % The way people interact with their devices has drastically evolved over the years, from early MS-DOS command-line 
-    % interfaces (CLIs) to mouse-based graphical user interfaces (GUIs), to touch screens \autocite{kotian_systematic_2024}, greatly broadening
-    % the userbase of computers to a vast majority of the world's 
-    % population. Therefore, inclusive and accessible design is increasingly important to maximise the audience of any software,
-    % especially considering the growing disabled population \autocite{putnam_how_2012}. 
+    The way people interact with their devices has drastically evolved over the years, from early MS-DOS command-line 
+    interfaces (CLIs) to mouse-based graphical user interfaces (GUIs), to touch screens \autocite{kotian_systematic_2024}, greatly broadening
+    the userbase of computers to a vast majority of the world's 
+    population. Therefore, inclusive and accessible design is increasingly important to maximise the audience of any software,
+    especially considering the growing disabled population \autocite{putnam_how_2012}. 
     
-    % As well as being inclusive, the design 
-    % should also be user-centred, meaning it should be an iterative process that is constantly taking user feedback 
-    % into account \autocite{chammas_closer_2015}. However, there are some barriers in this process when developing 
-    % chatbots, as studied by \textcite{clark_what_2019} in their survey of university students who stated that they would 
-    % always view a chatbot as a tool, and would not converse with them in the same way as they would a person, which would 
-    % limit their potential use and hinder the overall design process. 
+    As well as being inclusive, the design 
+    should also be user-centred, meaning it should be an iterative process that is constantly taking user feedback 
+    into account \autocite{chammas_closer_2015}. However, there are some barriers in this process when developing 
+    chatbots, as studied by \textcite{clark_what_2019} in their survey of university students who stated that they would 
+    always view a chatbot as a tool, and would not converse with them in the same way as they would a person, which would 
+    limit their potential use and hinder the overall design process. 
 
-    % In this same context, it is also important to understand that users may struggle
-    % to get the chatbot to respond with information they want, as their prompts may be poorly understood
-    % due to issues like overgeneralisation \autocite{zamfirescu-pereira_why_2023}, and that users can quickly 
-    % grow impatient after around 2 to 6 failed attempts, often branding the product as poor if this occurs \autocite{luger_like_2016}.
+    In this same context, it is also important to understand that users may struggle
+    to get the chatbot to respond with information they want, as their prompts may be poorly understood
+    due to issues like overgeneralisation \autocite{zamfirescu-pereira_why_2023}, and that users can quickly 
+    grow impatient after around 2 to 6 failed attempts, often branding the product as poor if this occurs \autocite{luger_like_2016}.
 
-
-    % \section{Theory}
-    % You could gamble on the complete non-inclusion of this section, though it may be picked up on.
-    % You will have to see after Thursday's meeting.
-    
-    % As it turns out, you have actually GRAVELY misunderstood this section.
-    % This is PART OF EVERY THEME. Technique here will be to find the equations 
-    % and algorithms that it's all based on. I expect the word count to go to 
-    % 2500 off of this, though given your lengthy intro to the document 
-    % that should actually bring the review itself to 2000.
-    
-    % "Details of how things work. This is very different from the Review, which provides 
-    % cursory links between research. It should include design methods (e.g., equations, algorithms) 
-    % that will be used and so on. There is no need to start from basics (e.g., V=IR, syntax error) 
-    % as the reader will have some knowledge"
 
     \pagebreak 
 
