@@ -220,14 +220,7 @@
     on, it will be necessary to limit the results to primarily those written in recent years as there are 
     frequent new developments in the subject areas.
 
-    % \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Significant uncertainty]
-    %     I had a large amount of difficulty identifying my project's key themes, as many of them overlap and I was
-    %     unsure which would simply be keywords of others, which is most evident with "AI" and "Generative AI" seen below.
-    %     From what I can gather so far, I'm not sure if just making a chatbot that just accesses another LLM's API is worthy 
-    %     of being a dissertation project at all, and if it would be better to try with my own fine-tuned model of something 
-    %     like LLaMA. I'd have much more to write about that way.
-    % \end{tcolorbox}
-\pagebreak
+
     \begin{table}[H]
         \centering
         \begin{tabular}{|p{0.2\textwidth}|p{0.55\textwidth} | p{0.2\textwidth}|}
@@ -329,7 +322,7 @@
     Another issue is the "black-box problem" - the inability to know an AI's reasoning, meaning that 
     eXplainable AI (XAI) is a growing necessity \autocite{miro-nicolau_comprehensive_2025}. 
     
-    In focusing on HCAI and XAI, the focus shifts from the machine to the user and their experience 
+    Focusing on HCAI and XAI means the focus shifts from the machine to the user and their experience 
     using the AI. \textcite{AIEthics} strongly advocates for the 
     promotion of HCAI for the benefit of both companies and their users, which is a commonly accepted 
     idea due to the ethical risks of using AI. 
@@ -343,7 +336,7 @@
     \subsection{Natural language processing (NLP)}
     The ability for a computer to interpret and understand human language greatly enhances the scale of their capabilities. This was 
     recognised during the 1950s, where machine translation from Russian to English was demonstrated for the first time, albeit in a basic form \autocite{zampolli_natural_1994}.
-    Ever since, NLP has been a key topic in computing, espeically in recent years, with its applications becoming very wide 
+    Ever since, NLP has been a key topic in computing, especially in recent years, with its applications widening 
     in scope with modern processing power.
 
     One of the key advancements in NLP is vectorisation, a process where data is embedded into a numerical equivalent that a computer can interpret, 
@@ -356,13 +349,18 @@
     BERT \autocite{devlin_bert_2019}, which establishes context through analysing multiple neighbours of a word rather than reading from left to right,
     gaining a higher understanding of the text it processes. Many embedding models have since been developed, though one of the most reputable is OpenAI's 
     recent text-embeddings-3 model \autocite{openai_vector_nodate}, which can be used in the development of the chatbot at a low cost. 
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=.6\linewidth]{basicVectorisation.png}
+        \caption{A basic overview of vectorisation \autocite{openai_introducing_nodate}.}
+        \label{fig:basicVectorisation}
+    \end{figure}
     
 
     \pagebreak 
 
     \subsection{Large language models}
-    % Restructure, and talk about the evaluation of generated answers!
-
     LLMs are colossal machine learning models that leverage NLP to generate text, and have become widely used across 
     industries in place of technical support and human resources \autocite{vrontis_artificial_2022}. The training data required for an LLM is immense, 
     reaching 45 terabytes of text data for ChatGPT in 2023 \autocite{dwivedi_so_2023}. 
@@ -392,7 +390,7 @@
 
     \begin{figure}[H] 
         \centering
-        \includegraphics[width=.85\linewidth]{ouyangLLMPreference.png}
+        \includegraphics[width=.65\linewidth]{ouyangLLMPreference.png}
         \caption{Human evaluations of the GPT models produced by \textcite{ouyang_training_2022}. PPO and PPO-ptx are their models.}
         \label{fig:LLMPref}
     \end{figure}
@@ -406,8 +404,7 @@
     \subsection{Retrieval-Augmented Generation}
     % Does UX/HCI get axed in favour of this? The AI section is really long and takes up a lot of the word count,
     % so shortening that is also an option.
-    
-    % Talk about the evaluation of generated answers here maybe?
+
     While LLMs are highly useful tools across many industries, they are not without limitations. The most notable 
     of these limitations are hallucinations \autocite{lewis_retrieval-augmented_2021}, where the LLM will fabricate 
     information that conflicts with user input, earlier conversation context or true facts \autocite{zhang_sirens_2023}. This occurs as a direct result of the LLM's parametric memory\footnote{Knowledge that the LLM has from its training data \autocite{siriwardhana_improving_2023}.}
@@ -444,8 +441,6 @@
 
 
     \subsection{Chatbots / Conversational Agents}
-    % I was quite confident in this section given how short and direct it is. However, you've put too much about RAG in here.
-    % You'll therefore need to find something else to write about here, perhaps things like Siri and Google Assistant?
 
     Conversational agents, better known as chatbots, leverage MLP in order to simulate a conversational flow 
     between a user and machine, and have become mainstream products in recent years \autocite{liao_all_2018},
@@ -474,12 +469,11 @@
     However, these are primarily targeted at enterprise clients which is reflected in their pricing. Instead of using these,
     the chatbot can be manually developed using LangChain as its framework.
 
-    
+    \pagebreak 
 
     \subsection{User experience and Human-Computer Interaction}
     % Debating the removal of this section.
     % Even if you don't delete it, I still think it's the weakest section of the review.
-    % The inclusion of this section puts you to 2260 words. Presuming a 10% allowance that makes you 60 over.
 
     The way people interact with their devices has drastically evolved over the years, from early MS-DOS command-line 
     interfaces (CLIs) to mouse-based graphical user interfaces (GUIs), to touch screens \autocite{kotian_systematic_2024}, greatly broadening
@@ -496,9 +490,6 @@
     Users also often struggle to get chatbots to respond how they want, as their prompts may be poorly understood
     due to issues like overgeneralisation \autocite{zamfirescu-pereira_why_2023}, and studies show that they
     grow impatient after around 2 to 6 failed attempts, often branding the product as poor if this occurs \autocite{luger_like_2016}.
-
-
-    \pagebreak 
 
     \section{Summary}
     % I still think this is quite poor, but I don't know what else to say?
