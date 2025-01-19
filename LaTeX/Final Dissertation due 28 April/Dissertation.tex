@@ -1,0 +1,191 @@
+% -------------------------------------------------------------------------------
+% Establish page structure & font.
+\documentclass[12pt]{report}
+
+\usepackage[total={6.5in, 9in},
+	left=1in,
+	right=1in,
+	top=1in,
+	bottom=1in,]{geometry} % Page structure
+
+\usepackage{graphicx} % Required for inserting images
+\graphicspath{{../.images}} % Any additional images I use (BCU logo, etc) are from here.
+
+\usepackage[utf8]{inputenc} % UTF-8 encoding
+\usepackage[T1]{fontenc} % T1 font
+\usepackage{float}  % Allows for floats to be positioned using [H], which correctly
+                    % positions them relative to their location within my LaTeX code.
+\usepackage{subcaption}
+
+% -------------------------------------------------------------------------------
+% Declare biblatex with custom Harvard BCU styling for referencing.
+\usepackage[
+    useprefix=true,
+    maxcitenames=3,
+    maxbibnames=99,
+    style=authoryear,
+    dashed=false, 
+    natbib=true,
+    url=false,
+    backend=biber
+]{biblatex}
+
+\usepackage[british]{babel}
+
+% Additional styling options to ensure Harvard referencing format.
+\renewbibmacro*{volume+number+eid}{
+    \printfield{volume}
+    \setunit*{\addnbspace}
+    \printfield{number}
+    \setunit{\addcomma\space}
+    \printfield{eid}}
+\DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
+
+% Declaring all three (Maybe more as time goes on) bibs.
+\addbibresource{Proposal.bib}
+\addbibresource{LitReview.bib}
+\addbibresource{Dissertation.bib}
+
+
+% -------------------------------------------------------------------------------
+% To prevent "Chapter N" display for each chapter
+\usepackage[compact]{titlesec}
+\usepackage{wasysym}
+\usepackage{import}
+
+\titlespacing*{\chapter}{0pt}{-2cm}{0.5cm}
+\titleformat{\chapter}[display]
+{\normalfont\bfseries}{}{0pt}{\Huge}
+
+% -------------------------------------------------------------------------------
+% Custom macro to make an un-numbered footnote.
+
+\newcommand\blfootnote[1]{
+    \begingroup
+    \renewcommand\thefootnote{}\footnote{#1}
+    \addtocounter{footnote}{-1}
+    \endgroup
+}
+
+% -------------------------------------------------------------------------------
+% Fancy headers; used to show my name, BCU logo and current chapter for the page.
+\usepackage{fancyhdr}
+\usepackage{calc}
+\pagestyle{fancy}
+
+\setlength\headheight{37pt} % Set custom header height to fit the image.
+
+\renewcommand{\chaptermark}[1]{%
+    \markboth{#1}{}} % Include chapter name.
+
+
+% Lewis Higgins - ID 22133848           [BCU LOGO]                [CHAPTER NAME]
+\lhead{Lewis Higgins - ID 22133848~~~~~~~~~~~~~~~\includegraphics[width=1.75cm]{BCU}}
+\fancyhead[R]{\leftmark}
+
+% ------------------------------------------------------------------------------
+% Used to add PDF hyperlinks for figures and the contents page.
+
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,
+    urlcolor=blue,
+    citecolor=black,
+}
+
+% ------------------------------------------------------------------------------
+\usepackage{xcolor} 
+\usepackage{colortbl}
+\usepackage{longtable}
+\usepackage{amssymb}
+% ------------------------------------------------------------------------------
+\usepackage{tcolorbox}
+\newcommand{\para}{\vspace{7pt}\noindent}
+% -------------------------------------------------------------------------------
+
+\begin{document}
+
+\makeatletter
+\begin{titlepage}
+    \includegraphics[width=0.3\linewidth]{BCUWide.jpg}\\[4ex]
+    \vspace{1cm}
+    \begin{center}
+        {\huge \bfseries  CMP6200}\\[2ex]
+        {\huge \bfseries  Individual Undergraduate Project}\\[2ex]
+        {\huge \bfseries 2024 – 2025}\\[16ex]
+        {\huge \bfseries University Artificially Intelligent Assistant}\\[6ex]
+        \includegraphics[width=0.1\linewidth]{Symbol.png}\\[40ex]
+        Course: Computer \& Data Science\\
+        Student Name: Lewis Higgins\\
+        Student Number: 22133848\\
+        Supervisor Name: Dr. Atif Azad
+    \end{center}
+\end{titlepage}
+\makeatother
+\thispagestyle{empty}
+\newpage
+
+
+
+\begin{abstract}
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et erat consectetur, 
+    scelerisque eros nec, ultricies est. Donec mi ipsum, imperdiet vitae arcu quis, luctus venenatis quam. 
+    Integer ac massa a augue venenatis fringilla. Etiam posuere libero sed nulla tristique volutpat.
+\end{abstract}
+
+\setcounter{page}{0}
+
+\chapter*{Acknowledgements}
+I would like to acknowledge\dots
+
+\tableofcontents
+
+\chapter*{Glossary}
+
+
+\begin{longtable}{ | p{0.2\textwidth} | p{0.7\textwidth} |}
+    \hline
+    \cellcolor{blue!25}Term & \cellcolor{blue!25}Definition\\
+    \hline
+    RAG & Retrieval-Augmented Generation is\dots \\
+    \hline
+\end{longtable}
+
+\footnotesize 
+\listoffigures
+\listoftables
+
+\normalsize
+% It's likely that this will be an obscenely long LaTeX file. Therefore, it's segmented
+% across the Report folder to reduce file clutter and compilation time.
+\include{Report/Introduction.tex}
+\include{Report/LitReview.tex}
+\include{Report/Methods.tex}
+    \include{Report/Methods/Methodology.tex}
+    \include{Report/Methods/Design.tex}
+    \include{Report/Methods/Implementation.tex}
+\include{Report/Evaluation.tex} % This structure might cause issues. \include makes a new page.
+    \include{Report/Evaluation/Methodology.tex}
+    \include{Report/Evaluation/Results.tex}
+    \include{Report/Evaluation/Discussion.tex}
+\include{Report/Conclusions.tex}
+\include{Report/FutureRecommendations.tex}
+
+
+
+\printbibliography[keyword={refs}, title = {References}]
+\addcontentsline{toc}{chapter}{References}
+
+\printbibliography[keyword={bib}, title = {Bibliography}]
+\addcontentsline{toc}{chapter}{Bibliography}
+
+% [Written Jan 19] When you make it back here at the end of it all, make sure that the abstract,
+% acknowledgements, glossary and lists of the tables and figures are in the contents as ROMAN NUMERALS.
+
+% If there are appendices, they'd go here.
+% \include{Report/Appendices/AppendixA.tex}
+
+\end{document}
