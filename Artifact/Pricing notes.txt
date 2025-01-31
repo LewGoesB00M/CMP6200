@@ -1,0 +1,1 @@
+The longer a conversation goes on, the amount of tokens per message will greatly increase because the previous messages are still sent as input.
