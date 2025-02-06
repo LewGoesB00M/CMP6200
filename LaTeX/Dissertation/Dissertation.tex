@@ -165,18 +165,22 @@ I would like to acknowledge\dots
 \normalsize
 % It's likely that this will be an obscenely long LaTeX file. Therefore, it's segmented
 % across the Report folder to reduce file clutter and compilation time.
-\include{Report/Introduction}
-\include{Report/LitReview}
-\include{Report/Methods}
-    \include{Report/Methods/Methodology}
-    \include{Report/Methods/Design}
-    \include{Report/Methods/Implementation}
-\include{Report/Evaluation} % This structure might cause issues. \include makes a new page.
-    \include{Report/Evaluation/Methodology}
-    \include{Report/Evaluation/Results}
-    \include{Report/Evaluation/Discussion}
-\include{Report/Conclusions}
-\include{Report/FutureRecommendations}
+\include{Report/Introduction} % Could do as the last step.
+\include{Report/LitReview} % Already done, see if it's worth talking about DeepSeek.
+
+
+    \include{Report/Methods/Methodology} % Progress target for end of Week 2.
+    \include{Report/Methods/Design} % Progress target for 28th Feb.
+    \include{Report/Methods/Implementation} % Likely to be split across further files; a substantial percentage of the whole dissertation.
+
+
+    \include{Report/Evaluation/Methodology} % Theoretically cannot be done until Methods are done.
+    \include{Report/Evaluation/Results} % How will this be done? Surveys? Evaluation metrics (see lit review)?
+    \include{Report/Evaluation/Discussion} 
+
+
+\include{Report/Conclusions} % Final section.
+\include{Report/FutureRecommendations} % Immediate options "use better model (gpt-4, o1, [maybe o3 will be out when this is done])
 
 
 

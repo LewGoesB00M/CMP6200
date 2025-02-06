@@ -1,0 +1,12 @@
+The longer a conversation goes on, the amount of tokens per message will greatly increase because the previous messages are still sent as input.
+Experimentation with Pinecone indicates that it should be nearly impossible to hit the monthly limits.
+(SHOULD)
+
+Nevertheless, Chroma is directly compatible and was just a pip install away. Also, there's no limits on Chroma because it's local.
+It's possible that because of this, it could be hard to use this on the laptop, though it's not like the laptop is that old.
+
+GENERATING PACKAGE LIST:
+    pip list --format=freeze > requirements.txt
+
+Using pip list with format rather than directly calling pip freeze because it's a conda-pip hybrid environment, where pip 
+freeze generates conda URI links rather than direct package versions, making the requirements.txt file unusable by pip.
