@@ -1,5 +1,5 @@
 # Used to load all PDF files from a directory.
-from langchain_community.document_loaders import DirectoryLoader, PyPDFLoader, UnstructuredPDFLoader 
+from langchain_community.document_loaders import DirectoryLoader, UnstructuredPDFLoader
 
 # Used to split the PDFs into chunks for embedding.
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -24,8 +24,6 @@ import os
 # and its subdirectories.
 import shutil
 
-from uuid import uuid4
-
 
 # Set the paths for the FAISS DB, as well as the PDFs that will be loaded.
 FAISS_PATH = "FAISS"
@@ -44,9 +42,9 @@ def generate_data_store():
 # Loads every PDF from the data path.
 def load_documents():
     # In the data path, load every (signified by asterisk) PDF file.
-    # Because they're PDF files, the PyPDFLoader should be used to load each.
-    ### UnstructuredPDFLoader can also be used, but I was unable to get it working.
-    loader = DirectoryLoader(DATA_PATH,  glob="*.pdf", loader_cls = UnstructuredPDFLoader)
+    # Because they're PDF files, the UnstructuredPDFLoader can be used to load each.
+    loader = DirectoryLoader(DATA_PATH,  glob = "*.pdf",
+                             loader_cls = UnstructuredPDFLoader)
     documents = loader.load()
     return documents
 
@@ -55,9 +53,9 @@ def load_documents():
 def split_text(documents: list[Document]):
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=1000, # Can be changed, just a sample number.
-        chunk_overlap=200, # The overlap between chunks. Helps to prevent data being split in two.
+        chunk_overlap=200, # Helps data to not be split over multiple chunks.
         length_function=len, 
-        add_start_index=True
+        add_start_index=True,
     )
 
     # Save the split chunks.

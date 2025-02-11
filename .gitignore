@@ -1,4 +1,6 @@
-Artifact/.old-prototypes
+Artifact/.broken-prototypes
+Artifact/.ruff_cache
+.vscode
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
