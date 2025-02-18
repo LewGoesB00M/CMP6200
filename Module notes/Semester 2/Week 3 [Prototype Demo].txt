@@ -1,0 +1,2 @@
+Research Agentic AI.
+Future demos need a UI because VS Code's input box is very hard to see when screen sharing.
