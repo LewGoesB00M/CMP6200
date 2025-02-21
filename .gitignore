@@ -1,5 +1,6 @@
 Artifact/.broken-prototypes
 Artifact/.ruff_cache
+Artifact/__pycache__
 .vscode
 
 ## Core latex/pdflatex auxiliary files:

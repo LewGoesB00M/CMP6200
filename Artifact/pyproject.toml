@@ -16,6 +16,7 @@ dependencies = [
     "openai>=1.61.1",
     "pdfminer-six>=20240706",
     "pypdf>=5.2.0",
+    "streamlit>=1.42.2",
 ]
 
 [dependency-groups]
