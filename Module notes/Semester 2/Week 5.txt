@@ -1,2 +1,41 @@
 Keep the old iterations of your prototypes to talk about the iterative improvements you made.
 The most notable of those improvements are likely Streamlit and LangGraph.
+
+YOU SHOULD MAKE SOME POWERPOINT SLIDES WHICH YOU CAN SEND HIM AHEAD OF TIME AND GO THROUGH DURING THE MEETING.
+Atif says roughly 4 slides (more allowed but keep low), keep concise but with clear demonstration of achievement.
+Directly link said slides to your project objectives. List progress of each.
+Perhaps prepare additional slides that you don't send. He gave a strange point regarding additional slides for questions.
+
+!!! DO NOT BEGIN WITH THE CODE. !!!
+He frequently mentions a 10-minute time limit, mentioning that while you should show the backend, it may not be all about it.
+Perhaps he instead wants the theoretical backing of what you're doing. Tool calls, LangGraph (though week 3 he just ignored me?).
+He wants you to sell it to someone who knows nothing about how it all works. Frame it like a "sales pitch".
+In doing so, you're technically rehearsing the viva. He said the viva's "where most of the marks are" even though that couldn't be further from the truth.
+
+Expect in-depth Q&A. Rehearse ahead of time.
+Questions on both function and code. Code should "run at a click" and presentation should be "self-contained".
+This is true of your code, you have the nice Streamlit UI for it now. Not really sure what he's referring to concerning the presentation.
+
+He has an obsession with Agentic AI. He's wanted you to talk about it for two weeks now, so maybe do some detailed research
+for it. Can you implement it here? It sounds like he really wants you to.
+
+"No particular milestone in mind" regarding "relevant milestone" marking criteria.
+
+His marking is entirely subjective and based on nothing but his own whims.
+It is literally not possible to get over 80%.
+
+Iain will be present next week, and it is therefore unlikely to be Tuesday 4pm as usual due to schedule mismatch.
+
+You're meant to be writing your dissertation as you go, though he couldn't answer where you should be right now, instead deflecting to "it's not part of this meeting".
+As expected, his advice is "don't do it all at once".
+You should journal your progress every time you work on the dissertation. (This is what Mahara was meant for, but you forgot.)
+You probably want to resume what you did last semester where you message him your progress ahead of the meeting.
+
+Be cautious of the laundry list of references. Work shouldn't be referenced simply because it is published, but rather because it is DIRECTLY RELEVANT!
+Elements of your literature review may benefit from updates before the dissertation is finalised.
+
+
+My general summary is this:
+    You are WOEFULLY overthinking Week 6's meeting. It is a graded meeting, and they may make you feel like an idiot if you can't answer their questions.
+    So what? The meeting is 2.5% of the grade. You could just not even go and still do well in the module, so don't sit and overthink about what's effectively 
+    an insignificant event. 

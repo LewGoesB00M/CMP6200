@@ -34,7 +34,7 @@ OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
     #   FAISS-PyPDF: Chunk size 1000, Overlap 200, PyPDFLoader with default args.
     #   FAISS-SmallChunks: Chunk size 500, Overlap 100, PyPDFLoader with default args.
 FAISS_PATH = "FAISS-SmallChunks"
-# Experimentation showed that using the PyPDFLoader-based DB gave better results.
+
 
 # Sets up the embedding model with the API key.
 embedder = OpenAIEmbeddings(
@@ -49,7 +49,7 @@ db = FAISS.load_local(folder_path = FAISS_PATH,
 
 
 # Initialise the model.
-llm = init_chat_model("gpt-4o-mini", temperature = 0)
+llm = init_chat_model("gpt-4o-mini", temperature = 0.2)
 
 
 @tool(response_format = "content_and_artifact")
@@ -57,14 +57,14 @@ def retrieve(query):
     # The docstring below is actually REQUIRED by LangGraph, and this 
     # won't run without it.
     """Retrieves the 3 most relevant chunks for the user's query."""
-    retrieved_docs = db.similarity_search(query, k = 3)
+    retrievedDocs = db.similarity_search(query, k = 3)
     
     # The chunk's content and the document it came from (e.g "Attendance.pdf")
     content = "\n\n".join(
         (f"Source: {doc.metadata}\n" f"Content: {doc.page_content}")
-        for doc in retrieved_docs
+        for doc in retrievedDocs
     )
-    return content, retrieved_docs
+    return content, retrievedDocs
 
 
 # Initialise an empty graph. Nodes and edges are added later.
@@ -72,10 +72,10 @@ graph_builder = StateGraph(MessagesState)
 
 def query_or_respond(state: MessagesState):
     # Allows the LLM to use the retrieve tool that was created earlier.
-    rag_llm = llm.bind_tools([retrieve])
+    ragLLM = llm.bind_tools([retrieve])
     
-    # The LLM decides on its own if it needs
-    response = rag_llm.invoke(state["messages"])
+    # The LLM decides on its own if it needs retrieval.
+    response = ragLLM.invoke(state["messages"])
     
     # A key element of using a MessagesState is that that will append
     # the response to the conversation history rather than overwriting.
@@ -94,34 +94,35 @@ def generate(state: MessagesState):
     # the most recent RAG context from tool calls is added to the 
     # prompt to stop the LLM searching the entire conversation history 
     # for something that was JUST said. 
-    recent_tool_messages = []
+    recentToolMsgs = []
     
     # To get the most recent ones, the list needs to be reversed
     # so that the most recent come first instead of last.
     for message in reversed(state["messages"]):
         if message.type == "tool":
-            recent_tool_messages.append(message)
+            recentToolMsgs.append(message)
         else:
             # If it's a normal message, stop.
             break
     
     # Put the tool messages in their original order in case 
     # the sequence of the retrieved context mattered. 
-    tool_messages = recent_tool_messages[::-1]
+    toolMsgs = recentToolMsgs[::-1]
 
     # Saves the context from the recent tool messages.
-    docs_content = "\n\n".join(doc.content for doc in tool_messages)
+    docsContent = "\n\n".join(doc.content for doc in toolMsgs)
     
     # This is the LLM's system prompt, which decides how the LLM behaves.
-    system_message_content = (
+    systemPrompt = (
         # This is formatted like this to follow the Ruff linter's line length rule.
         "You are an assistant to help new students get acclimated to Birmingham City "
-        "University. Use the following pieces of retrieved context to answer "
-        "the question. If you don't know the answer, say that you "
+        "University. If you don't know the answer, say that you "
         "don't know. When referring to context, be specific and quote the context. "
-        "Use five sentences maximum and keep the answer concise."
+        "Use five sentences maximum and keep the answer concise. "
+        "Use the following pieces of retrieved context to answer "
+        "the question."
         "\n\n"
-        f"Context: {docs_content}" # RAG context is attached here
+        f"Context: {docsContent}" # RAG context is attached here
     )
     
     # The list of messages in the conversation.
@@ -129,7 +130,7 @@ def generate(state: MessagesState):
     # would hugely increase the input tokens used, and the LLM 
     # should (hopefully) have already said the useful info in its response
     # so it can use that instead.
-    conversation_messages = [
+    conversation = [
         message for message in state["messages"] # Every message in the conversation
         if message.type in ("human", "system")# If it's human input or the system prompt
         or (message.type == "ai" and not message.tool_calls)# Or AI and not a tool call.
@@ -137,7 +138,7 @@ def generate(state: MessagesState):
     
     # The final prompt consists of the system prompt and the conversation.
     # This does mean that as a conversation continues, token cost will greatly increase.
-    prompt = [SystemMessage(system_message_content)] + conversation_messages
+    prompt = [SystemMessage(systemPrompt)] + conversation
 
     # Get the LLM's response to the prompt and return the response.
     response = llm.invoke(prompt)
