@@ -31,9 +31,9 @@ OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
 # Sets the directory of the FAISS DB that's being loaded from.
     # Options:
-    #   FAISS: Chunk size 1000, Overlap 200, UnstructuredPDFLoader in elements mode.
     #   FAISS-PyPDF: Chunk size 1000, Overlap 200, PyPDFLoader with default args.
-FAISS_PATH = "FAISS-PyPDF"
+    #   FAISS-SmallChunks: Chunk size 500, Overlap 100, PyPDFLoader with default args.
+FAISS_PATH = "FAISS-SmallChunks"
 # Experimentation showed that using the PyPDFLoader-based DB gave better results.
 
 # Sets up the embedding model with the API key.

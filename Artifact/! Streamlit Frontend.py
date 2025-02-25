@@ -7,34 +7,31 @@ from Chatbot import graph
 # Used to show if a message was written by the AI or the user,
 from langchain_core.messages import AIMessage, HumanMessage
 
-# ! Comments that start with "noqa" are used in my IDE to stop line length enforcement
-# ! by the Ruff linter.
-
 # Use Streamlit's wide layout, which will use the whole screen space rather than a small
 # centre column. Also gives the page a title and icon which is shown in the 
 # browser tab view.
-st.set_page_config(layout='wide', page_title='University Artifically Intelligent Chatbot',  # noqa: E501
+st.set_page_config(layout = 'wide', page_title = 'University Artifically Intelligent Chatbot',
                    page_icon='📚')
 
 # When the UI first opens, this is the first message that will already be in the chat.
-defaultMsg = "Hello! I'm an assistant chatbot designed to help answer any questions you have about BCU." # noqa: E501
+defaultMsg = "Hello! I'm an assistant chatbot designed to help answer any questions you have about BCU."
 if 'message_history' not in st.session_state:
     st.session_state.message_history = [AIMessage(content=defaultMsg)]
     
 # Organises the app so that the left column (which holds a debug button) is smaller 
 # than the main chat UI.
-left_col, main_col, = st.columns([1, 9])
+debugBtn, chatHist, = st.columns([1, 9])
 
 # In the left column, a button is placed that clears the chat history when clicked.
 # It resets the entire conversation back to the original "Hello!" prompt.
-with left_col:
+with debugBtn:
     if st.button('[DEBUG] Clear history'):
         st.session_state.message_history = [AIMessage(content=defaultMsg)]
 
 
 # The main UI is in this column.
 # The user inputs their prompt into a text box which is then sent off to the chatbot.
-with main_col:
+with chatHist:
     user_input = st.chat_input("Ask anything about BCU!")
 
     # If the new message in the chat came from the user, show it as a HumanMessage.
@@ -56,22 +53,22 @@ with main_col:
     # and AIMessages for the LLM.
     
     for i in range(1, len(st.session_state.message_history) + 1):
-        this_message = st.session_state.message_history[-i]
+        currentMsg = st.session_state.message_history[-i]
         
         # ? If the message was written by the LLM:
-        if isinstance(this_message, AIMessage):
+        if isinstance(currentMsg, AIMessage):
             # ! The LLM returns a blank message following the tool call.
             # ! I'm not entirely sure why this is, but it can be hidden from the UI.
-            if this_message.content != "":
+            if currentMsg.content != "":
                 # ? Use a robot profile picture. 
                 message_box = st.chat_message('assistant')
-                message_box.markdown(this_message.content)
+                message_box.markdown(currentMsg.content)
                 
         # ? Alternatively, if the user wrote it:
-        elif isinstance(this_message, HumanMessage):
+        elif isinstance(currentMsg, HumanMessage):
             # ? Use a person profile picture.
             message_box = st.chat_message('user')
-            message_box.markdown(this_message.content)
+            message_box.markdown(currentMsg.content)
         
     # ? If it isn't an AIMessage or HumanMessage, it must be a ToolMessage.
     # ? ToolMessages are created when the LLM gets context from the vector DB.
