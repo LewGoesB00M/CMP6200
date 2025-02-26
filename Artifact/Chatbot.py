@@ -33,7 +33,9 @@ OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
     # Options:
     #   FAISS-PyPDF: Chunk size 1000, Overlap 200, PyPDFLoader with default args.
     #   FAISS-SmallChunks: Chunk size 500, Overlap 100, PyPDFLoader with default args.
-FAISS_PATH = "FAISS-SmallChunks"
+    #   FAISS-Unstructured: Chunk size 1000, Overlap 200, UnstructuredPDFLoader with default args.
+    #   FAISS-BigChunks: Chunk size 1500, Overlap 300, PyPDFLoader with default args.
+FAISS_PATH = "VectorStores/FAISS-BigChunks"
 
 
 # Sets up the embedding model with the API key.
@@ -49,7 +51,7 @@ db = FAISS.load_local(folder_path = FAISS_PATH,
 
 
 # Initialise the model.
-llm = init_chat_model("gpt-4o-mini", temperature = 0.2)
+llm = init_chat_model("gpt-4o-mini", temperature = 0)
 
 
 @tool(response_format = "content_and_artifact")
@@ -66,9 +68,10 @@ def retrieve(query):
     )
     return content, retrievedDocs
 
-
-# Initialise an empty graph. Nodes and edges are added later.
-graph_builder = StateGraph(MessagesState)
+# Creating a node for the list of tools that the LLM can access. 
+# At the moment, it's only one tool, the retriever, but other tools can 
+# easily be added later by appending them to this list.
+tools = ToolNode([retrieve])
 
 def query_or_respond(state: MessagesState):
     # Allows the LLM to use the retrieve tool that was created earlier.
@@ -82,10 +85,6 @@ def query_or_respond(state: MessagesState):
     return {"messages": [response]}
 
 
-# Creating a node for the list of tools that the LLM can access. 
-# At the moment, it's only one tool, the retriever, but other tools can 
-# easily be added later by appending them to this list.
-tools = ToolNode([retrieve])
 
 # The final step of the process, generating a message based on the info gathered
 # from the retrieval tool.
@@ -114,7 +113,6 @@ def generate(state: MessagesState):
     
     # This is the LLM's system prompt, which decides how the LLM behaves.
     systemPrompt = (
-        # This is formatted like this to follow the Ruff linter's line length rule.
         "You are an assistant to help new students get acclimated to Birmingham City "
         "University. If you don't know the answer, say that you "
         "don't know. When referring to context, be specific and quote the context. "
@@ -145,27 +143,31 @@ def generate(state: MessagesState):
     return {"messages": [response]}
 
 
+# Initialise the graph.
+graph = StateGraph(MessagesState)
+
 # Add all the nodes.
-graph_builder.add_node(query_or_respond)
-graph_builder.add_node(tools)
-graph_builder.add_node(generate)
+graph.add_node(query_or_respond)
+graph.add_node(tools)
+graph.add_node(generate)
 
 
-graph_builder.set_entry_point("query_or_respond")
-graph_builder.add_conditional_edges(
-    "query_or_respond",
-    tools_condition, 
-    # If retrieval is not needed, generate a general answer.
-    # If it is, call the retrieval tool.
-    {END: END, "tools": "tools"},
+graph.set_entry_point("query_or_respond")
+graph.add_conditional_edges(
+    # tools_condition is True if the Agent wants to use a tool.
+    "query_or_respond", tools_condition, 
+    # If retrieval is not needed, skip to the end, which generates a general non-BCU related answer.
+    # If retrieval is needed, call the retrieval tool.
+    {END: END, 
+     "tools": "tools"},
 )
 
 # An edge is also needed between the tool call and response generation
 # to ensure the response has the RAG context.
-graph_builder.add_edge("tools", "generate")
+graph.add_edge("tools", "generate")
 
 # After the response is generated, the graph is done.
-graph_builder.add_edge("generate", END)
+graph.add_edge("generate", END)
 
-# Compile the graph
-graph = graph_builder.compile()
+# Compile the graph so Streamlit can use it.
+graph = graph.compile()

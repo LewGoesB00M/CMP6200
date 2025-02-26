@@ -19,14 +19,17 @@ if 'message_history' not in st.session_state:
     st.session_state.message_history = [AIMessage(content=defaultMsg)]
     
 # Organises the app so that the left column (which holds a debug button) is smaller 
-# than the main chat UI.
-debugBtn, chatHist, = st.columns([1, 9])
+# than the main chat UI. 
+# Also has a right-side column that won't be in the final version. This column holds the agent's DB queries.
+debugBtn, chatHist, queryLog = st.columns([1, 8, 1])
+queries = []
 
 # In the left column, a button is placed that clears the chat history when clicked.
 # It resets the entire conversation back to the original "Hello!" prompt.
 with debugBtn:
     if st.button('[DEBUG] Clear history'):
         st.session_state.message_history = [AIMessage(content=defaultMsg)]
+        queries = []
 
 
 # The main UI is in this column.
@@ -63,16 +66,31 @@ with chatHist:
                 # ? Use a robot profile picture. 
                 message_box = st.chat_message('assistant')
                 message_box.markdown(currentMsg.content)
-                
+
+            toolCalls = currentMsg.additional_kwargs.get("tool_calls")
+            if toolCalls is not None:
+                # print(toolCalls[0].get("function").get("arguments"))
+                queries.append(toolCalls[0].get("function").get("arguments"))
+                      
         # ? Alternatively, if the user wrote it:
         elif isinstance(currentMsg, HumanMessage):
             # ? Use a person profile picture.
             message_box = st.chat_message('user')
             message_box.markdown(currentMsg.content)
+            
+        # else: 
+        #     message_box = st.chat_message(name = 'Tool', avatar = "🔍")
+        #     message_box.markdown(currentMsg.content)
         
     # ? If it isn't an AIMessage or HumanMessage, it must be a ToolMessage.
     # ? ToolMessages are created when the LLM gets context from the vector DB.
     # ? It still gets added to the message history, but there's no reason to output it.
+    
+# Entirely for debugging purposes. Won't be in the final version.
+# Logs all the queries being sent by the retrieval agent to the DB.
+with queryLog:
+    st.title("Agent's queries to vector DB")
+    st.write(queries)
     
 # ! Seems that this is a lot more expensive (literally) than the Jupyter notebook despite minimal changes to the backend.  # noqa: E501
 # TODO: It could be because either context or convo history is being added more than once per message. This MUST be fixed if true.  # noqa: E501

@@ -26,7 +26,12 @@ import shutil
 
 
 # Set the paths for the FAISS DB, as well as the PDFs that will be loaded.
-FAISS_PATH = "FAISS-SmallChunks"
+    # Options (all begin with "VectorStores/"):
+    #   FAISS-PyPDF: Chunk size 1000, Overlap 200, PyPDFLoader with default args.
+    #   FAISS-SmallChunks: Chunk size 500, Overlap 100, PyPDFLoader with default args.
+    #   FAISS-Unstructured: Chunk size 1000, Overlap 200, UnstructuredPDFLoader with default args.
+    #   FAISS-BigChunks: Chunk size 1500, Overlap 300, PyPDFLoader with default args.
+FAISS_PATH = "VectorStores/FAISS-BigChunks"
 DATA_PATH = "Data/Policies"#/TESTING" # minimise token use
 
 # Loads all PDFs, chunks them, then saves them to a FAISS DB.
@@ -52,10 +57,10 @@ def load_documents():
 # for embedding.
 def split_text(documents: list[Document]):
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=500, # Can be changed, just a sample number. # ? Originally 1000
-        chunk_overlap=100, # Helps data to not be split over multiple chunks. # ? Originally 200
-        length_function=len, 
-        add_start_index=True,
+        chunk_size=1500, # Can be changed, just a sample number. # ? Originally 1000
+        chunk_overlap=300, # Helps data to not be split over multiple chunks. # ? Originally 200
+        length_function=len, # A custom length function can be made, but I saw no need.
+        add_start_index=True, # Stores the chunk's starting character index in its metadata.
     )
 
     # Save the split chunks.
@@ -65,8 +70,8 @@ def split_text(documents: list[Document]):
     # Just for verification that the script ran.
     print(f"Split {len(documents)} documents into {len(chunks)} chunks.")
 
-
-    print(chunks[10].page_content)
+    # Outputs an example chunk. Not necessary.
+    # print(chunks[10].page_content)
 
     # Return the chunks so that they can be embedded and saved.
     return chunks
