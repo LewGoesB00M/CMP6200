@@ -51,6 +51,7 @@ with chatHist:
         # message history.
         st.session_state.message_history = response['messages']
 
+
     # Shows the running conversation history after any message is sent.
     # Iterates over the whole message history, showing HumanMessages for the user,
     # and AIMessages for the LLM.
@@ -60,17 +61,24 @@ with chatHist:
         
         # ? If the message was written by the LLM:
         if isinstance(currentMsg, AIMessage):
-            # ! The LLM returns a blank message following the tool call.
-            # ! I'm not entirely sure why this is, but it can be hidden from the UI.
+            # The tool call is an AIMessage with no content, as the call is instead done within the metadata,
+            # so it would show a blank box. To fix this, the message is checked to see if it's blank first.
             if currentMsg.content != "":
                 # ? Use a robot profile picture. 
                 message_box = st.chat_message('assistant')
                 message_box.markdown(currentMsg.content)
 
+            # For logging purposes, the tool call used in the message is stored.
             toolCalls = currentMsg.additional_kwargs.get("tool_calls")
+            
             if toolCalls is not None:
-                # print(toolCalls[0].get("function").get("arguments"))
-                queries.append(toolCalls[0].get("function").get("arguments"))
+                # The tool call is a multidimensional dictionary, but I'm only looking
+                # for the query given to the vector DB, stored in function.arguments.
+                toolQuery = toolCalls[0].get("function").get("arguments")
+                
+                # Strangely, the query is formatted like a dictionary but is actually a string,
+                # so I remove the text "query":" and also the closing speech marks.
+                queries.append(toolQuery[10 : len(toolQuery)-2])
                       
         # ? Alternatively, if the user wrote it:
         elif isinstance(currentMsg, HumanMessage):
@@ -91,8 +99,3 @@ with chatHist:
 with queryLog:
     st.title("Agent's queries to vector DB")
     st.write(queries)
-    
-# ! Seems that this is a lot more expensive (literally) than the Jupyter notebook despite minimal changes to the backend.  # noqa: E501
-# TODO: It could be because either context or convo history is being added more than once per message. This MUST be fixed if true.  # noqa: E501
-# TODO: Responses can be a bit shaky at times. It's probably to do with the text splitter chunk sizes?  # noqa: E501
-# TODO: Add old comments and update existing from Jupyter notebook to Chatbot.py. Many were written in Markdown so they got lost when cell contents were cut.  # noqa: E501

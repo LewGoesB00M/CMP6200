@@ -4,8 +4,7 @@ from langchain_community.document_loaders import DirectoryLoader, PyPDFLoader
 # Used to split the PDFs into chunks for embedding.
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
-# Needed for LangChain's "Document" data type. When a PDF is loaded, it is loaded
-# as a Document. 
+# Needed for LangChain's "Document" data type. When a PDF is loaded, it is loaded as a Document. 
 from langchain.schema import Document
 
 # Used to call OpenAI embedding models on the chunks.
@@ -27,11 +26,12 @@ import shutil
 
 # Set the paths for the FAISS DB, as well as the PDFs that will be loaded.
     # Options (all begin with "VectorStores/"):
-    #   FAISS-PyPDF: Chunk size 1000, Overlap 200, PyPDFLoader with default args.
-    #   FAISS-SmallChunks: Chunk size 500, Overlap 100, PyPDFLoader with default args.
-    #   FAISS-Unstructured: Chunk size 1000, Overlap 200, UnstructuredPDFLoader with default args.
-    #   FAISS-BigChunks: Chunk size 1500, Overlap 300, PyPDFLoader with default args.
-FAISS_PATH = "VectorStores/FAISS-BigChunks"
+        #   FAISS: Chunk size 1000, Overlap 200, PyPDFLoader with default args.
+        #   FAISS-SmallChunks: Chunk size 500, Overlap 100, PyPDFLoader with default args.
+        #   FAISS-Unstructured: Chunk size 1000, Overlap 200, UnstructuredPDFLoader with default args.
+        #   FAISS-BigChunks: Chunk size 1500, Overlap 300, PyPDFLoader with default args.
+        #   FAISS-HugeChunks: Chunk size 2000, Overlap 500, PyPDFLoader with default args.
+FAISS_PATH = "VectorStores/FAISS-HugeChunks"
 DATA_PATH = "Data/Policies"#/TESTING" # minimise token use
 
 # Loads all PDFs, chunks them, then saves them to a FAISS DB.
@@ -53,12 +53,11 @@ def load_documents():
     documents = loader.load()
     return documents
 
-# Uses LangChain's RecursiveCharacterTextSplitter to split the documents into chunks
-# for embedding.
+# Uses LangChain's RecursiveCharacterTextSplitter to split the documents into chunks for embedding.
 def split_text(documents: list[Document]):
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1500, # Can be changed, just a sample number. # ? Originally 1000
-        chunk_overlap=300, # Helps data to not be split over multiple chunks. # ? Originally 200
+        chunk_size=2000,  # See Lines 28 - 34 for info on size and overlap.
+        chunk_overlap=500,  
         length_function=len, # A custom length function can be made, but I saw no need.
         add_start_index=True, # Stores the chunk's starting character index in its metadata.
     )
@@ -70,9 +69,6 @@ def split_text(documents: list[Document]):
     # Just for verification that the script ran.
     print(f"Split {len(documents)} documents into {len(chunks)} chunks.")
 
-    # Outputs an example chunk. Not necessary.
-    # print(chunks[10].page_content)
-
     # Return the chunks so that they can be embedded and saved.
     return chunks
 
@@ -83,6 +79,7 @@ def save_to_faiss(chunks: list[Document]):
         shutil.rmtree(FAISS_PATH)
 
     # Create a new DB from the documents.
+    # Takes the chunks and uses OpenAI text-embedding-3-small to embed them as vectors.
     faiss = FAISS.from_documents(
         chunks, 
         OpenAIEmbeddings(
@@ -91,9 +88,7 @@ def save_to_faiss(chunks: list[Document]):
             )
     )
     
-    # FAISS saves differently to Chroma, requiring the vector store to first
-    # be saved to memory then committed to a folder. FAISS indexes are ~5x smaller
-    # than Chroma equivalents.
+    # 
     faiss.save_local(folder_path = FAISS_PATH)
     
     print(f"Saved {len(chunks)} chunks to {FAISS_PATH}.")
