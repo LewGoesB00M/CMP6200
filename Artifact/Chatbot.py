@@ -1,6 +1,3 @@
-# Used to get the OpenAI API key from the system environment variables.
-import os
-
 # Initialises the LLM.
 from langchain.chat_models import init_chat_model
 
@@ -38,10 +35,7 @@ FAISS_PATH = "VectorStores/FAISS-HugeChunks"
 # Sets up the embedding model with the API key.
 embedder = OpenAIEmbeddings(
     model = "text-embedding-3-small",
-    
-    # Get the OpenAI API key from environment variables so that 
-    # it's not visible in this code on GitHub. OpenAI would revoke the key if it leaked.
-    api_key = os.environ["OPENAI_API_KEY"]
+    # Automatically uses OPENAI_API_KEY from environment vars, so not necessary to specify here.
 )
 
 # Load the vector database.
@@ -57,18 +51,15 @@ db = FAISS.load_local(folder_path = FAISS_PATH,
 
 # Initialise the model.
 # Automatically uses OPENAI_API_KEY from environment vars, so not necessary to specify here.
-llm = init_chat_model("gpt-4o-mini", temperature = 0.2)
+llm = init_chat_model("gpt-4o-mini", temperature = 0)
 
 @tool(response_format = "content")
 def retrieve(query):
     # This docstring is used as the context for the LLM.         
-    """Retrieves the 3 most relevant context chunks for the user's query."""
+    """Retrieves the 3 most relevant context chunks for a given query.
     
-    # Other tested queries that didn't work as well:
-        # """Performs a semantic search for the most relevant chunks to the user's query."""
-        
-        # """Generate a semantic search query and then retrieves the 3 most relevant
-        # context chunks for the query. You do not need to specify 'BCU'."""
+    Args:
+        query: An optimized version of the user's question for a semantic search."""
     
     retrievedChunks = db.similarity_search(query, k = 3)
     
@@ -86,14 +77,15 @@ def retrieve(query):
 tools = ToolNode([retrieve])
 
 def query_or_respond(state: MessagesState):
-    # Allows the LLM to use the retrieve tool that was created earlier.
+    # Creates the retrieval agent by giving the LLM access to the retrieval tool.
     retrievalAgent = llm.bind_tools([retrieve])
     
-    # The LLM decides on its own if it needs retrieval.
+    # The LLM decides on its own if it needs retrieval based on the existing conversation.
     response = retrievalAgent.invoke(state["messages"])
     
-    # A key element of using a MessagesState is that that will append
-    # the response to the conversation history rather than overwriting.
+    # If it wants to use a tool, it will return a blank message with the metadata requesting a tool call.
+    # Otherwise, it will return a generic message without any context, which occurs if the information is
+    # already known or the query is simply too general ("Hello", for example).
     return {"messages": [response]}
 
 
@@ -102,7 +94,7 @@ def query_or_respond(state: MessagesState):
 # from the retrieval tool.
 def generate(state: MessagesState):
     # Retrieves the most recent tool call(s) from the tools node.
-    # There's only one tool that the chatbot can use, but this future-proofs in case I add more.
+    # There's only one tool that the chatbot can currently use, but this future-proofs in case I add more.
     recentToolMsgs = []
     
     # The MessagesState stores the most recent messages at the bottom, as it's an append-only list.
@@ -112,35 +104,35 @@ def generate(state: MessagesState):
             recentToolMsgs.append(message)
         else:
             # If it's a normal message, stop.
+            # This is because the context from earlier messages doesn't need
+            # repeating again, as it would enormously increase token usage and therefore cost.
             break
 
     # Saves the context from the recent tool messages.
     docsContent = "\n\n".join(doc.content for doc in recentToolMsgs)
     
     # This is the LLM's system prompt, which decides how the LLM behaves.
-    systemPrompt = (
-        "You are an assistant to help new students get acclimated to Birmingham City "
-        "University. If you don't know the answer, say that you "
-        "don't know. When referring to context, be specific and quote the context. "
-        "You must never say 'the context', and should instead act like a friendly human. "
-        "Use five sentences maximum and keep the answer concise. "
-        "Use the following pieces of retrieved context to answer "
-        "the question."
-        "\n\n"
-        f"Context: {docsContent}" # RAG context from the most recent tool call is attached here
-    )
+    systemPrompt = f"""
+       You are a friendly assistant to help new students get acclimated to Birmingham City University.
+       If you don't know the answer, say that you don't know. 
+       When referring to context, be specific and quote the context. 
+       Use five sentences maximum and keep the answer concise. 
+       Use the following pieces of retrieved context to answer the question.
+       \n\n
+       Context: {docsContent} 
+    """ 
     
     # The list of messages in the conversation.
     # Only adds messages that AREN'T tool calls, as the information
     # from the tool calls is added to the system prompt as seen above.
     conversation = [
         message for message in state["messages"] # Every message in the conversation
-        if message.type in ("human", "system")# If it's human input or the system prompt
-        or (message.type == "ai" and not message.tool_calls)# Or AI and not a tool call.
+        if message.type in ("human", "system") # If it's human input or the system prompt
+        or (message.type == "ai" and not message.tool_calls) # Or from the LLM and isn't a tool call.
     ]
     
-    # The final prompt consists of the system prompt and the conversation.
-    # This does mean that as a conversation continues, token cost will greatly increase.
+    # The LLM is given its system prompt (containing current retrieved context if there is any)
+    # alongside all other messages in the conversation.
     prompt = [SystemMessage(systemPrompt)] + conversation
     
 
