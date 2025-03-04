@@ -101,27 +101,21 @@ def query_or_respond(state: MessagesState):
 # The final step of the process, generating a message based on the info gathered
 # from the retrieval tool.
 def generate(state: MessagesState):
-    # To massively reduce token consumption (and therefore cost),
-    # the most recent RAG context from tool calls is added to the 
-    # prompt to stop the LLM searching the entire conversation history 
-    # for something that was JUST said. 
+    # Retrieves the most recent tool call(s) from the tools node.
+    # There's only one tool that the chatbot can use, but this future-proofs in case I add more.
     recentToolMsgs = []
     
-    # To get the most recent ones, the list needs to be reversed
-    # so that the most recent come first instead of last.
+    # The MessagesState stores the most recent messages at the bottom, as it's an append-only list.
+    # This means that it'll need to be reversed for the most recent messages.
     for message in reversed(state["messages"]):
         if message.type == "tool":
             recentToolMsgs.append(message)
         else:
             # If it's a normal message, stop.
             break
-    
-    # Put the tool messages in their original order in case 
-    # the sequence of the retrieved context mattered. 
-    toolMsgs = recentToolMsgs[::-1]
 
     # Saves the context from the recent tool messages.
-    docsContent = "\n\n".join(doc.content for doc in toolMsgs)
+    docsContent = "\n\n".join(doc.content for doc in recentToolMsgs)
     
     # This is the LLM's system prompt, which decides how the LLM behaves.
     systemPrompt = (
@@ -133,7 +127,7 @@ def generate(state: MessagesState):
         "Use the following pieces of retrieved context to answer "
         "the question."
         "\n\n"
-        f"Context: {docsContent}" # RAG context is attached here
+        f"Context: {docsContent}" # RAG context from the most recent tool call is attached here
     )
     
     # The list of messages in the conversation.
