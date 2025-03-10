@@ -25,8 +25,8 @@ from langgraph.prebuilt import ToolNode, tools_condition
 # Sets the directory of the FAISS DB that's being loaded from.
     # Options (all begin with "VectorStores/"):
         #   FAISS: Chunk size 1000, Overlap 200, PyPDFLoader with default args.
-        #   FAISS-SmallChunks: Chunk size 500, Overlap 100, PyPDFLoader with default args.
         #   FAISS-Unstructured: Chunk size 1000, Overlap 200, UnstructuredPDFLoader with default args.
+        #   FAISS-SmallChunks: Chunk size 500, Overlap 100, PyPDFLoader with default args.
         #   FAISS-BigChunks: Chunk size 1500, Overlap 300, PyPDFLoader with default args.
         #   FAISS-HugeChunks: Chunk size 2000, Overlap 500, PyPDFLoader with default args.
 FAISS_PATH = "VectorStores/FAISS-HugeChunks"
@@ -55,11 +55,11 @@ llm = init_chat_model("gpt-4o-mini", temperature = 0)
 
 @tool(response_format = "content")
 def retrieve(query):
-    # This docstring is used as the context for the LLM.         
+    # This docstring is used as the context for the LLM, letting it know what the tool does.         
     """Retrieves the 3 most relevant context chunks for a given query.
     
     Args:
-        query: An optimized version of the user's question for a semantic search."""
+        query: The user's question, optimized for a semantic search."""
     
     retrievedChunks = db.similarity_search(query, k = 3)
     
@@ -108,7 +108,7 @@ def generate(state: MessagesState):
             # repeating again, as it would enormously increase token usage and therefore cost.
             break
 
-    # Saves the context from the recent tool messages.
+    # Saves the context from the retriever tool.
     docsContent = "\n\n".join(doc.content for doc in recentToolMsgs)
     
     # This is the LLM's system prompt, which decides how the LLM behaves.
@@ -123,8 +123,7 @@ def generate(state: MessagesState):
     """ 
     
     # The list of messages in the conversation.
-    # Only adds messages that AREN'T tool calls, as the information
-    # from the tool calls is added to the system prompt as seen above.
+    # Only adds messages that AREN'T tool calls, as tool calls are blank messages.
     conversation = [
         message for message in state["messages"] # Every message in the conversation
         if message.type in ("human", "system") # If it's human input or the system prompt

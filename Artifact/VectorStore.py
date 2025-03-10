@@ -13,8 +13,8 @@ from langchain_openai import OpenAIEmbeddings
 # Used to create a FAISS vector database.
 from langchain_community.vectorstores import FAISS
 
-# Used to get the OpenAI API key from the system environment variables,
-# as it is a major security breach if it is publicly accessible on this Github repo.
+# Used to check if the database's path already exists,
+# and also to get the OpenAI API key from system env variables.
 import os
 
 # If the database already exists and this file is run again, the existing
@@ -88,7 +88,7 @@ def save_to_faiss(chunks: list[Document]):
             )
     )
     
-    # 
+    # Save the generated DB to the given path.
     faiss.save_local(folder_path = FAISS_PATH)
     
     print(f"Saved {len(chunks)} chunks to {FAISS_PATH}.")

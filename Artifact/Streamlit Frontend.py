@@ -72,7 +72,7 @@ with chatHist:
             toolCalls = currentMsg.additional_kwargs.get("tool_calls")
             
             if toolCalls is not None:
-                # The tool call is a multidimensional dictionary, but I'm only looking
+                # The tool call is an array containing a dictionary of dictionaries, but I'm only looking
                 # for the query given to the vector DB, stored in function.arguments.
                 toolQuery = toolCalls[0].get("function").get("arguments")
                 

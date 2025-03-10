@@ -210,19 +210,53 @@ for non-parametric memory \autocite{li_modernization_2023}, which makes them an 
 a RAG-enabled chatbot as studied by \textcite{odede_jaybot_2024}. 
 
 Many software options exist for
-vector databases, such as Milvus \autocite{wang_milvus_2021}, Pinecone \autocite{pinecone_pinecone_nodate} and Chroma \autocite{chroma_chroma_nodate}.
+vector databases, such as Milvus \autocite{wang_milvus_2021}, Pinecone \autocite{pinecone_pinecone_nodate}, Chroma \autocite{chroma_chroma_nodate}.
 \textcite{xie_brief_2023} compared these three, citing Pinecone's 'robust distributed computing capabilities and scalability', and its common usage 
-in real-time searching scenarios.
+in real-time searching scenarios. Pinecone was also used in chatbots by \textcite{odede_jaybot_2024} and \textcite{singer_development_2024}, showcasing its potential 
+as a vector database solution for chatbots.
 
-Pinecone was also used in chatbots by \textcite{odede_jaybot_2024} and \textcite{singer_development_2024}, showcasing its potential as a vector database solution
-for chatbots.
+However, another open-source option with proven capabilities is FAISS, which was designed by engineers at Facebook (now Meta) which can be up to 8.5x faster than 
+alternative options as written by \textcite{johnsonBillionscaleSimilaritySearch2017}. The speed and open-source nature of FAISS are very desirable in real-time 
+applications such as chatbots, with FAISS also supporting direct integration with LLM development frameworks such as LangChain.
 
-LangChain \autocite{langchain_introduction_nodate} is a popular open-source framework for RAG pipelines that can be used to connect backend elements 
-together, as described by \textcite{singer_development_2024} when they used it to chunk their text data and connect to their Pinecone vector database to store 
-the embedded data. 
+LangChain \autocite{langchain_introduction_nodate} is a popular open-source framework for LLM development, and RAG pipelines by extension. that can be used to connect backend elements 
+together, as described by \textcite{singer_development_2024} when they used it to chunk their text data and connect to their vector database to store 
+their embedded data. 
 
-% Pinecone has a free option, though I'm not sure if this project could use it? Sounds like an Ethics Form problem.
 
+\subsection{Agentic RAG}
+A very recent development in the LLM space is the use of "agents". Agents increase the capabilities of LLMs by giving them 
+access to tools created by developers, effectively allowing the LLM to execute its own code to perform tasks such as web searching 
+and data retrieval. Agents can also evaluate themselves, as demonstrated in Figures \ref{fig:ReActAgents} and \ref{fig:ReActRAG}, 
+wherein the LLM will execute an action based on the query and evaluate the results. If the results are unsatisfactory, it can perform a slightly 
+different action until a suitable answer is found. In a RAG context, this would often refer to continuous optimisation of the semantic search query 
+used on the vector database.
+
+\begin{figure}[H] 
+    \centering
+    \includegraphics[width=.7\linewidth]{ReAct Agents.png}
+    \caption{A basic ReAct (Reason + Act) agent workflow \autocite{weaviateWhatAgenticRAG2024}.}
+    \label{fig:ReActAgents}
+\end{figure}
+
+\begin{figure}[H] 
+    \centering
+    \includegraphics[width=.8\linewidth]{ReAct RAG.png}
+    \caption{An advanced example agent workflow \autocite{weaviateWhatAgenticRAG2024}.}
+    \label{fig:ReActRAG}
+\end{figure}
+
+Figure \ref{fig:ReActRAG} demonstrates the ability for agents to leverage multiple tools not only limited to searching a vector store,
+and also showcases their reflective and self-evaluative capabilities. With an agent that uses an architecture like this, answers would be 
+extensively evaluated and regenerated until the agent deems them a suitable answer to the user's query. While this largely increases the 
+time taken to generate results, it ensures those results will be accurate and useful to the end user. 
+
+In academic works, \textcite{wooCustomLargeLanguage2025} explored the implementation of augmenting base LLMs with agentic retrieval 
+capabilities in a RAG workflow, which enhanced the accuracy of a GPT4 LLM by 95\% on their medical Q\&A dataset.
+
+\textcite{m.branAugmentingLargeLanguage2024}'s works were among the best reviewed in demonstrating the capabilities of 
+Agentic AI, with their model they named ChemCrow having the ability to call a massive variety of tools including web search 
+and even accessing advanced chemistry equipment to formulate chemical catalysts from a singular natural language prompt.
 
 \subsection{Chatbots / Conversational Agents}
 
@@ -253,11 +287,12 @@ Google's Dialogflow \autocite{google_conversational_nodate} and Microsoft's Bot 
 However, these are primarily targeted at enterprise clients which is reflected in their pricing. Instead of using these,
 the chatbot can be manually developed using LangChain as its framework.
 
-\pagebreak 
+
+% \pagebreak 
 
 \subsection{User experience and Human-Computer Interaction}
 
-The way people interact with their devices has drastically evolved over the years, from early MS-DOS command-line 
+The way people interact with their devices has drastically evolved over time, from early MS-DOS command-line 
 interfaces (CLIs) to mouse-based graphical user interfaces (GUIs), to touch screens \autocite{kotian_systematic_2024}, greatly broadening
 the userbase of computers worldwide. Therefore, inclusive and accessible design is increasingly important to maximise the audience of any software,
 especially considering the growing disabled population \autocite{putnam_how_2012}. 
@@ -274,7 +309,7 @@ due to issues like overgeneralisation \autocite{zamfirescu-pereira_why_2023}, an
 grow impatient after around 2 to 6 failed attempts, often branding the product as poor if this occurs \autocite{luger_like_2016}.
 
 \section{Summary}
-% I still think this is quite poor, but I don't know what else to say?
+% ! Update this, it's now outdated in terms of your actual implementation and with regards to the new section.
 
 In conclusion, this literature review has revealed multiple key focus areas for the chatbot's development. 
 The overall design of the chatbot must be iterative and human-centred, and user feedback should 
@@ -299,3 +334,4 @@ model, and the overall framework will be LangChain. This will keep the cost of t
 \nocite{databricks_retrieval_2023}
 \nocite{elastic_what_nodate}
 \nocite{confident_ai_llm_nodate}
+\nocite{metaFaissLibraryEfficient2017}
