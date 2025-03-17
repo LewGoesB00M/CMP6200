@@ -1,0 +1,8 @@
+Focus on aspects that concern the research/work, expanding them in a way that also explains the concepts.
+You're the expert on this specific project and not him, so the challenge is making it good for him to read as a layman.
+Don't include unnecessary details but don't ignore important ones; find the balance.
+
+Give "critical abilities" to the agent rather than more tools?
+Agent should evaluate *itself*. Add multi agents with multiple "roles", perhaps grading answer depending on how X person would interpret the response (layman, student, expert)
+
+Read up on how multi-agent systems are being used and how they improve "vanilla" LLM systems. Then perhaps offer a comparison showing qualitative difference (quantitative very good if possible).
