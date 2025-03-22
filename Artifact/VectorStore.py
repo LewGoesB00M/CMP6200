@@ -4,9 +4,6 @@ from langchain_community.document_loaders import DirectoryLoader, PyPDFLoader
 # Used to split the PDFs into chunks for embedding.
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
-# Needed for LangChain's "Document" data type. When a PDF is loaded, it is loaded as a Document. 
-from langchain.schema import Document
-
 # Used to call OpenAI embedding models on the chunks.
 from langchain_openai import OpenAIEmbeddings
 
@@ -35,7 +32,6 @@ FAISS_PATH = "VectorStores/FAISS-HugeChunks"
 DATA_PATH = "Data/Policies"#/TESTING" # minimise token use
 
 # Loads all PDFs, chunks them, then saves them to a FAISS DB.
-# (write a dissertation section on FAISS, potentially updating lit review.)
 def generate_data_store():
     # Load every PDF.
     documents = load_documents()
@@ -54,7 +50,7 @@ def load_documents():
     return documents
 
 # Uses LangChain's RecursiveCharacterTextSplitter to split the documents into chunks for embedding.
-def split_text(documents: list[Document]):
+def split_text(documents):
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=2000,  # See Lines 28 - 34 for info on size and overlap.
         chunk_overlap=500,  
@@ -73,7 +69,7 @@ def split_text(documents: list[Document]):
     return chunks
 
 
-def save_to_faiss(chunks: list[Document]):
+def save_to_faiss(chunks):
     # Clear out the database first if it exists.
     if os.path.exists(FAISS_PATH):
         shutil.rmtree(FAISS_PATH)

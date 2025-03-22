@@ -123,10 +123,12 @@ are fulfilled:
 
 \begin{itemize}
     \item The chatbot must interpret and respond to answers in English.
+    \item The chatbot must accept text queries.
     \item The chatbot must respond using text.
     \item The chatbot must be accessible at all times.
     \item The chatbot must supply BCU-related information.
     \item The chatbot must answer at least 75\% of BCU-related queries correctly.
+    \item The chatbot must have a GUI for ease of use and accessibility.
     \item Multiple users must be able to use the chatbot at the same time.
 \end{itemize}
 
@@ -134,10 +136,24 @@ are fulfilled:
 The following requirements, while not essential, would be beneficial if fulfilled:
 
 \begin{itemize}
-    \item The chatbot should have a GUI for ease of use and accessibility.
     \item The chatbot should respond to queries within 10 seconds.
     \item The chatbot could allow for voice input and output.
+    \item The chatbot could be deployed on an existing messaging service such as Teams.
 \end{itemize}
+
+% \subsection{Conceptual solution}
+% The proposed solution and final artefact for this project will be an LLM-based chatbot with RAG capabilities to query 
+% a vector store of embedded university-related data. Users will be able to access the chatbot and send questions to it 
+% pertaining to Birmingham City University, such as information about its campus locations and various policies that impact 
+% them as students. The chatbot will interpret their natural language queries and retrieve relevant information from official
+% University sources.
+
+% Based on this understanding of what the proposed solution is, a sequence of events necessary for the project's completion 
+% can be created:
+
+% \begin{itemize}
+%     \item 
+% \end{itemize}
 
 
 \subsection{Conceptual flowchart}
@@ -148,7 +164,18 @@ The flowchart depicted in Figure XXX depicts a model interaction from the user's
     Time constraints on this draft meant I simply don't have time to make this diagram.
 \end{tcolorbox}
 
-\noindent In the interest of saving costs, the chatbot will ideally not query its university information vector store 
+\noindent In the interest of saving costs and reducing response times, the chatbot will ideally not query its university information vector store 
 unless it cannot answer a question without it. This is because appending the university information, even in small amounts, would 
 greatly increase the token usage of each individual prompt. This decision functionality would be provided by LangGraph, and is detailed 
 further in Section \ref{sec:Implementation}.
+
+\subsection{Wireframes}
+The wireframe depicted in Figure XXX depicts an early concept of how the chatbot's GUI could look like.
+%\ref{fig:OriginalWireframe}
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Not present in draft]
+    Time constraints on this draft meant I simply don't have time to make this diagram.
+\end{tcolorbox}
+
+\noindent Users will have a clearly labelled text input box, and a messaging interface similar to other text messaging apps 
+which they would hopefully be familiar with allowing for them to quickly understand how to interact with the chatbot.
