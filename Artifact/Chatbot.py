@@ -137,6 +137,9 @@ def generate(state: MessagesState):
 
     # Get the LLM's response to the prompt and return the response.
     response = llm.invoke(prompt)
+    print(response)
+    print("*---------------------*")
+    print(prompt)
     return {"messages": [response]}
 
 

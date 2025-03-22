@@ -1,0 +1,27 @@
+Wants to see evidence of general progress.
+Updates of where you are right now, though he's contacting module leader for specifics.
+
+Get a decent amount of your dissertation done. Best outcome is probably chapters 1 through 3 completed.
+
+Title, abstract, intro, lit review, "actual work", evaluation with metrics, future improvements, conclusion.
+
+actual work being
+	Data needed
+	Experiments done
+	And more that I couldn't write quick enough	
+
+Avoid repetition. Introduction must be concise, and refer to minimal literature.
+
+Wants the implementation and results. He will not get the results but I can certainly do the implementation.
+What literature was instrumental in getting to the implementation? Is he really suggesting a total rewrite of lit review?
+It simply won't happen.
+
+Intro is intro to the DOCUMENT, not the problem.
+State problem to address, summary of how it was done, a couple references but not many. 
+
+Lit review should have its own short intro. Probably just your theme identification.
+End of lit review needs a summary paragraph, which there is. (Not sure if it's currently up to date with the latest additions?)
+
+He used the word "presentation". 
+He will specifically ask you about the roles you assign to your agents (plural).
+Consider an evaluator agent and perhaps a chunk grading agent that tracks the relevance of the chunk to the question.

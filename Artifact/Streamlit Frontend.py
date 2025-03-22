@@ -35,11 +35,11 @@ with debugBtn:
 # The main UI is in this column.
 # The user inputs their prompt into a text box which is then sent off to the chatbot.
 with chatHist:
-    user_input = st.chat_input("Ask anything about BCU!")
+    userInput = st.chat_input("Ask anything about BCU!")
 
     # If the new message in the chat came from the user, show it as a HumanMessage.
-    if user_input:
-        st.session_state.message_history.append(HumanMessage(content=user_input))
+    if userInput:
+        st.session_state.message_history.append(HumanMessage(content=userInput))
 
         # Prompts the LLM and RAG tool with the current conversation history.
         response = graph.invoke({
