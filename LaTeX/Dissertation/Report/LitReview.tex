@@ -98,7 +98,7 @@ tangible or intangible actions, such as two-way conversation with chatbots.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.8\linewidth]{serviceBots.png}
+    \includegraphics[width=.8\linewidth]{Literature Review/serviceBots.png}
     \caption{Service robots categorization by task-type and recipient of service \autocite{wirtz_brave_2018}.}
     \label{fig:serviceBots}
 \end{figure}
@@ -138,7 +138,7 @@ recent text-embeddings-3 model \autocite{openai_vector_nodate}, which can be use
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.6\linewidth]{basicVectorisation.png}
+    \includegraphics[width=.6\linewidth]{Literature Review/basicVectorisation.png}
     \caption{A basic overview of vectorisation \autocite{openai_introducing_nodate}.}
     \label{fig:basicVectorisation}
 \end{figure}
@@ -176,7 +176,7 @@ to the quality of its responses as the amount of parameters.
 
 \begin{figure}[H] 
     \centering
-    \includegraphics[width=.65\linewidth]{ouyangLLMPreference.png}
+    \includegraphics[width=.65\linewidth]{Literature Review/ouyangLLMPreference.png}
     \caption{Human evaluations of the GPT models produced by \textcite{ouyang_training_2022}. PPO and PPO-ptx are their models.}
     \label{fig:LLMPref}
 \end{figure}
@@ -196,7 +196,7 @@ being overfitted or biased, which can be counteracted through introducing an ext
 
 \begin{figure}[H] 
     \centering
-    \includegraphics[width=.8\linewidth]{RAGProcess.png}
+    \includegraphics[width=.8\linewidth]{Literature Review/RAGProcess.png}
     \caption{A basic overview of a RAG workflow \autocite{openai_retrieval_nodate}.}
     \label{fig:RAGProcess}
 \end{figure}
@@ -234,22 +234,21 @@ used on the vector database.
 
 \begin{figure}[H] 
     \centering
-    \includegraphics[width=.7\linewidth]{ReAct Agents.png}
+    \includegraphics[width=.7\linewidth]{Literature Review/ReAct Agents.png}
     \caption{A basic ReAct (Reason + Act) agent workflow \autocite{weaviateWhatAgenticRAG2024}.}
     \label{fig:ReActAgents}
 \end{figure}
 
 \begin{figure}[H] 
     \centering
-    \includegraphics[width=.8\linewidth]{ReAct RAG.png}
+    \includegraphics[width=.8\linewidth]{Literature Review/ReAct RAG.png}
     \caption{An advanced example agent workflow \autocite{weaviateWhatAgenticRAG2024}.}
     \label{fig:ReActRAG}
 \end{figure}
 
 Figure \ref{fig:ReActRAG} demonstrates the ability for agents to leverage multiple tools not only limited to searching a vector store,
-and also showcases their reflective and self-evaluative capabilities. With an agent that uses an architecture like this, answers would be 
-extensively evaluated and regenerated until the agent deems them a suitable answer to the user's query. While this largely increases the 
-time taken to generate results, it ensures those results will be accurate and useful to the end user. 
+and also showcases their reflective and self-evaluative capabilities. With an agent that uses an architecture like this (known as Corrective RAG/
+CRAG), answers would be extensively evaluated and regenerated until the agent deems them a suitable answer to the user's query. While this largely increases the time taken to generate results, it ensures those results will be accurate and useful to the end user. 
 
 In academic works, \textcite{wooCustomLargeLanguage2025} explored the implementation of augmenting base LLMs with agentic retrieval 
 capabilities in a RAG workflow, which enhanced the accuracy of a GPT4 LLM by 95\% on their medical Q\&A dataset.
@@ -267,7 +266,7 @@ As time has passed, advancements in chatbots have occurred in "waves", where eac
 
 \begin{figure}[H] 
     \centering
-    \includegraphics[width=.8\linewidth]{ChatbotWaves.png}
+    \includegraphics[width=.8\linewidth]{Literature Review/ChatbotWaves.png}
     \caption{The five waves of conversational agent research \autocite{schobel_charting_2024}.}
     \label{fig:ChatbotWaves}
 \end{figure}
