@@ -1,7 +1,7 @@
 from deepeval.test_case import LLMTestCase, LLMTestCaseParams
 from deepeval.dataset import EvaluationDataset
-from deepeval import evaluate
 from deepeval.metrics import AnswerRelevancyMetric, GEval
+from deepeval import evaluate
 
 # Define test cases with input, actual output, and expected output.
 test_case1 = LLMTestCase(
@@ -24,7 +24,7 @@ answer_relevancy_metric = AnswerRelevancyMetric(threshold=0.7)
 
 correctness_metric = GEval(
     name="Correctness",
-    criteria = "Determine whether the actual output is factually correct based on the expected output. Any additional scenarios or detail are OK.",
+    criteria = "Determine whether the actual output is factually correct based on the expected output. Any additional scenarios or details are OK.",
     model="gpt-4o",  # Define the evaluation model
     evaluation_params=[
         LLMTestCaseParams.EXPECTED_OUTPUT,
@@ -33,4 +33,4 @@ correctness_metric = GEval(
 )
 
 # Evaluate the dataset using the defined metrics.
-evaluation_results = evaluate(dataset, metrics=[correctness_metric])#[answer_relevancy_metric])#, faithfulness_metric])
+evaluation_results = evaluate(dataset, metrics=[correctness_metric])

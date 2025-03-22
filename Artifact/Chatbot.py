@@ -134,12 +134,13 @@ def generate(state: MessagesState):
     # alongside all other messages in the conversation.
     prompt = [SystemMessage(systemPrompt)] + conversation
     
+    # It's important to note that the conversation isn't a list of strings; it's a list 
+    # of LangChain AI/HumanMessages. This means that when the LLM is invoked, it's being 
+    # invoked with the entire conversation of messages, not just one prompt containing them all
+    # as a big block of text.
 
     # Get the LLM's response to the prompt and return the response.
     response = llm.invoke(prompt)
-    print(response)
-    print("*---------------------*")
-    print(prompt)
     return {"messages": [response]}
 
 
