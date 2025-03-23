@@ -100,8 +100,7 @@ def query_or_respond(state: MessagesState):
 # The final step of the process, generating a message based on the info gathered
 # from the retrieval tool.
 def generate(state: MessagesState):
-    # Retrieves the most recent tool call(s) from the tools node.
-    # There's only one tool that the chatbot can currently use, but this future-proofs in case I add more.
+    # Retrieves the most recent tool call from the tools node.
     recentToolMsgs = []
     
     # The MessagesState stores the most recent messages at the bottom, as it's an append-only list.
@@ -137,17 +136,18 @@ def generate(state: MessagesState):
         or (message.type == "ai" and not message.tool_calls) # Or from the LLM and isn't a tool call.
     ]
     
-    # The LLM is given its system prompt (containing current retrieved context if there is any)
-    # alongside all other messages in the conversation.
-    prompt = [SystemMessage(systemPrompt)] + conversation
-    
     # It's important to note that the conversation isn't a list of strings; it's a list 
     # of LangChain AI/HumanMessages. This means that when the LLM is invoked, it's being 
     # invoked with the entire conversation of messages, not just one prompt containing them all
     # as a big block of text.
+    
+    # The LLM is given its system prompt (containing current retrieved context if there is any)
+    # alongside all other messages in the conversation.
+    history = [SystemMessage(systemPrompt)] + conversation
+    
 
     # Get the LLM's response to the prompt and return the response.
-    response = llm.invoke(prompt)
+    response = llm.invoke(history)
     return {"messages": [response]}
 
 
@@ -161,7 +161,6 @@ graph.add_node(generate)
 
 # The graph starts with choosing whether to query the DB or directly respond.
 graph.set_entry_point("query_or_respond")
-
 
 # query_or_respond has conditions:
 # If the user's query needs RAG context, the retrieve tool will be called.
@@ -187,3 +186,4 @@ graph.add_edge("generate", END)
 
 # Compile the graph so Streamlit can use it.
 graph = graph.compile()
+
