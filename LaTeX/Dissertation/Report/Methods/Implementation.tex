@@ -147,7 +147,89 @@ serve as the entire decision-making logic for this node, as the LLM itself will 
 such as in a scenario where the information they are requesting is already known from earlier in the conversation, or if their query is too 
 general such as stating their name. If the LLM decides it cannot answer the query with the information it currently has available within 
 the conversation, it will instead invoke the left conditional branch of the graph in Figure \ref{fig:ChatbotLangGraph} by calling on the 
-retriever tool.
+retriever tool denoted in Figure \ref{fig:RetrieverTool}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Artefact/Retriever.png}
+    \caption{Code used for the retrieval tool. \label{fig:RetrieverTool}}
+\end{figure}
+
+\noindent Using the '@tool' decorator informs LangChain that the following function is a tool to be used by the LLM.
+% The tool's response format is set to content, meaning that it will return the results as a LangChain 'ToolMessage', 
+% which is beneficial for the frontend as these can be manually hidden from the user. 
+The retriever tool itself is simplistic 
+in function: it will perform a semantic search on the FAISS database based on the user's query. LangChain enforces that all 
+tools require a Python docstring explaining their function, as the LLM will read this docstring to understand what the tool 
+is and how to use it. By specifying that the 'query' argument should be optimised for a semantic search, the 'query\_or\_respond'
+node will output a modified version of the user's query as the input to the tool, which is further discussed in Section 
+\ref{sec:ChatbotFrontend}. 
+% ! Show this happening? 
+
+\para When the 3 most similar chunks have been retrieved as defined by 'k' in the similarity search method, the text of each chunk 
+is saved and separated by two newline characters to assist the LLM in understanding they are not part of the same text. The large 
+text block is then returned as this tool's output, ready to then be passed into the 'generate' node. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Artefact/Generate1.png}
+    \caption{Code used for the 'generate' node (1/2). \label{fig:Generate1}}
+\end{figure}
+
+\noindent The 'generate' function is the largest function of the chatbot, and is split across 
+Figures \ref{fig:Generate1} and \ref{fig:Generate2}. In the interests of saving 
+cost, time and the potential risk of maximising the LLM's context window, the most recent retrieval tool 
+call is saved. This tool call contains the RAG context from the retrieval tool, and will be at least 
+6,000 characters in length due to the previously mentioned chunk sizes and amount of chunks retrieved.
+This most recent tool call is the only context given to the LLM to reduce the token cost of each prompt 
+and to mitigate any potential confusion if the LLM is given thousands of words of input context.
+
+\para The retrieval tool returns three LangChain Document objects, each containing one chunk.  
+Therefore, the content of each of these Documents is extracted and saved before being appended to the 
+LLM's system prompt.
+
+\para The system prompt is a massive part of LLM usage, and almost entirely dictates what the LLM will do 
+based on any given input. The prompt is written in natural language which is interpreted by the LLM as a set 
+of instructions to follow at all times. As such, the prompt given for the chatbot defines that it is 
+a BCU assistant which should specifically quote context and keep all answers brief (for cost efficiency).
+This prompt was found to be highly effective, with the LLM responding with mostly satisfactory results as 
+detailed in Chapter \ref{ch:Evaluation}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Artefact/Generate2.png}
+    \caption{Code used for the 'generate' node (2/2). \label{fig:Generate2}}
+\end{figure}
+
+\noindent With the system prompt prepared, the LLM should also account for the current conversational 
+history, which is retrieved from the LangGraph MessagesState. The MessagesState is an append-only list 
+containing all messages in the current conversation, stored as a HumanMessage, AIMessage, or SystemMessage.
+These are three LangChain objects used to represent the various actors in a conversation: the human user,
+the LLM and the system prompt.
+
+\para When retrieving the current conversation, tool calls are excluded. This is because through experimentation,
+it was discovered that when the chatbot calls on a tool, it generates a blank message with metadata indicating a
+tool call. This blank message is not relevant, and therefore does not need to be included in the conversational history.
+% This is because the context from 
+% tool calls is written into the system prompt as seen previously in \ref{fig:Generate1}, and also saving 
+% these messages would cause all context to be duplicated, doubling token costs. 
+% ? One or the other.
+
+\para Finally, the new system prompt is inserted as the most recent message in the conversation, and the LLM
+is invoked with the filtered conversation history, with the generated response being returned.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Artefact/LangGraphCode.png}
+    \caption{Code used to form the graph. \label{fig:LangGraphCode}}
+\end{figure}
+
+\para To conclude the chatbot's backend Python script, the LangGraph is created using the conditions mentioned 
+previously. A particularly helpful feature of LangGraph for this scenario was 'tools\_condition', which is
+set to True if the LLM calls on a tool, and False if it does not. Based on this condition, the graph will either 
+go down the left branch, invoking the retrieval tool and generating a contextualised response, or it will skip 
+directly to the end, where the LLM will generate a generic answer without any RAG.
+
 
 
 \subsection{Accessing the chatbot}\label{sec:ChatbotFrontend}
