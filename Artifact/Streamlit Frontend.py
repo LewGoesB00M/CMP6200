@@ -2,7 +2,7 @@
 import streamlit as st
 
 # Import the directed graph (using LangGraph) from the chatbot script.
-from Chatbot import graph
+from C3 import graph
 
 # Used to show if a message was written by the AI or the user,
 from langchain_core.messages import AIMessage, HumanMessage

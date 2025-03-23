@@ -1,3 +1,6 @@
+# Used to fetch system environment variables.
+import os
+
 # Initialises the LLM.
 from langchain.chat_models import init_chat_model
 
@@ -35,7 +38,7 @@ FAISS_PATH = "VectorStores/FAISS-HugeChunks"
 # Sets up the embedding model with the API key.
 embedder = OpenAIEmbeddings(
     model = "text-embedding-3-small",
-    # Automatically uses OPENAI_API_KEY from environment vars, so not necessary to specify here.
+    openai_api_key = os.environ["OPENAI_API_KEY"]
 )
 
 # Load the vector database.
@@ -43,15 +46,19 @@ db = FAISS.load_local(folder_path = FAISS_PATH,
                       embeddings = embedder,
                       allow_dangerous_deserialization=True)
 
+# Initialise the LLM.
+# LangChain automatically interprets the LLM in question to be OpenAI's gpt-4o-mini simply by
+# specifying its name as a string argument.
+llm = init_chat_model("gpt-4o-mini", temperature = 0,
+                      openai_api_key = os.environ["OPENAI_API_KEY"])
+
+
 # The FAISS DB is also stored as a serialized .pkl file. It's possible
 # for these files to contain malicious code that would be executed on deserialization,
 # hence "allow_dangerous_deserialization". However, I generated the files myself and know
 # that they aren't malicious.
 
 
-# Initialise the model.
-# Automatically uses OPENAI_API_KEY from environment vars, so not necessary to specify here.
-llm = init_chat_model("gpt-4o-mini", temperature = 0)
 
 @tool(response_format = "content")
 def retrieve(query):
