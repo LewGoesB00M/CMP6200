@@ -141,8 +141,10 @@
     This project aims to leverage these new advancements, specifically in LLMs, to create a digital assistant 
     to help new students of Birmingham City University get acquainted to their new environment. This is accomplished 
     through the development of a chatbot web application which uses Retrieval-Augmented Generation (RAG) with 
-    OpenAI's gpt-4o-mini LLM on an embedded vector database of university information.
-    The produced chatbot performs well, achieving 80\% answer correctness on a dataset of testing questions.
+    OpenAI's gpt-4o-mini LLM on an embedded vector database of university information. The development process 
+    is thoroughly explored, with key elements of the chatbot's code being discussed in detail.
+    The produced chatbot performs well, achieving 80\% answer correctness on a dataset of testing questions
+    evaluated using DeepEval's GEval metric with a gpt-4o LLM and manual verification.
 \end{abstract}
 
 \setcounter{page}{-2}
@@ -150,7 +152,12 @@
 % \chapter*{Acknowledgements}
 % I would like to acknowledge\dots
 
+
 \tableofcontents
+\thispagestyle{empty}
+
+% ? Hides the page number on the contents page itself.
+\addtocontents{toc}{\protect\thispagestyle{empty}}
 
 % \chapter*{Glossary}
 
@@ -163,8 +170,8 @@
 %     \hline
 % \end{longtable}
 
-\footnotesize 
-\listoffigures
+\footnotesize \listoffigures
+\thispagestyle{empty}
 
 % \listoftables % ! You have one table. There is no point.
 
@@ -193,11 +200,12 @@
 
 % ? Prevents bibliography overflowing hbox at the expense of it taking up more lines on the page.
 \emergencystretch=1.5em
-\printbibliography[keyword={refs}, title = {References}]
 \addcontentsline{toc}{chapter}{References}
+\printbibliography[keyword={refs}, title = {References}]
 
-\printbibliography[keyword={bib}, title = {Bibliography}]
+
 \addcontentsline{toc}{chapter}{Bibliography}
+\printbibliography[keyword={bib}, title = {Bibliography}]
 
 % [Written Jan 19] When you make it back here at the end of it all, make sure that the abstract,
 % acknowledgements, glossary and lists of the tables and figures are in the contents as ROMAN NUMERALS.
