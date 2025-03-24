@@ -185,6 +185,9 @@ I would like to acknowledge\dots
 
 % ! If a reference doesn't have a keyword, it won't show in the bibliography.
 % ! Go over the .bib files, ensuring they use a keyword on each reference.
+
+% ? Prevents bibliography overflowing hbox at the expense of it taking up more lines on the page.
+\emergencystretch=1.5em
 \printbibliography[keyword={refs}, title = {References}]
 \addcontentsline{toc}{chapter}{References}
 

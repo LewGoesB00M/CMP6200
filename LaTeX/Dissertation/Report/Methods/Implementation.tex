@@ -82,7 +82,8 @@ at high speeds thanks to FAISS' efficiency.
 to save to the directory. LangChain provides wrapper functions for both the embedding and storage of this data, making it a smooth 
 and simple process in very few lines of code. 
 
-\para  The embedding model used is OpenAI's text-embedding-3-small model \autocite{openai_vector_nodate}. The motivation behind the use of this model was primarily due to its cost efficiency, with OpenAI approximating 62,500 pages can be embedded for each dollar spent. For each 
+\para The embedding model used is OpenAI's text-embedding-3-small model \autocite{openai_vector_nodate}. The motivation behind the use of this model 
+was primarily due to its cost efficiency, with OpenAI approximating 62,500 pages can be embedded for each dollar spent. For each 
 2000-character chunk, the embedding model translates it into vector space for the LLM's interpretation. The vectors are produced based on the 
 semantic similarities of each word as previously discussed and visualised in Section \ref{sec:LitReviewNLP}. 
 
@@ -90,7 +91,7 @@ semantic similarities of each word as previously discussed and visualised in Sec
 
 
 
-\subsection{Chatbot backend}\label{sec:ChatbotBackend}
+\subsection{Backend code}\label{sec:ChatbotBackend}
 % Talk about LangChain and LangGraph.
 As previously mentioned, the core functionality of the chatbot was developed using the LangChain and LangGraph frameworks. LangChain in particular
 simplifies the development process by providing various functions and classes for quick and easy integration with necessary services such 
@@ -231,8 +232,100 @@ go down the left branch, invoking the retrieval tool and generating a contextual
 directly to the end, where the LLM will generate a generic answer without any RAG.
 
 
+\newpage 
 
-\subsection{Accessing the chatbot}\label{sec:ChatbotFrontend}
+\subsection{Frontend code}\label{sec:ChatbotFrontend}
 % Talk about Streamlit.
 % Show example conversations here or perhaps make another section for them.
+The chatbot's frontend GUI was created using the Streamlit package, which allows for the creation of visually appealing, dynamic and 
+responsive web apps through simple Python code \autocite{streamlitStreamlitFasterWay2021}. Figure \ref{fig:StreamlitInitPage} shows 
+the initial variables set for the page's structure.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Artefact/Streamlit/Backend/PageInit.png}
+    \caption{The variables defining the frontend page's structure. \label{fig:StreamlitInitPage}}
+\end{figure}
+
+\noindent Streamlit provides many helpful methods and variables for creating the frontend GUI, allowing for the page layout to be 
+quickly defined using 'set\_page\_config', where the wide layout was used to ensure the app fills the screen, and the title and an icon 
+for the browser tab are also provided. 
+
+\para When the app initially opens, it would by default open to a mostly blank page. To remedy this, a default message was provided 
+explaining what the chatbot is, which will always show as the first message in the conversation. This is performed by validating that 
+the current session's message history is empty before inserting the default message.
+
+\para Following this, three columns are set up on the page: a small column containing a button to clear the current message history,
+a large column containing the main chat UI, and another small column showcasing the queries being given to the FAISS database by the 
+chatbot, which would be none at the time of startup, so an empty list is defined.
+
+\para After the page's structure is defined, the functionality of each of the three columns is established as depicted in Figures \ref{fig:StreamlitLRColumns}, \ref{fig:StreamlitMainColumn1} and \ref{fig:StreamlitMainColumn2}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Artefact/Streamlit/Backend/LRColumns.png}
+    \caption{Defining the left and right column functions. \label{fig:StreamlitLRColumns}}
+\end{figure}
+
+\noindent The left column ('clearHistBtn') has a button placed in it which will clear the current conversational history when clicked,
+and also empty the list of queries to the database. This button effectively resets the app to its initial opening state.
+
+\para The right column ('queryLog') outputs all the agent's queries which it has given to the vector database. The queries themselves are 
+retrieved within the main column of the app, 'chatHist'.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Artefact/Streamlit/Backend/MainColumn1.png}
+    \caption{Defining the main column function (1/2). \label{fig:StreamlitMainColumn1}}
+\end{figure}
+
+\noindent The user's input box is established, and when an input is given, it is added to Streamlit's active 
+conversation history, which is then used to invoke the chatbot's LangGraph. When the chatbot responds, it returns 
+the entire conversation history once again, this time containing the chatbot's latest response. Therefore, this is used 
+to overwrite the existing Streamlit history.
+
+\para With the core prompting functionality set, the Streamlit UI for this column then needed to be established as depicted 
+in Figure \ref{fig:StreamlitMainColumn2}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Artefact/Streamlit/Backend/MainColumn2.png}
+    \caption{Defining the main column function (2/2). \label{fig:StreamlitMainColumn2}}
+\end{figure}
+
+\noindent By iterating over each message in the conversation, logic is established to determine whether the message should 
+use a human profile picture or a robot profile picture, representing the user and chatbot respectively. Initially, a bug was 
+present where the chatbot would send two messages at a time, with one message being blank. It was previously established that 
+this was due to the 'query\_or\_respond' node invoking the retrieval tool, which it does in the form of a blank message with 
+metadata. However, Streamlit would still detect this blank message and output it. Therefore, the chatbot's message is checked 
+to ensure it is not blank before being displayed. If it is blank (i.e. a tool call), it will not be displayed to the user, as 
+there would be no reason for this, and it would only serve to cause confusion.
+
+\para Logging the tool calls for the 'queryLog' column proved to be somewhat challenging. The metadata of an AIMessage ('additional\_kwargs')
+is structured like a dictionary, though cannot entirely be parsed in the same way. Therefore, after parsing as far as possible using the 
+standard dictionary 'get' method, extracting the actual query itself is performed with basic string manipulation, to exclude irrelevant 
+details from the query string. This sanitised string is then logged as a query which will be automatically detected by the 'queryLog' column
+and output.
+
+\newpage 
+
+\subsection{Running the chatbot}
+After ensuring all prerequisite packages are installed, the chatbot itself is run through the 'Streamlit Frontend' file. Because the file 
+is executed by Streamlit rather than the generic Python interpreter, it is run slightly differently as depicted in Figure \ref{fig:RunApp}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Artefact/Streamlit/Frontend/CMD.png}
+    \caption{Running the chatbot from the terminal with Streamlit. \label{fig:RunApp}}
+\end{figure}
+
+\noindent Then, by navigating to the given URL, the chatbot itself can be accessed.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Artefact/Streamlit/Frontend/FirstRun.png}
+    \caption{The chatbot's GUI at its initial state. \label{fig:FirstRun}}
+\end{figure}
+
+\noindent The previously defined columns are clearly visible: 'clearHistBtn' as the 'Clear history' button on the left, 'chatHist' as the main 
+central column with the text box and default chatbot message, and 'queryLog', currently showing the empty list of queries.
