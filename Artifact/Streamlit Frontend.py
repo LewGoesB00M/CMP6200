@@ -2,7 +2,7 @@
 import streamlit as st
 
 # Import the directed graph (using LangGraph) from the chatbot script.
-from C3 import graph
+from Chatbot import graph
 
 # Used to show if a message was written by the AI or the user,
 from langchain_core.messages import AIMessage, HumanMessage
@@ -15,29 +15,33 @@ st.set_page_config(layout = 'wide', page_title = 'University Artifically Intelli
 
 # When the UI first opens, this is the first message that will already be in the chat.
 defaultMsg = "Hello! I'm an assistant chatbot designed to help answer any questions you have about BCU."
+
+# If there's no message history (app just opened, or history just cleared), show the default message.
 if 'message_history' not in st.session_state:
     st.session_state.message_history = [AIMessage(content=defaultMsg)]
     
-# Organises the app so that the left column (which holds a debug button) is smaller 
-# than the main chat UI. 
-# Also has a right-side column that won't be in the final version. This column holds the agent's DB queries.
-debugBtn, chatHist, queryLog = st.columns([1, 8, 1])
+# Organises the app so that the left and right columns are smaller than the main chat UI.
+clearHistBtn, chatHist, queryLog = st.columns([1, 8, 1])
 queries = []
 
 # In the left column, a button is placed that clears the chat history when clicked.
 # It resets the entire conversation back to the original "Hello!" prompt.
-with debugBtn:
-    if st.button('[DEBUG] Clear history'):
+with clearHistBtn:
+    if st.button('Clear history'):
         st.session_state.message_history = [AIMessage(content=defaultMsg)]
         queries = []
 
+# In the right column, the queries being sent by the retrieval agent to the DB are logged.
+with queryLog:
+    st.title("Agent's queries to vector DB")
+    st.write(queries)
 
 # The main UI is in this column.
 # The user inputs their prompt into a text box which is then sent off to the chatbot.
 with chatHist:
     userInput = st.chat_input("Ask anything about BCU!")
 
-    # If the new message in the chat came from the user, show it as a HumanMessage.
+    # When an input is confirmed, add it to the conversation history and get a response.
     if userInput:
         st.session_state.message_history.append(HumanMessage(content=userInput))
 
@@ -47,7 +51,7 @@ with chatHist:
         })
 
         # The response that gets returned still contains the whole history,
-        # but also appends the latest response. Therefore, make that the new
+        # but also appends the latest LLM response. Therefore, make that the new
         # message history.
         st.session_state.message_history = response['messages']
 
@@ -86,16 +90,11 @@ with chatHist:
             message_box = st.chat_message('user')
             message_box.markdown(currentMsg.content)
             
-        # else: 
-        #     message_box = st.chat_message(name = 'Tool', avatar = "🔍")
-        #     message_box.markdown(currentMsg.content)
         
     # ? If it isn't an AIMessage or HumanMessage, it must be a ToolMessage.
     # ? ToolMessages are created when the LLM gets context from the vector DB.
     # ? It still gets added to the message history, but there's no reason to output it.
     
-# Entirely for debugging purposes. Won't be in the final version.
-# Logs all the queries being sent by the retrieval agent to the DB.
-with queryLog:
-    st.title("Agent's queries to vector DB")
-    st.write(queries)
+        # else: 
+        #     message_box = st.chat_message(name = 'Tool', avatar = "🔍")
+        #     message_box.markdown(currentMsg.content)
