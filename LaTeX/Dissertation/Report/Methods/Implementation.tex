@@ -328,4 +328,52 @@ is executed by Streamlit rather than the generic Python interpreter, it is run s
 \end{figure}
 
 \noindent The previously defined columns are clearly visible: 'clearHistBtn' as the 'Clear history' button on the left, 'chatHist' as the main 
-central column with the text box and default chatbot message, and 'queryLog', currently showing the empty list of queries.
+central column with the text box and default chatbot message, and 'queryLog', currently showing the empty list of queries. 
+
+\para The chatbot can now be queried by simply giving a prompt in the main text entry field as shown in Figure \ref{fig:FirstQuery}, 
+which is slightly zoomed in for demonstrative purposes.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Artefact/Streamlit/Frontend/FirstQuery.png}
+    \caption{Prompting the chatbot with 'Hello!'. \label{fig:FirstQuery}}
+\end{figure}
+
+\noindent This simple query demonstrates the conditional branch in LangGraph. With 'Hello' being such a simple query, the chatbot deems 
+it unnecessary to retrieve context for, as it can already provide a suitable answer. This can be seen from the 'queryLog' column still 
+remaining empty. Instead, the chatbot can now be asked a BCU-related question which it will require context for.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Artefact/Streamlit/Frontend/SecondQuery.png}
+    \caption{Prompting the chatbot with 'Where is the Curzon Building?'. \label{fig:SecondQuery}}
+\end{figure}
+
+\noindent The chatbot is able to answer correctly with no hallucination, as it performed a search for 'Curzon Building location' on the 
+FAISS database as shown in the 'queryLog' column. From this, it was able to parse the retrieved chunks, locate the address, and return it to the
+user. To expand on this functionality, another relevant question can be asked:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Artefact/Streamlit/Frontend/ThirdQuery.png}
+    \caption{Prompting the chatbot with 'What about STEAMHouse?'. \label{fig:ThirdQuery}}
+\end{figure}
+
+\noindent Because the chatbot is invoked with the conversation history, it is able to interpret what the user means by 'What about', 
+referring to another building's location. As such, it uses another similar query on the vector database, this time retrieving information 
+for the STEAMHouse building, which it is able to successfully return to the user. Additionally, its response states 'which is also part of 
+the City Centre Campus', showing that the previous response it gave was factored into its new response, as per the use of 'also'.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Artefact/Streamlit/Frontend/UniqueConversations.png}
+    \caption{Two separate chatbot instances, which run without memory overlap. \label{fig:UniqueConversations}}
+\end{figure}
+
+\noindent Figure \ref{fig:UniqueConversations} depicts how multiple instances of the chatbot can run at the same time without influencing 
+each other, which is a key element in terms of user privacy. In the figure, it can be seen that two separate windows of the chatbot are 
+running, where one contains the conversation in Figure \ref{fig:ThirdQuery} and another that had just been started. Both chatbots are 
+asked what the last question asked of them was, which the new instance cannot answer, but the old instance can. This shows how the second 
+chatbot instance runs independently of the first.
+
+% ! What more can really be said?
