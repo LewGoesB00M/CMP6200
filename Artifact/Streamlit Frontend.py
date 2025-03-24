@@ -31,11 +31,6 @@ with clearHistBtn:
         st.session_state.message_history = [AIMessage(content=defaultMsg)]
         queries = []
 
-# In the right column, the queries being sent by the retrieval agent to the DB are logged.
-with queryLog:
-    st.title("Agent's queries to vector DB")
-    st.write(queries)
-
 # The main UI is in this column.
 # The user inputs their prompt into a text box which is then sent off to the chatbot.
 with chatHist:
@@ -98,3 +93,8 @@ with chatHist:
         # else: 
         #     message_box = st.chat_message(name = 'Tool', avatar = "🔍")
         #     message_box.markdown(currentMsg.content)
+
+# In the right column, the queries being sent by the retrieval agent to the DB are logged.
+with queryLog:
+    st.title("Agent's queries to vector DB")
+    st.write(queries)
