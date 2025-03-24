@@ -2,28 +2,56 @@
 
 
 \section{Problem definition}
+New university students often face challenges in acclimating to their new university life \autocite{oxforduniversitySupportingAcademicTransition}.
+These challenges can stem from difficulty in locating buildings or understanding university policies, and traditional support systems, 
+such as printed materials or static websites, can often be insufficient, as they require students to navigate complex 
+and scattered resources. Additionally, relying on human staff for queries can become especially difficult during 
+peak times, such as the start of the academic year.
 
+
+\section{Aim}
+This project aims to aid new and existing students alike while they are attending university with 
+helpful information about the university itself, such as general university information, locations/campuses, 
+and policies through the medium of a digital chatbot companion to converse with.
 
 \section{Scope}
+This project will focus on the development of a chatbot with a knowledge base of university data to query and retrieve information from.
+This will be accomplished by using an OpenAI LLM via their API, which will be customised to enable Retrieval-Augmented Generation (RAG),
+a technology which enhances an LLM's knowledge by giving it access to additional information that was not originally present in their training data
+\autocite{lewis_retrieval-augmented_2021}, making it highly contextualised and usable for BCU-related queries.
 
+\para The chatbot will have a graphical user interface (GUI) to ensure that users can quickly come to terms with how to use the chatbot,
+which will be hosted as a web application accessible on the local network. Creating a hosted website is not within this project's scope as this 
+would introduce unnecessary cost and waste time.
+
+\para This project will also involve the testing and evaluation of the chatbot to ensure its usability and accuracy with a variety of BCU-related 
+questions.
 
 \section{Rationale}
+The rapid development of artificial intelligence (AI), particularly in natural language processing (NLP) and large language models (LLMs), provides 
+an opportunity to address these challenges. Therefore, the problem also lies in creating a reliable, cost-effective, and user-friendly digital 
+assistant capable of answering various university-related inquiries with a high level of accuracy, which this project 
+aims to solve. Unlike human staff, a chatbot can theoretically run at all times and respond at a much faster rate, 
+meaning students could get the information they need at any time in real-time.
 
+\para Many LLMs already exist, such as ChatGPT \autocite{openaiChatGPT}, DeepSeek \autocite{deepseekDeepSeek}, and 
+Gemini \autocite{googleGeminiChatSupercharge}. However, these LLMs do not possess specific BCU-related knowledge. 
+This provides a significant opportunity for the assistance of BCU students, which this project aims to capitalise on.
+% Therefore, 
+% this project will utilise RAG to enhance an existing LLM with topical knowledge to produce 
+% a functional chatbot which students will be able to query on BCU-related topics.
 
-\section{Aims and Objectives}\label{sec:AimsAndObjectives}
-This project aims to aid new and existing students alike while they are attending university with 
-helpful information about university itself, such as university societies, locations/campuses, 
-and policies through the medium of a digital chatbot companion to converse with.
-The project's objectives are:
+\section{Objectives}\label{sec:AimsAndObjectives}
+The project's objectives are to:
 
 \begin{itemize}
-    \item Conduct a thorough literature review on the surrounding topics, namely AI, LLMs and NLP.
+    \item Conduct a thorough literature review on the surrounding topics, especially AI, LLMs and NLP.
     \item Create effective documentation for all stages of development, highlighting challenges faced during the process.
     \item Leverage Retrieval-Augmented Generation alongside a cloud-based LLM to query a vector database of university-related data.
     \item Develop a chatbot capable of accurately answering user queries related to university 
-    buildings, policies, and societies with a minimum 80\% accuracy rate.
+    buildings, policies, and general information with a minimum 75\% accuracy rate.
     \item Evaluate the effectiveness of an AI assistant on university student acclimatization.
 \end{itemize}
 
-\section{Background information}
-Possibly unnecessary.
+% \section{Background information}
+% Possibly unnecessary?
