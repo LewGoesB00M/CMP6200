@@ -1,1 +1,21 @@
 \section{Discussion}
+Overall, it is safe to say that the project can be considered a success, though it certainly is not without flaw.
+It was previously mentioned that the chatbot had an accuracy of 80\% according to GEval, though this was only against a dataset 
+of 10 questions. It would be much more suitable to expand this training dataset, alongside gathering actual user feedback.
+
+\para Additionally, my own limitations in knowledge when it came to LangChain and LangGraph meant that I was unable to optimally refine the 
+retrieval tool to work on the failed questions in time, and I was also unable to successfully implement a ReAct agent as researched in the 
+literature review.
+
+\para Despite the project's few failures, there was a greater amount of successes. I have hugely increased my own knowledge of Python, LLMs,
+and RAG. These are three critical skills to have if I intend to work in software development due to recent trends with companies 
+becoming more reliant on LLMs. 
+
+\para Furthermore, through developing the chatbot and performing the extensive research required, I believe my skills as an overall software 
+developer have enhanced in a way that is not exclusive to Python; I have become much more aware of how to interpret API references and documentation,
+meaning that my ability to adapt to new tech stacks as seen in this project should now be a much faster process.
+
+\para The achievement I am most proud of with the chatbot is the cost-saving effort of the conditional branches. Originally, the chatbot would 
+query the database for every prompt given, even if it was something as simple as 'Hello!'. This would lead to 6,000 characters worth of university
+data which would not be relevant to the query being given to the LLM, wasting processing time and money through the greatly increased token cost 
+of such a prompt, as well as resulting in a strange and irrelevant response that would only serve to confuse the user. 
