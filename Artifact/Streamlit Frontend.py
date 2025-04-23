@@ -64,8 +64,8 @@ with chatHist:
             # so it would show a blank box. To fix this, the message is checked to see if it's blank first.
             if currentMsg.content != "":
                 # ? Use a robot profile picture. 
-                message_box = st.chat_message('assistant')
-                message_box.markdown(currentMsg.content)
+                messageBox = st.chat_message('assistant')
+                messageBox.markdown(currentMsg.content)
 
             # For logging purposes, the tool call used in the message is stored.
             toolCalls = currentMsg.additional_kwargs.get("tool_calls")
@@ -82,8 +82,8 @@ with chatHist:
         # ? Alternatively, if the user wrote it:
         elif isinstance(currentMsg, HumanMessage):
             # ? Use a person profile picture.
-            message_box = st.chat_message('user')
-            message_box.markdown(currentMsg.content)
+            messageBox = st.chat_message('user')
+            messageBox.markdown(currentMsg.content)
             
         
     # ? If it isn't an AIMessage or HumanMessage, it must be a ToolMessage.
@@ -91,8 +91,8 @@ with chatHist:
     # ? It still gets added to the message history, but there's no reason to output it.
     
         # else: 
-        #     message_box = st.chat_message(name = 'Tool', avatar = "🔍")
-        #     message_box.markdown(currentMsg.content)
+        #     messageBox = st.chat_message(name = 'Tool', avatar = "🔍")
+        #     messageBox.markdown(currentMsg.content)
 
 # In the right column, the queries being sent by the retrieval agent to the DB are logged.
 with queryLog:

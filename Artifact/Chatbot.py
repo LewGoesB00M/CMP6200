@@ -32,7 +32,7 @@ from langgraph.prebuilt import ToolNode, tools_condition
         #   FAISS-SmallChunks: Chunk size 500, Overlap 100, PyPDFLoader with default args.
         #   FAISS-BigChunks: Chunk size 1500, Overlap 300, PyPDFLoader with default args.
         #   FAISS-HugeChunks: Chunk size 2000, Overlap 500, PyPDFLoader with default args.
-FAISS_PATH = "VectorStores/FAISS-HugeChunks"
+dbPath = "VectorStores/FAISS-HugeChunks"
 
 
 # Sets up the embedding model with the API key.
@@ -42,22 +42,21 @@ embedder = OpenAIEmbeddings(
 )
 
 # Load the vector database.
-db = FAISS.load_local(folder_path = FAISS_PATH,
+db = FAISS.load_local(folder_path = dbPath,
                       embeddings = embedder,
                       allow_dangerous_deserialization=True)
-
-# Initialise the LLM.
-# LangChain automatically interprets the LLM in question to be OpenAI's gpt-4o-mini simply by
-# specifying its name as a string argument.
-llm = init_chat_model("gpt-4o-mini", temperature = 0,
-                      openai_api_key = os.environ["OPENAI_API_KEY"])
-
 
 # The FAISS DB is also stored as a serialized .pkl file. It's possible
 # for these files to contain malicious code that would be executed on deserialization,
 # hence "allow_dangerous_deserialization". However, I generated the files myself and know
 # that they aren't malicious.
 
+
+# Initialise the LLM.
+# LangChain automatically interprets the LLM in question to be OpenAI's gpt-4o-mini simply by
+# specifying its name as a string argument.
+llm = init_chat_model("gpt-4o-mini", temperature = 0,
+                      openai_api_key = os.environ["OPENAI_API_KEY"])
 
 
 @tool(response_format = "content")

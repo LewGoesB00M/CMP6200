@@ -28,34 +28,34 @@ import shutil
         #   FAISS-Unstructured: Chunk size 1000, Overlap 200, UnstructuredPDFLoader with default args.
         #   FAISS-BigChunks: Chunk size 1500, Overlap 300, PyPDFLoader with default args.
         #   FAISS-HugeChunks: Chunk size 2000, Overlap 500, PyPDFLoader with default args.
-FAISS_PATH = "VectorStores/FAISS-HugeChunks"
-DATA_PATH = "Data/Policies"#/TESTING" # minimise token use
+dbPath = "VectorStores/FAISS-HugeChunks"
+pdfPath = "Data/Policies"
 
 # Loads all PDFs, chunks them, then saves them to a FAISS DB.
-def generate_data_store():
+def generateDB():
     # Load every PDF.
-    documents = load_documents()
+    documents = loadPDFs()
     # Chunk all the text.
-    chunks = split_text(documents)
+    chunks = splitText(documents)
     # Save them to the Faiss DB.
-    save_to_faiss(chunks)
+    saveToFAISS(chunks)
 
-# Loads every PDF from the data path.
-def load_documents():
+# Loads every PDF from the directory.
+def loadPDFs():
     # In the data path, load every (signified by asterisk) PDF file.
     # Because they're PDF files, the PyPDFLoader can be used to load each.
-    loader = DirectoryLoader(DATA_PATH,  glob = "*.pdf",
+    loader = DirectoryLoader(pdfPath,  glob = "*.pdf",
                              loader_cls = PyPDFLoader)
     documents = loader.load()
     return documents
 
 # Uses LangChain's RecursiveCharacterTextSplitter to split the documents into chunks for embedding.
-def split_text(documents):
+def splitText(documents):
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=2000,  # See Lines 28 - 34 for info on size and overlap.
+        chunk_size=2000,  
         chunk_overlap=500,  
-        length_function=len, # A custom length function can be made, but I saw no need.
-        add_start_index=True, # Stores the chunk's starting character index in its metadata.
+        length_function=len, # ! Test if necessary.
+        add_start_index=True, # ! Test if necessary.
     )
 
     # Save the split chunks.
@@ -68,11 +68,10 @@ def split_text(documents):
     # Return the chunks so that they can be embedded and saved.
     return chunks
 
-
-def save_to_faiss(chunks):
+def saveToFAISS(chunks):
     # Clear out the database first if it exists.
-    if os.path.exists(FAISS_PATH):
-        shutil.rmtree(FAISS_PATH)
+    if os.path.exists(dbPath):
+        shutil.rmtree(dbPath)
 
     # Create a new DB from the documents.
     # Takes the chunks and uses OpenAI text-embedding-3-small to embed them as vectors.
@@ -85,11 +84,11 @@ def save_to_faiss(chunks):
     )
     
     # Save the generated DB to the given path.
-    faiss.save_local(folder_path = FAISS_PATH)
+    faiss.save_local(folder_path = dbPath)
     
-    print(f"Saved {len(chunks)} chunks to {FAISS_PATH}.")
+    print(f"Saved {len(chunks)} chunks to {dbPath}.")
 
 # When this file gets run, generate the FAISS DB, which by extension will load and chunk
 # all documents.
 if __name__ == "__main__":
-    generate_data_store()
+    generateDB()
