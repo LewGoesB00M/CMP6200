@@ -156,26 +156,65 @@ The following requirements, while not essential, would be beneficial if fulfille
 % \end{itemize}
 
 
-\subsection{Conceptual flowchart}
-The flowchart presented in Figure XXX depicts a model interaction from the user's perspective.
-%\ref{fig:ConceptFlowchartUser}
+\subsection{Concept diagrams}
 
-\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Not present in draft]
-    Time constraints on this draft meant I simply don't have time to make this diagram.
-\end{tcolorbox}
+Figure \ref{fig:ConceptDiagram} depicts a theoretical interaction with the chatbot from the frontend user's perspective created 
+early in development.
 
-\noindent In the interest of saving costs and reducing response times, the chatbot will ideally not query its university information vector store 
-unless it cannot answer a question without it. This is because appending the university information, even in small amounts, would 
-greatly increase the token usage of each individual prompt. This decision functionality would be provided by LangGraph, and is detailed 
-further in Section \ref{sec:ChatbotBackend}.
-
-\subsection{Wireframes}
-The wireframe presented in Figure XXX depicts an early concept of how the chatbot's GUI could look like.
-%\ref{fig:OriginalWireframe}
-
-\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Not present in draft]
-    Time constraints on this draft meant I simply don't have time to make this diagram.
-\end{tcolorbox}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Implementation/ConceptDiagram.png}
+    \caption{An early visualisation of a conversation.\label{fig:ConceptDiagram}}
+\end{figure}
 
 \noindent Users will have a clearly labelled text input box, and a messaging interface similar to other text messaging apps 
 which they would hopefully be familiar with allowing for them to quickly understand how to interact with the chatbot.
+This version of the chatbot would be hosted locally, though with additional time and resources it could instead be hosted on a 
+dedicated domain or as part of another service.
+
+\para Figures \ref{fig:EmbedFlowchart} and \ref{fig:RAGFlowchart} depict how the backend of the chatbot should work, including the 
+storage of BCU data and how the chatbot will query it.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Implementation/LucidEmbedFlow.png}
+    \caption{The flowchart for the PDF embedding procedure.\label{fig:EmbedFlowchart}}
+\end{figure}
+
+\noindent BCU's policies are publically available on their website \autocite{bcuPoliciesProcedures}, with policies valid during the 2024/25 academic
+year being used in this project. The planned use case for these policies was to download them locally and then process them using LangChain as a 
+wrapper to split the PDFs into smaller chunks and embed them into a vector database. LangChain provides classes for direct PDF loading and 
+conversion into its own "Document" format, and also provides functions to vectorise each chunk using any embedding model, with OpenAI's 
+text-embedding-3-small being used. 
+
+\para After the embedded chunks are stored, the database generated from this process is stored locally. This means that the chatbot will operate 
+both locally and on the cloud, with vector similarity searches being executed on the chatbot host device and the proprietary gpt-4o-mini LLM running 
+on an OpenAI server.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Implementation/LucidRAGFlow.png}
+    \caption{The flowchart for the answer generation procedure.\label{fig:RAGFlowchart}}
+\end{figure}
+
+\noindent Users will input prompts as natural language to the chatbot, which will then vectorise them using the same embedding model used 
+to embed the BCU policies. This is a necessary procedure as different embedding models will yield different outputs, meaning that if the same 
+model was not used for the storage of policies and conversion of user queries, answers would be completely incorrect. 
+
+\para In the interest of saving costs and reducing response times, the chatbot will ideally not query its university information vector store 
+unless it cannot answer a question without it. This is because appending the university information, even in small amounts, would 
+greatly increase the token usage of each individual prompt. To do so, the chatbot will review the existing conversation when it receives a 
+prompt. If it already has the answer to the user's question in previously retrieved context, there will be no need to perform another search 
+and duplicate pre-existing context.
+
+\para Another way that the chatbot may choose not to query the database is if the user's prompt can already be answered by the LLM. This may 
+occur with very simple queries, such as "Hello!" or "My name is Lewis." In either of these example scenarios, the chatbot should not query the 
+database, as the LLM should be capable of responding to generic greetings and remembering a user's name. Additionally, answers that do not 
+require similarity searches should be answered considerably quicker, and would make the user experience feel much smoother if they are not 
+having to wait a long time between responses as previously detailed in Section \ref{sec:Requirements}. 
+
+\para This decision functionality would be provided by LangGraph, and is detailed 
+further in Section \ref{sec:ChatbotBackend}.
+
+
+
