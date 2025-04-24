@@ -73,7 +73,7 @@ risk through constant testing and also for its deeply flexible nature allowing t
 over time as needed, unlike Waterfall where this could cause major deadline creep. Additionally, the time-sensitive nature of this project 
 best suits Agile's fast incremental sprints rather than the slower, more methodical Waterfall.
 
-\section{Potential limitations}\label{sec:Limitations}
+\section{Potential limitations and mitigations}\label{sec:Limitations}
 The project as a whole bears some limitations of its own that may hinder the development process or the final product.
 
 \subsection{Time}
@@ -82,11 +82,19 @@ in balancing time throughout the academic year alongside four other modules each
 of similar scale. As such, it is possible that if the product has issues, they could have been remedied with additional development 
 time.
 
+\para To mitigate this risk, a Gantt chart was developed to model the overall project timeline, and can be found in Appendix A.
+% !!!!!!!!!!!!!!!! GANTT
+% ! Didn't the proposal have risk assessments?
+
 \subsection{Cost}
 Due to the inability to use OpenAI's LLMs on a local device because of both their proprietary nature and extreme hardware requirements,
 their public API will need to be used instead. This incurs a financial cost for every query sent and response received from the LLM,
-dependent on the model chosen. For example, GPT-4o has a cost of \$2.50 per 1,000,000 tokens. Throughout the development and testing 
-processes in each sprint, a cost will slowly begin to accrue.
+dependent on the model chosen. For example, GPT-4o has a cost of \$2.50 per 1,000,000 input tokens \autocite{openaiPricingOpenAIAPI}.
+Throughout the development and testing processes in each sprint, a cost will slowly begin to accrue.
+
+\para Mitigating risks posed by potential cost constraints will be remedied by identifying the optimal model, which was decided to 
+be gpt-4o-mini. The project has a limited budget due to it being a solo endeavour, though using a somewhat less intelligent model 
+will greatly mitigate the risk of overspending while only compromising slightly on answer quality. 
 
 \subsection{Experience}
 Personally, I have never worked with LLM APIs before, nor the frameworks used to create apps with them such as LangChain. As such,
@@ -94,9 +102,13 @@ it is highly likely that many issues will be faced during the development proces
 new to me. This also links back to the previously mentioned time constraint, with the time taken to learn the modules used being time that 
 could have been spent on development had I known them ahead of time.
 
+\para To address this risk, time will be budgeted to allow for thorough research into the necessary tech stack to ensure that the project 
+can be completed to a suitable standard.
+
 \subsection{Independence}
 This project is a solo venture with no support from others. As such, the previously mentioned issues of time and cost are entirely 
 my own burden and responsibility. 
+% ! Can anything really be said here other than 'I just dealt with it'?
 
 \subsection{LLM Unpredictability}
 LLMs are an extremely useful tool, being able to execute instructions given to them in natural language. However, without specific tuning, 
@@ -104,13 +116,21 @@ an LLM will not give the same response to the same prompt every time it is given
 aid with a chatbot, it may risk answering questions incorrectly. This also can make LLM-based programs extremely challenging to debug due 
 to this lack of reproducibility.
 
+\para In an effort to mitigate any potential risk of LLM unpredictability, the chatbot's 'temperature' parameter will be set to 0, 
+which will make its responses more static. This means that the chatbot should provide the same answer any time it is asked a certain 
+question unless there are external circumstances (previous conversation history, etc.). 
+
 \subsection{LangChain Documentation}
 LangChain will be a critical element in this project's development, serving as the backend framework that the chatbot will run on.
 Therefore, it is mandatory that I learn about it in order to produce a functional product, which would typically involve reading the 
 documentation as is common when learning new modules. However, LangChain's documentation is frequently outdated and/or references 
 functions or classes that have since been deprecated, without the documentation being updated. LangChain also frequently deprecates classes 
-and functions with each new update, meaning that finding what currently works is a challenge in itself.
+and functions with each new update, meaning that finding the current optimal methods for specific aims can be challenging.
 
+\para Despite this risk, LangChain is recognised as a good framework for developing LLM-based applications and there are other 
+resources that can be learned from that are not the documentation page, such as tutorial videos and blogs. Through using alternative 
+resources alongside the official documentation, it should be possible to use LangChain to a good standard to produce an end product 
+of suitable quality.
 
 \section{Design}
 Before any design concepts can be created, it is first necessary to establish what is being designed. Therefore, the functional and 
