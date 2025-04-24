@@ -147,11 +147,78 @@
     evaluated using DeepEval's GEval metric with a gpt-4o LLM and manual verification.
 \end{abstract}
 
-\setcounter{page}{-2}
+\setcounter{page}{-4}
 
-% \chapter*{Acknowledgements}
-% I would like to acknowledge\dots
+\chapter*{Acknowledgements}
+\thispagestyle{empty}
+I would like to primarily acknowledge my project supervisor, Dr. Atif Azad, as having a major positive 
+influence throughout the development of this project. His expertise and advice had a significant 
+effect throughout the entire project's development and report writing, and both would be of substantially 
+lower quality were it not for his guidance.
 
+\para Additionally, I would like to acknowledge my father, who continually motivated me to produce high-quality 
+work throughout a challenging year. Without the support of both of these people, this project 
+would not have been feasible, and for this I thank them both greatly.
+
+
+\chapter*{Glossary}
+\thispagestyle{empty}
+\begin{table}[H]
+    \begin{tabular}{|p{0.2\linewidth}|p{0.74\linewidth}|}
+        \hline
+        \cellcolor{blue!25}Terminology & \cellcolor{blue!25}Description\\
+        \hline 
+
+        AI & A field of computing dedicated to allowing computers to simulate human
+        learning by training them on large amounts of data so that they can recognise patterns to classify or 
+        predict unknown data. AI can only be as good as the data it is trained upon ("Garbage in, garbage out"), and could
+        become biased if it is fed too much data of a certain type.\\
+
+        % \hline
+
+        % Generative AI & AI dedicated to the generation of content rather than prediction or 
+        % classification. It is possible for generative AI to produce text, images and 
+        % more recently, even video and sound. & LLMs, Tokens, Embedding \\
+
+        \hline
+
+        Natural Language Processing \newline (NLP) & NLP refers to the use of machine learning to encode and 
+        process text to understand it similarly to humans, which can be used to allow direct 
+        two-way conversation between users and computers.\\
+
+        \hline
+        
+        LLMs & Large Language Models are a type of machine learning model dedicated to the recognition and generation of text.
+        As suggested by their name, they are trained on enormous amounts of text data, which allows them 
+        to have active conversations with users. There are many different LLMs, and as their size and 
+        complexity increases, so too does the necessary processing power. 
+        \\
+        \hline 
+
+        Retrieval-Augmented Generation \newline (RAG) & The optimisation of the generated text output of an LLM, incorporating
+        an external data source to enhance its contextual knowledge and the subject relevancy of its outputs. \\
+
+        \hline
+        Chatbot \newline Conversational Agent & Software that simulates a natural conversation between the 
+        computer and end user. Many chatbots, including the one to be produced in this project, utilise recent
+        developments such as Generative AI and natural language processing (NLP) to interpret and respond to user queries.
+        \autocite{IBMChatbotDef}\\
+
+        % \hline
+
+        % User Experience (UX) & The end user's overall experience of using a system, such as its ease of use and 
+        % whether it is enjoyable to use. In the context of this project, it will refer to the user's 
+        % ability to smoothly converse with the chatbot and how human-like it is. 
+        % & Conversational design, usability, accessibility, human-computer interaction
+
+        % \\
+
+        \hline 
+
+    \end{tabular}
+    % \caption{The themes and keywords used in the literature search.}
+    % \label{tab:Glossary}
+\end{table}
 
 \tableofcontents
 \thispagestyle{empty}
@@ -159,16 +226,6 @@
 % ? Hides the page number on the contents page itself.
 \addtocontents{toc}{\protect\thispagestyle{empty}}
 
-% \chapter*{Glossary}
-
-
-% \begin{longtable}{ | p{0.2\textwidth} | p{0.7\textwidth} |}
-%     \hline
-%     \cellcolor{blue!25}Term & \cellcolor{blue!25}Definition\\
-%     \hline
-%     RAG & Retrieval-Augmented Generation is\dots \\
-%     \hline
-% \end{longtable}
 
 \footnotesize \listoffigures
 \thispagestyle{empty}
@@ -207,11 +264,6 @@
 \printbibliography[keyword={bib}, title = {Bibliography}]
 \addcontentsline{toc}{chapter}{Bibliography}
 
-% [Written Jan 19] When you make it back here at the end of it all, make sure that the abstract,
-% acknowledgements, glossary and lists of the tables and figures are in the contents as ROMAN NUMERALS.
-
-% ! Page numbering. At present, the introduction is on page 6. Not much point changing it until it's done.
-% ! See CMP6228 Proposal for an example of how to modify the page number.
 
 % ? It's possible that some useful info to bring over was in your proposal? Not looked but IIRC it had risk assessments in.
 

@@ -4,22 +4,25 @@ In addition, the development process itself will be reflected upon to identify w
 and could have been prevented.
 
 \section{Product}
-Within Section \ref{sec:Requirements}, the functional and non-functional requirements for this project were stated.
-Of these requirements, the chatbot successfully meets all functional requirements, as well as the original aims and 
-objectives stated in \ref{sec:AimsAndObjectives}. However, two non-functional requirements were not met.
+% Within Section \ref{sec:Requirements}, the functional and non-functional requirements for this project were stated.
+% Of these requirements, the chatbot successfully meets all functional requirements, as well as the original aims and 
+% objectives stated in \ref{sec:AimsAndObjectives}. However, two non-functional requirements were not met.
 
-\para One of these requirements was 'The chatbot could allow for voice input and output.' This requirement was not met,
-as it would introduce a significant cost and time investment in trying to integrate this functionality into a Streamlit 
-web app. The other unmet requirement was 'The chatbot could be deployed on an existing messaging service.' This requirement 
-was not met due to time constraints, which is further reflected upon in Section \ref{sec:EvalProcess}. 
+% \para One of these requirements was 'The chatbot could allow for voice input and output.' This requirement was not met,
+% as it would introduce a significant cost and time investment in trying to integrate this functionality into a Streamlit 
+% web app. The other unmet requirement was 'The chatbot could be deployed on an existing messaging service.' This requirement 
+% was not met due to time constraints, which is further reflected upon in Section \ref{sec:EvalProcess}. 
 
 \para To properly evaluate the chatbot, it is best to use direct evaluation metrics. While reviewing literature in Section 
 \ref{sec:LitReviewLLM}, an evaluation platform known as DeepEval was considered, with the ability to use an LLM as a judge of 
-other LLMs \autocite{deepeval_introduction_2024}.
+other LLMs \autocite{deepeval_introduction_2024}, known as 'G-Eval'.
 
-\subsection{DeepEval}
+\subsection{G-Eval}\label{sec:DeepEval}
 DeepEval offers a wide variety of metrics, with one of these metrics being 'GEval'. GEval is a metric which is scored by an LLM based 
-on criteria given in natural language, originally created by \textcite{liuGEvalNLGEvaluation2023a}. 
+on criteria given in natural language, originally created by \textcite{liuGEvalNLGEvaluation2023a}. This means that the metric is directly 
+programmable using a system prompt as seen with the chatbot itself.
+
+\para 
 To evaluate the chatbot, an evaluation dataset of questions and their expected answers was provided, with the chatbot's actual response being
 compared to the expected answer which is known to be true (referred to as a 'golden answer'.). It is common practice when using G-Eval to use a 
 superior LLM for evaluation than the one that originally generated the answer. Therefore, for G-Eval, gpt-4o was used, making the evaluation process 
@@ -94,6 +97,14 @@ the search was unable to identify each degree classification.
 
 
 \section{Development process}\label{sec:EvalProcess}
+\subsection{Positives}
+All functional requirements stated in Section \ref{sec:Requirements} for the final product, as well as the original aims and objectives 
+of the project, were successfully met with a working chatbot with good accuracy on BCU-related topics being produced in a timely fashion.
+
+\para Furthermore, with the project being a solo endeavour, a comprehensive understanding of the project management life cycle was 
+obtained from conception to completion. As a result, I believe my problem-solving and decision-making skills have greatly improved.   
+
+\subsection{Negatives}
 As identified previously in Section \ref{sec:Limitations}, the most significant limitation throughout the development process 
 was the amount of time available. Over the course of the project's development, significant extenuating circumstances occurred 
 leading to the lack of some desired features and lower quality of others. Furthermore, balancing the production of this project 
@@ -106,7 +117,3 @@ provided through the identification of OpenAI's lower-end models through thoroug
 \para However, the other limitations specified in Section \ref{sec:Limitations} also played key roles of their own, though less significant 
 than the time restrictions. Most notably of these was my own lack of experience with LLMs. Developing a product using a tech stack 
 I was entirely unfamiliar with prior to development proved to be highly difficult.
-
-\para Despite these limitations, however, all functional 
-requirements, as well as the original aims and objectives of the project, were successfully met with a working chatbot with 
-good accuracy on BCU-related topics being produced.
