@@ -1,8 +1,8 @@
 [project]
 name = "artifact"
-version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
+version = "1.0.0"
+description = "A University Artifically Intelligent Chatbot that uses LLMs with RAG to answer BCU-related questions."
+readme = "./README.md"
 requires-python = ">=3.9.2"
 dependencies = [
     "deepeval>=2.6.4",
@@ -16,9 +16,4 @@ dependencies = [
     "pdfminer-six>=20240706",
     "pypdf>=5.2.0",
     "streamlit>=1.42.2",
-]
-
-[dependency-groups]
-dev = [
-    "ipykernel>=6.29.5",
 ]
