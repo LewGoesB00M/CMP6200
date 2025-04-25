@@ -27,7 +27,7 @@ import shutil
         #   FAISS-SmallChunks: Chunk size 500, Overlap 100, PyPDFLoader with default args.
         #   FAISS-BigChunks: Chunk size 1500, Overlap 300, PyPDFLoader with default args.
         #   FAISS-HugeChunks: Chunk size 2000, Overlap 500, PyPDFLoader with default args.
-dbPath = "VectorStores/FAISS"
+dbPath = "VectorStores/FAISS-HugeChunks"
 pdfPath = "Data/Policies"
 
 # Loads all PDFs, chunks them, then saves them to a FAISS DB.
@@ -58,7 +58,7 @@ def splitText(documents):
     # Save the split chunks.
     chunks = text_splitter.split_documents(documents)
     
-    # Example: "Split 100 documents into 700 chunks"
+    # Example: "Split 219 documents into 383 chunks"
     # Just for verification that the script ran.
     print(f"Split {len(documents)} documents into {len(chunks)} chunks.")
 
