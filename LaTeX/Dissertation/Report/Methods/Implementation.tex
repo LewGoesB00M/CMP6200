@@ -87,7 +87,11 @@ was primarily due to its cost efficiency, with OpenAI approximating 62,500 pages
 2000-character chunk, the embedding model translates it into vector space for the LLM's interpretation. The vectors are produced based on the 
 semantic similarities of each word as previously discussed and visualised in Section \ref{sec:LitReviewNLP}. 
 
-% ! Screenshot of this running if possible.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Artefact/EmbeddingConsoleSmall.png}
+    \caption{The PDF to vector store conversion code successfully running. \label{fig:EmbeddingConsole}}
+\end{figure}
 
 
 
@@ -123,7 +127,6 @@ to reduce the potential for hallucinations in a Q\&A RAG scenario such as this o
 \noindent Thorough experimentation with the chunk sizes previously discussed in Figure \ref{fig:LangChainDocumentLoader} occurred during 
 development, with the eventual decision of settling on the 2000-character chunks being made due to its more reliable performance on a set 
 of sample questions discussed in Chapter \ref{ch:Evaluation}. Following the relative directory of the FAISS database being set, the 
-% ! Change "chapter" to the specific relevant section when it's written.
 OpenAI embedding model is once again used so that similarity searches may be performed on the database. An additional argument,
 'allow\_dangerous\_deserialization', is given when loading the database. When a FAISS database is saved using LangChain, it is saved as a 
 serialized file known as a Pickle file, using a .pkl file extension. It is possible for malicious code to be embedded inside these files
@@ -211,10 +214,6 @@ the LLM and the system prompt.
 \para When retrieving the current conversation, tool calls are excluded. This is because through experimentation,
 it was discovered that when the chatbot calls on a tool, it generates a blank message with metadata indicating a
 tool call. This blank message is not relevant, and therefore does not need to be included in the conversational history.
-% This is because the context from 
-% tool calls is written into the system prompt as seen previously in \ref{fig:Generate1}, and also saving 
-% these messages would cause all context to be duplicated, doubling token costs. 
-% ? One or the other.
 
 \para Finally, the new system prompt is inserted as the most recent message in the conversation, and the LLM
 is invoked with the filtered conversation history, with the generated response being returned.
