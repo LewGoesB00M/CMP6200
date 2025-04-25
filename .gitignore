@@ -2,7 +2,6 @@ Artifact/__pycache__
 Artifact/.deepeval_telemetry.txt
 Artifact/.deepeval-cache.json
 .vscode
-
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
