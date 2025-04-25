@@ -15,6 +15,8 @@ with more time and funding this project could have been expanded upon further, w
 on. In this version, the chatbot runs locally.
 
 # Running locally
+**Running the chatbot locally requires you to have a system environment variable set titled `OPENAI_API_KEY` with a valid OpenAI API key stored in it. If you do not have one, please let me know before assuming the code doesn't work.**
+
 This project has multiple dependencies before it can be run. These are reflected in the project's requirements.txt file to allow for the rapid 
 creation of your own virtual environment with the necessary packages. Specifically, these dependencies are:
 - Python 3.10
@@ -27,7 +29,14 @@ creation of your own virtual environment with the necessary packages. Specifical
 - pdfminer-six >= 20240706
 - pypdf >= 5.2.0
 - streamlit >= 1.42.2
+- deepeval >= 2.6.4 **(Optional, only needed for the unrelated Evaluation script)**
 
-It is worth noting that the package manager used was UV rather than other conventional managers like Pip or Conda. 
-Therefore, if issues should arise if you use one of these managers, I would recommend using UV as I have. As such, both a requirements.txt and a 
-pyproject.toml are present.
+It is worth noting that the package manager I used was UV rather than other conventional managers like Pip or Conda. I checked compatibility with 
+Pip and confirmed that the project will build successfully using it, though it took around 5 minutes to install every package, unlike UV which 
+does so within seconds. I have not tested with Conda. Therefore, if issues should arise if you use one of these managers, I would recommend using UV 
+as I have. As such, both a `requirements.txt` (for Pip usage) and a `pyproject.toml` (for UV usage) are present.
+
+To install with UV, simply run `uv sync` from within the same directory as the pyproject.toml file.
+
+To install with Pip, I would first recommend creating a virtual environment with `python -m venv .venv`, activating the environment, and then 
+running `pip install -r requirements.txt` from within the same directory as that file.
