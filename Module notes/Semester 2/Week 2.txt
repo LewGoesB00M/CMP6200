@@ -1,8 +1,0 @@
-Once again, look into different embedding models. Some are tailored to specific purposes, which Atif says can be very beneficial
-to those specific use cases. However, I feel that university policies wouldn't have anything specialised and as such using general 
-models (text-embeddings-3-small, etc.) could be better.
-
-It'll be very hard for you to spend any considerable sum of money given that you're using 4o-mini, so that's not a concern.
-
-Look into model calibration. Atif says this isn't typically taught in ML courses.
-Also known as / a subtopic of uncertainty quantification. I think LangChain offers some kind of functionality for this?

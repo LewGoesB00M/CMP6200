@@ -28,10 +28,9 @@ from langgraph.prebuilt import ToolNode, tools_condition
 # Sets the directory of the FAISS DB that's being loaded from.
     # Options (all begin with "VectorStores/"):
         #   FAISS: Chunk size 1000, Overlap 200, PyPDFLoader with default args.
-        #   FAISS-Unstructured: Chunk size 1000, Overlap 200, UnstructuredPDFLoader with default args.
         #   FAISS-SmallChunks: Chunk size 500, Overlap 100, PyPDFLoader with default args.
         #   FAISS-BigChunks: Chunk size 1500, Overlap 300, PyPDFLoader with default args.
-        #   FAISS-HugeChunks: Chunk size 2000, Overlap 500, PyPDFLoader with default args.
+        #   FAISS-HugeChunks: Chunk size 2000, Overlap 500, PyPDFLoader with default args. Best results, will be used for demo.
 dbPath = "VectorStores/FAISS-HugeChunks"
 
 
