@@ -1,5 +1,4 @@
 \section{Implementation}\label{sec:Implementation}
-% ! Nuclear option: Linux dual-boot and screenshot as you go on it.
 
 \subsection{Software requirements}
 % Talk about Visual Studio Code.
@@ -78,9 +77,8 @@ at high speeds thanks to FAISS' efficiency.
     \caption{Code used to embed and store the chunks into a FAISS DB. \label{fig:LangChainStoreFAISS}}
 \end{figure}
 
-\noindent Firstly, any existing database in the specified directory is cleared to ensure that there are no I/O errors when attempting 
-to save to the directory. LangChain provides wrapper functions for both the embedding and storage of this data, making it a smooth 
-and simple process in very few lines of code. 
+\noindent Firstly, any existing database in the specified directory is cleared using the rmtree method of shutil to ensure that there are no I/O 
+errors when attempting to save to the directory. LangChain provides wrapper functions for both the embedding and storage of this data, making it a smooth and simple process in very few lines of code. 
 
 \para The embedding model used is OpenAI's text-embedding-3-small model \autocite{openai_vector_nodate}. The motivation behind the use of this model 
 was primarily due to its cost efficiency, with OpenAI approximating 62,500 pages can be embedded for each dollar spent. For each 

@@ -230,26 +230,26 @@ would not have been feasible, and for this I thank them both greatly.
 \footnotesize \listoffigures
 \thispagestyle{empty}
 
-% \listoftables % ! You have one table. There is no point.
+% \listoftables % ! There's only one table. There is no point.
 
 \normalsize
 % It's likely that this will be an obscenely long LaTeX file. Therefore, it's segmented
 % across the Report folder to reduce file clutter and compilation time.
-\include{Report/Introduction} % Could do as the last step.
+\include{Report/Introduction} 
 \include{Report/LitReview}
 
 
     \include{Report/Methods/DesignAndMethodology}
-    \include{Report/Methods/Implementation} % Likely to be split across further files; a substantial percentage of the whole dissertation.
+    \include{Report/Methods/Implementation} 
 
 
     \include{Report/Evaluation/ProductAndProcess} 
-    \include{Report/Evaluation/Results} % How will this be done? Surveys? Evaluation metrics (see lit review)?
+    \include{Report/Evaluation/Results} 
     \include{Report/Evaluation/Discussion} 
 
 
-\include{Report/Conclusions} % Final section.
-\include{Report/FutureRecommendations} % Immediate options "use better model (gpt-4, o1, [maybe o3 will be out when this is done])
+\include{Report/Conclusions} 
+\include{Report/FutureRecommendations}
 
 
 % ! If a reference doesn't have a keyword, it won't show in the bibliography.
@@ -263,12 +263,5 @@ would not have been feasible, and for this I thank them both greatly.
 
 \printbibliography[keyword={bib}, title = {Bibliography}]
 \addcontentsline{toc}{chapter}{Bibliography}
-
-
-% ? It's possible that some useful info to bring over was in your proposal? Not looked but IIRC it had risk assessments in.
-
-% If there are appendices, they'd go here.
-% ? Consider that to meet a 10,000 word count, you may want to be less trigger-happy on appendices.
-% \include{Report/Appendices/AppendixA}
 
 \end{document}
