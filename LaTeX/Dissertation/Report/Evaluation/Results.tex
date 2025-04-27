@@ -1,5 +1,45 @@
 \section{Results}
-% ! This section is absolutely abysmal. It'll be the first thing he tells you to just outright delete.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Evaluation/FAISS-HugeChunks/Overall.png}
+    \caption{Overall GEval results against the "FAISS-HugeChunks" vector store (80\% correctness against expected outputs) \label{fig:EvalResults}}
+\end{figure}
+
+\noindent On the ten test cases on various academic policies and information used in evaluating the chatbot,
+80\% were answered correctly according to GEval. Figures \ref{fig:WrongAnswer1} and \ref{fig:WrongAnswer2} depict 
+the two queries where the chatbot failed to give a suitable answer.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Evaluation/FAISS-HugeChunks/Incorrect1.png}
+    \caption{The first incorrect answer, with the chatbot answering incorrectly. \label{fig:WrongAnswer1}}
+\end{figure}
+
+\noindent This question was answered incorrectly due to the chatbot's misinterpretation of the related policy. Work submitted up to 
+1 hour after a deadline does \textbf{not} receive any grade penalty, though the chatbot likely read the following sentence: work submitted between 1 hour and 
+24 hours after a deadline \textbf{does} incur a penalty. As such, this misinterpretation lead to the question being answered incorrectly.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Evaluation/FAISS-HugeChunks/Incorrect2.png}
+    \caption{The second incorrect answer, with incorrect information retrieval. \label{fig:WrongAnswer2}}
+\end{figure}
+
+\noindent The chatbot retrieving information that isn't directly relevant for this question implies an error in the retrieval tool. 
+This could likely be due to the format of each policy document, with the information requested here (degree thresholds) being stored in
+a table, depicted in Figure \ref{fig:WrongAnswer2Snippet}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Evaluation/WrongAnswerPolicy.png}
+    \caption{The snippet of the Academic Regulations that should have been referenced. \autocite{bcuPoliciesProcedures} \label{fig:WrongAnswer2Snippet}}
+\end{figure}
+
+\noindent The 'PyPDFLoader' class in LangChain, which was used when storing all University data, can sometimes misinterpret tables. 
+This may in turn have created issues with the semantic search performed on the FAISS DB, leading to this question going unanswered as 
+the search was unable to identify each degree classification.
+
 
 \subsection{Functional requirements} 
 The functional requirements, and how they were met, were as follows:
