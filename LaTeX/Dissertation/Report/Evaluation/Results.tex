@@ -92,7 +92,7 @@ is unable to retrieve relevant context, and this is displayed clearly within thi
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Evaluation/FAISS-BigChunks/UniqueCorrect.png}
-    \caption{The G-Eval judgment of the chatbot's uniquely good response to Question 8 using the FAISS-BigChunks vector store. \label{fig:UniqueCorrect}}
+    \caption{The G-Eval judgment of the uniquely good response to Question 8. \label{fig:UniqueCorrect}}
 \end{figure}
 
 \noindent Intriguingly, this particular vector store was the only one where the information needed to answer the question about degree classifications 
@@ -105,7 +105,7 @@ FAISS-HugeChunks.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Evaluation/FAISS-HugeChunks/Overall.png}
-    \caption{Overall G-Eval results against the "FAISS-HugeChunks" vector store (80\% correctness against expected outputs) \label{fig:EvalResults}}
+    \caption{Overall G-Eval results against the "FAISS-HugeChunks" vector store. \label{fig:EvalResults}}
 \end{figure}
 
 \noindent On the ten test cases on various academic policies and information used in evaluating the chatbot,
@@ -118,9 +118,9 @@ the two queries where the chatbot failed to give a suitable answer.
     \caption{The first incorrect answer, with the chatbot answering incorrectly. \label{fig:WrongAnswer1}}
 \end{figure}
 
-\noindent This question was answered incorrectly due to the chatbot's misinterpretation of the related policy. Work submitted up to 
-1 hour after a deadline does \textbf{not} receive any grade penalty, though the chatbot likely read the following sentence: work submitted between 1 hour and 
-24 hours after a deadline \textbf{does} incur a penalty. As such, this misinterpretation lead to the question being answered incorrectly.
+\noindent This question was answered incorrectly due to the chatbot's misinterpretation of the related policy. Work submitted \textbf{up to} 
+1 hour after a deadline does \textbf{not} receive any grade penalty, though the chatbot likely read that work submitted \textbf{between 1 hour and 
+24 hours} after a deadline \textbf{does} incur a penalty. As such, this misinterpretation lead to the question being answered incorrectly.
 
 \begin{figure}[H]
     \centering
