@@ -15,11 +15,8 @@ and could have been prevented.
 
 \para To properly evaluate the chatbot, it is best to use direct evaluation metrics. While reviewing literature in Section 
 \ref{sec:LitReviewLLM}, an evaluation platform known as DeepEval was considered, with the ability to use an LLM as a judge of 
-other LLMs \autocite{deepeval_introduction_2024}, known as 'G-Eval'.
-
-DeepEval offers a wide variety of metrics, with one of these metrics being 'GEval'. GEval is a metric which is scored by an LLM based 
-on criteria given in natural language, originally created by \textcite{liuGEvalNLGEvaluation2023a}. This means that the metric is directly 
-programmable using a system prompt as seen with the chatbot itself.
+other LLMs \autocite{deepeval_introduction_2024}, known as 'G-Eval', originally created by \textcite{liuGEvalNLGEvaluation2023a}.
+This means that the metric is directly programmable using a natural language system prompt as seen with the chatbot itself.
 
 \para 
 To evaluate the chatbot, an evaluation dataset of questions and their expected answers was provided, with the chatbot's actual response being
@@ -77,7 +74,18 @@ and index 1 was its respective answer.
     \caption{The golden dataset as represented in the evaluation script. \label{fig:GoldenDataset}}
 \end{figure}
 
-These question/answer pairs were then used to generate DeepEval's own 'LLMTestCase' classes for each item, 
+\noindent To begin testing the chatbot, the 'testChatbot' function was created to invoke the chatbot with 
+a sample conversation that is the same as if the Streamlit app had been opened for the first time,
+with the only messages being the introductory message and the question from the golden dataset being 
+tested.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Evaluation/testChatbot.png}
+    \caption{The testChatbot function to invoke the chatbot with a new conversation. \label{fig:testChatbot}}
+\end{figure}
+
+\noindent The question/answer pairs were then used to generate DeepEval's own 'LLMTestCase' classes for each item, 
 with the input being the question, expected output being the golden answer, and the actual output using the 
 testChatbot function to invoke the chatbot.
 
@@ -98,7 +106,11 @@ testChatbot function to invoke the chatbot.
 \noindent The criteria field of the GEval metric acts as the system prompt for the gpt-4o model. In the criteria, the LLM is told 
 to evaluate the 'correctness' of the actual output by comparing it against the expected output. An additional note was added to ensure 
 that the chatbot was not penalised for giving more information than strictly necessary, as GEval would originally fail some test cases 
-as the actual output was sometimes too informative compared to the expected output.
+as the actual output was sometimes more informative than the expected output.
+
+\para Using an LLM for evaluation in this way allows for automated testing to be significantly easier and somewhat more reliable to 
+perform, as there is no need for implementations such as word matching. This is because the LLM can automatically infer the semantic 
+similarities between the expected answer and the intended answer, known as Semantic Answer Similarity. 
 
 \para Following all of these initial steps, the primary DeepEval 'evaluate' function is called using the created EvaluationDataset
 and GEval metric. 

@@ -12,7 +12,7 @@ Table \ref{tab:GoldenDataset} for the corresponding question to each ID.
     \cellcolor{blue!25} 2 & \cellcolor{red!25} Wrong & \cellcolor{red!25} Wrong
                           & \cellcolor{red!25} Wrong & \cellcolor{red!25} Wrong\\
     \hline 
-    \cellcolor{blue!25} 3 & \cellcolor{green!25} Correct & \cellcolor{yellow!25} Questionable
+    \cellcolor{blue!25} 3 & \cellcolor{green!25} Correct & \cellcolor{red!25} Wrong
                           & \cellcolor{green!25} Correct & \cellcolor{green!25} Correct\\
     \hline 
     \cellcolor{blue!25} 4 & \cellcolor{green!25} Correct & \cellcolor{yellow!25} Questionable 
@@ -42,21 +42,74 @@ Table \ref{tab:GoldenDataset} for the corresponding question to each ID.
     \caption{The performance of the chatbot with each vector store.}\label{tab:ChatbotAnswers}
 \end{longtable}
 
-\noindent Answers marked as 'Questionable' were answers that were technically correct after manual inspection despite 
-GEval labelling them as incorrect. This showcases in part the occasional unreliability of LLMs even in judging contexts 
-such as GEval. 
+\para G-Eval assigns a score to each of the chatbot's answers to the golden dataset questions, where scores under 0.5 are deemed to be 
+incorrect. However, answers marked as 'Questionable' were answers that were technically correct after manual inspection despite 
+G-Eval labelling them as incorrect. This showcases in part the occasional unreliability of LLMs even in judging contexts 
+such as G-Eval. 
 
-% ! Show a questionable.
-% ! Perhaps 'notable observations' and talk about the IDK response and unique correct on 8 BigChunks.
+\para The questionable judgments were with Questions 3 and 4 on the smallest chunk-size vector store, depicted in Figures \ref{fig:Questionable1}
+and \ref{fig:Questionable2}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Evaluation/FAISS-SmallChunks/Questionable1.png}
+    \caption{The G-Eval judgment of the chatbot's response to Question 3 using the FAISS-SmallChunks vector store. \label{fig:Questionable1}}
+\end{figure}
+
+\noindent The answer provided here was very narrowly under G-Eval's 0.5 judgment threshold meaning that it was deemed to be incorrect, 
+with the gpt-4o evaluator LLM stating that unsupported information was introduced. However, upon manual inspection, the information 
+provided by the chatbot in response to this question is correct. 
+
+\para There is a similar occurrence in the response to Question 4 using this vector store, as depicted in Figure \ref{fig:Questionable2}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Evaluation/FAISS-SmallChunks/Questionable2.png}
+    \caption{The G-Eval judgment of the chatbot's response to Question 4 using the FAISS-SmallChunks vector store. \label{fig:Questionable2}}
+\end{figure}
+
+\noindent G-Eval uses the expected answer verbatim, meaning that with the long list of options provided in the expected answer to Question 4, 
+G-Eval expected the chatbot to respond with every option as stated in its response: "It omits many other critical scenarios ... specified in the expected output". While this is expected behaviour of G-Eval, it proves that manual evaluation can still 
+be more suitable in specific scenarios, as the answer given by the chatbot here was manually deemed to be of good quality despite not listing 
+every possible scenario.
+
+\para There were also two more noteworthy observations, both with the FAISS-BigChunks vector store, with its response to Question 6 being 
+"I don't know", and the response to Question 8 being the only correct response of all four vector stores, even including the best-performing
+vector store.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Evaluation/FAISS-BigChunks/Incorrect4.png}
+    \caption{The G-Eval judgment of the chatbot's poor response to Question 6 using the FAISS-BigChunks vector store. \label{fig:ChatbotIDK}}
+\end{figure}
+
+\noindent The chatbot's total failure to answer the question using this vector store signifies a potential issue in the retrieval tool, yet every 
+other vector store could successfully retrieve the passing grades in question. It is possible that while the PDFs were being split into chunks 
+for this vector store specifically, the information required for this question was split over multiple chunks despite the large size and overlap,
+meaning the similarity search could not find a suitable answer. The chatbot's system prompt states that it must respond with "I don't know" if it 
+is unable to retrieve relevant context, and this is displayed clearly within this failure.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Evaluation/FAISS-BigChunks/UniqueCorrect.png}
+    \caption{The G-Eval judgment of the chatbot's uniquely good response to Question 8 using the FAISS-BigChunks vector store. \label{fig:UniqueCorrect}}
+\end{figure}
+
+\noindent Intriguingly, this particular vector store was the only one where the information needed to answer the question about degree classifications 
+was successfully retrieved for a response. It is possible that the question itself may have been misinterpreted when performing semantic similarity searches on the other vector stores, leading them to instead fail on this question as shown in Figure \ref{fig:WrongAnswer2}.
+
+\subsection{Best-performing system}
+\para Images of the G-Eval outputs for each incorrect answer for all vector stores can be found in \href{https://github.com/LewGoesB00M/CMP6200/tree/main/LaTeX/.images/Evaluation}{the project's Github repository}, though this section will focus on the best-performing vector store, which was 
+FAISS-HugeChunks.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Evaluation/FAISS-HugeChunks/Overall.png}
-    \caption{Overall GEval results against the "FAISS-HugeChunks" vector store (80\% correctness against expected outputs) \label{fig:EvalResults}}
+    \caption{Overall G-Eval results against the "FAISS-HugeChunks" vector store (80\% correctness against expected outputs) \label{fig:EvalResults}}
 \end{figure}
 
 \noindent On the ten test cases on various academic policies and information used in evaluating the chatbot,
-80\% were answered correctly according to GEval. Figures \ref{fig:WrongAnswer1} and \ref{fig:WrongAnswer2} depict 
+80\% were answered correctly according to G-Eval. Figures \ref{fig:WrongAnswer1} and \ref{fig:WrongAnswer2} depict 
 the two queries where the chatbot failed to give a suitable answer.
 
 \begin{figure}[H]
@@ -122,7 +175,7 @@ The functional requirements, and how they were met, were as follows:
     \end{itemize}
     \item The chatbot must answer at least 75\% of BCU-related queries correctly.
     \begin{itemize}
-        \item GEval reported an accuracy of 80\% against the manually produced golden answers. This is over 75\%,
+        \item G-Eval reported an accuracy of 80\% against the manually produced golden answers. This is over 75\%,
         though perhaps not by a satisfactory amount. A larger testing dataset will help to provide a more accurate 
         picture in future.
     \end{itemize}
