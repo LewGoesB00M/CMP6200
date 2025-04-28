@@ -6,7 +6,10 @@ from deepeval import evaluate
 from Chatbot import graph
 from langchain_core.messages import AIMessage, HumanMessage
 
-
+# !!!!!
+# Make sure you run this file and any others from WITHIN THEIR DIRECTORY. 
+# Running this file from outside its directory will cause an IoError. 
+# !!!!!
 
 def testChatbot(question):
     # I'm not aiming to test the conversational memory, but rather it's retrieval ability uninfluenced by existing conversation.
