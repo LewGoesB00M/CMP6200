@@ -1,6 +1,136 @@
 \section{Discussion}
+This section aims to discuss the evaluation results as well as the project's overall success against its initial stated requirements.
 
-\subsection{Accomplishments}
+\subsection{Evaluation results}
+\subsubsection{Vector store performance}
+The vector store with the best performance against the training dataset being the one with the largest chunk size and overlap (FAISS-HugeChunks) 
+was expected behaviour, as the chatbot is able to obtain more information for each database query performed. The reason that the 
+other three options were considered was to reduce the token usage of the chatbot, which in turn would speed up responses and reduce 
+prompt cost.
+
+\para The significant failures of the smallest-chunk vector store (FAISS-SmallChunks) were unexpected, however. It appears as though 
+semantic searches performed on the vector store when each chunk stored within it is small work poorly or not at all in many cases.  
+
+\subsubsection{Limitations of G-Eval}
+While the FAISS-SmallChunks vector store did perform the worst according to G-Eval, the analysis of the reported incorrect answers in Figures 
+\ref{fig:Questionable1} and \ref{fig:Questionable2} indicate that G-Eval's results cannot be taken entirely at face value, and should perhaps 
+instead act as a guideline. The two answers deemed to be questionably judged were found to be correct after manual verification, even if they 
+did lack some minor information.
+
+\para Therefore, as initially theorised in the literature review, manual verification does indeed appear to be the most optimal evaluation solution 
+for smaller LLM-based projects such as this one. However, when dealing with projects of a much greater scope, tools such as G-Eval can be of great 
+use despite their occasional shortcomings.
+
+\subsection{Functional requirements} 
+The functional requirements, and how they were met, were as follows:
+
+\begin{itemize}
+    \item The chatbot must interpret and respond to answers in English.
+    \begin{itemize}
+        \item This requirement was fully met with no particular involvement from myself. OpenAI's models can automatically 
+        interpret and respond with English text, as well as other languages, though other languages were not tested as I 
+        cannot personally verify them. 
+    \end{itemize}
+    \item The chatbot must accept text queries.
+    \begin{itemize}
+        \item This was automatically met through the use of OpenAI models.
+    \end{itemize}
+    \item The chatbot must respond using text.
+    \begin{itemize}
+        \item This was automatically met through the use of OpenAI models.
+    \end{itemize}
+    \item The chatbot must be accessible at all times.
+    \begin{itemize}
+        \item When the Streamlit application is running, the chatbot can always be accessed 
+        by any device connected to the same network, as long as they connect with the IP and port
+        which Streamlit specifies. While this is technically a constraint, it is not a strain on 
+        system resources to leave the Streamlit app running in the background indefinitely, meaning this 
+        requirement can be considered fulfilled.
+    \end{itemize}
+    \item The chatbot must supply BCU-related information.
+    \begin{itemize}
+        \item A vector database using FAISS was created containing a wide variety of BCU policies and miscellaneous
+        information. Using this database, the chatbot had access to a retrieval tool which would perform a semantic 
+        search on the database to retrieve BCU information relating to the user's query.
+    \end{itemize}
+    \item The chatbot must answer at least 75\% of BCU-related queries correctly.
+    \begin{itemize}
+        \item G-Eval reported an accuracy of 80\% with the most optimal vector store against the manually produced golden answers. This is over 75\%,
+        though perhaps not by a satisfactory amount. A larger testing dataset would have helped to provide a more accurate 
+        picture in future.
+    \end{itemize}
+    \item The chatbot must have a GUI for ease of use and accessibility.
+    \begin{itemize}
+        \item Streamlit acts as the chatbot's frontend, providing a responsive and sleek UI that adapts to 
+        desktop web browsers and mobile devices. The UI is simple to understand and can be navigated with the 
+        Tab key on a keyboard for people unable to use a mouse.
+    \end{itemize}
+    \item Multiple users must be able to use the chatbot at the same time.
+    \begin{itemize}
+        \item Streamlit facilitates this functionality, creating isolated instances of the chatbot which do not interact 
+        with each other.
+    \end{itemize}
+\end{itemize}
+
+\noindent All functional requirements of the chatbot's original scope were met, producing a usable product which students 
+can use to get BCU-related information at a satisfactory level of accuracy. 
+
+\subsection{Non-functional requirements}
+The non-functional requirements, and how they were met (or failed to be met) are as follows:
+
+\begin{itemize}
+    \item The chatbot should respond to queries within 10 seconds.
+    \begin{itemize}
+        \item All conversations with the chatbot throughout testing would gather responses 
+        in fewer than 10 seconds. Queries that used RAG took significantly longer than those which 
+        did not. The overall 'feel' of the app could be made faster by allowing the LLM to stream 
+        text rather than output a full message, which will show the message being procedurally written 
+        rather than a buffer before a full message suddenly appears.
+    \end{itemize}
+    \item The chatbot could allow for voice input and output.
+    \begin{itemize}
+        \item This requirement \textbf{was not met.} This was mostly due to time constraints, as implementing this 
+        functionality would have taken substantial research that would likely not have been possible to perform 
+        while meeting project deadlines. Unfortunately, this does make the app less accessible, forcing users 
+        to be able to use a keyboard or have third-party voice software to input text.
+    \end{itemize}
+    \item The chatbot could be deployed on an existing messaging service such as Teams.
+    \begin{itemize}
+        \item This requirement \textbf{was not met.} As with the voice requirement, this would have taken additional 
+        research and a possible redesign of the app's backend to provide an API compatible with a messaging 
+        service chatbot. Given that Streamlit already provides a usable and modern UI, this requirement was instead 
+        considered unnecessary.
+    \end{itemize}
+\end{itemize}
+
+\noindent Only one of the three non-functional requirements was met due to time constraints which plagued development.
+Even without the implementation of these features, however, the chatbot is still a very usable product.
+
+\subsection{Development process}\label{sec:EvalProcess}
+\subsubsection{Positives}
+All functional requirements stated in Section \ref{sec:Requirements} for the final product, as well as the original aims and objectives 
+of the project, were successfully met with a working chatbot with good accuracy on BCU-related topics being produced in a timely fashion.
+
+\para Furthermore, with the project being a solo endeavour, a comprehensive understanding of the project management life cycle was 
+obtained from conception to completion. As a result, I believe my problem-solving and decision-making skills have greatly improved.   
+
+\subsubsection{Negatives}
+As identified previously in Section \ref{sec:Limitations}, the most significant limitation throughout the development process 
+was the amount of time available. Over the course of the project's development, significant extenuating circumstances occurred 
+leading to the lack of some desired features and lower quality of others. 
+
+\para Furthermore, balancing the production of this project 
+alongside four other university modules simultaneously proved to be an arduous task that I was unable to efficiently solve to 
+a level I would have preferred.
+
+\para Cost proved to be a much lesser restriction than initially anticipated, due to the cost efficiency 
+provided through the identification of OpenAI's lower-end models through thorough research. 
+
+\para However, the other limitations specified in Section \ref{sec:Limitations} also played key roles of their own, though less significant 
+than the time restrictions. Most notably of these was my own lack of experience with LLMs. Developing a product using a tech stack 
+I was entirely unfamiliar with prior to development proved to be highly difficult.
+
+\subsubsection{Overall accomplishments}
 Overall, it is safe to say that the project can be considered a success, though it certainly is not without flaw.
 It was previously mentioned that the chatbot had an accuracy of 80\% according to GEval, though this was only against a dataset 
 of 10 questions. It would be much more suitable to expand this training dataset, alongside gathering actual user feedback.
@@ -9,8 +139,8 @@ of 10 questions. It would be much more suitable to expand this training dataset,
 retrieval tool to work on the failed questions in time, and I was also unable to successfully implement a ReAct agent as researched in the 
 literature review.
 
-\para Despite the project's few failures, there was a greater amount of successes. I have hugely increased my own knowledge of Python, LLMs,
-and RAG. These are three critical skills to have if I intend to work in software development due to recent trends with companies 
+\para Despite the project's few failures, there were many successes. I have hugely increased my own knowledge of Python, LLMs,
+and RAG. These are three critical skills to have if to work in software development with recent trends of companies 
 becoming more reliant on LLMs. 
 
 \para Furthermore, through developing the chatbot and performing the extensive research required, I believe my skills as an overall software 
@@ -22,24 +152,3 @@ query the database for every prompt given, even if it was something as simple as
 data which would not be relevant to the query being given to the LLM, wasting processing time and money through the greatly increased token cost 
 of such a prompt, as well as resulting in a strange and irrelevant response that would only serve to confuse the user. 
 
-\section{Development process}\label{sec:EvalProcess}
-\subsection{Positives}
-All functional requirements stated in Section \ref{sec:Requirements} for the final product, as well as the original aims and objectives 
-of the project, were successfully met with a working chatbot with good accuracy on BCU-related topics being produced in a timely fashion.
-
-\para Furthermore, with the project being a solo endeavour, a comprehensive understanding of the project management life cycle was 
-obtained from conception to completion. As a result, I believe my problem-solving and decision-making skills have greatly improved.   
-
-\subsection{Negatives}
-As identified previously in Section \ref{sec:Limitations}, the most significant limitation throughout the development process 
-was the amount of time available. Over the course of the project's development, significant extenuating circumstances occurred 
-leading to the lack of some desired features and lower quality of others. Furthermore, balancing the production of this project 
-alongside four other university modules simultaneously proved to be an arduous task that I was unable to efficiently solve to 
-a level I would have preferred.
-
-\para Cost proved to be a much lesser restriction than initially anticipated, due to the cost efficiency 
-provided through the identification of OpenAI's lower-end models through thorough research. 
-
-\para However, the other limitations specified in Section \ref{sec:Limitations} also played key roles of their own, though less significant 
-than the time restrictions. Most notably of these was my own lack of experience with LLMs. Developing a product using a tech stack 
-I was entirely unfamiliar with prior to development proved to be highly difficult.
