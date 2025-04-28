@@ -1,4 +1,53 @@
 \section{Results}
+Table \ref{tab:ChatbotAnswers} depicts how the chatbot answered each question for each vector store. Refer to 
+Table \ref{tab:GoldenDataset} for the corresponding question to each ID.
+
+\begin{longtable}{ | p{0.05\linewidth} | p{0.2\linewidth} | p{0.2\linewidth} | p{0.2\linewidth} | p{0.2\linewidth} | }
+    \hline
+    \cellcolor{blue!25} ID & \cellcolor{blue!25} FAISS & \cellcolor{blue!25} SmallChunks & \cellcolor{blue!25} BigChunks & \cellcolor{blue!25}HugeChunks \\
+    \hline
+    \cellcolor{blue!25} 1 & \cellcolor{red!25} Wrong & \cellcolor{red!25} Wrong  
+                          & \cellcolor{red!25} Wrong & \cellcolor{green!25} Correct\\
+    \hline
+    \cellcolor{blue!25} 2 & \cellcolor{red!25} Wrong & \cellcolor{red!25} Wrong
+                          & \cellcolor{red!25} Wrong & \cellcolor{red!25} Wrong\\
+    \hline 
+    \cellcolor{blue!25} 3 & \cellcolor{green!25} Correct & \cellcolor{yellow!25} Questionable
+                          & \cellcolor{green!25} Correct & \cellcolor{green!25} Correct\\
+    \hline 
+    \cellcolor{blue!25} 4 & \cellcolor{green!25} Correct & \cellcolor{yellow!25} Questionable 
+                          & \cellcolor{green!25} Correct & \cellcolor{green!25} Correct \\
+    \hline 
+    \cellcolor{blue!25} 5 & \cellcolor{red!25} Wrong & \cellcolor{red!25} Wrong 
+                          & \cellcolor{red!25} Wrong & \cellcolor{green!25} Correct\\
+    \hline 
+    \cellcolor{blue!25} 6 & \cellcolor{green!25} Correct & \cellcolor{green!25} Correct 
+                          & \cellcolor{red!40} "I don't know" & \cellcolor{green!25} Correct\\
+    \hline 
+    \cellcolor{blue!25} 7 & \cellcolor{yellow!25} Questionable & \cellcolor{red!25} Wrong 
+                          & \cellcolor{red!25} Wrong & \cellcolor{green!25} Correct \\
+    \hline 
+    \cellcolor{blue!25} 8 & \cellcolor{red!25} Wrong & \cellcolor{red!25} Wrong
+                          & \cellcolor{green!25} Correct & \cellcolor{red!25} Wrong \\
+    \hline
+    \cellcolor{blue!25} 9 & \cellcolor{red!25} Wrong & \cellcolor{red!25} Wrong
+                          & \cellcolor{red!25} Wrong & \cellcolor{green!25} Correct \\
+    \hline 
+    \cellcolor{blue!25} 10 & \cellcolor{green!25} Correct & \cellcolor{green!25} Correct 
+                           & \cellcolor{green!25} Correct & \cellcolor{green!25} Correct\\ 
+    \hline
+    \cellcolor{blue!25} & \cellcolor{yellow!25} \textbf{40\%} & \cellcolor{red!25} \textbf{20\%} 
+    & \cellcolor{yellow!25} \textbf{40\%} & \cellcolor{green!40} \textbf{80\%} \\
+    \hline
+    \caption{The performance of the chatbot with each vector store.}\label{tab:ChatbotAnswers}
+\end{longtable}
+
+\noindent Answers marked as 'Questionable' were answers that were technically correct after manual inspection despite 
+GEval labelling them as incorrect. This showcases in part the occasional unreliability of LLMs even in judging contexts 
+such as GEval. 
+
+% ! Show a questionable.
+% ! Perhaps 'notable observations' and talk about the IDK response and unique correct on 8 BigChunks.
 
 \begin{figure}[H]
     \centering
