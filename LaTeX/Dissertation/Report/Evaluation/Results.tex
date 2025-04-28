@@ -12,7 +12,7 @@ Table \ref{tab:GoldenDataset} for the corresponding question to each ID.
     \cellcolor{blue!25} 2 & \cellcolor{red!25} Wrong & \cellcolor{red!25} Wrong
                           & \cellcolor{red!25} Wrong & \cellcolor{red!25} Wrong\\
     \hline 
-    \cellcolor{blue!25} 3 & \cellcolor{green!25} Correct & \cellcolor{red!25} Wrong
+    \cellcolor{blue!25} 3 & \cellcolor{green!25} Correct & \cellcolor{yellow!25} Questionable
                           & \cellcolor{green!25} Correct & \cellcolor{green!25} Correct\\
     \hline 
     \cellcolor{blue!25} 4 & \cellcolor{green!25} Correct & \cellcolor{yellow!25} Questionable 
@@ -24,7 +24,7 @@ Table \ref{tab:GoldenDataset} for the corresponding question to each ID.
     \cellcolor{blue!25} 6 & \cellcolor{green!25} Correct & \cellcolor{green!25} Correct 
                           & \cellcolor{red!40} "I don't know" & \cellcolor{green!25} Correct\\
     \hline 
-    \cellcolor{blue!25} 7 & \cellcolor{yellow!25} Questionable & \cellcolor{red!25} Wrong 
+    \cellcolor{blue!25} 7 & \cellcolor{red!25} Wrong & \cellcolor{red!25} Wrong 
                           & \cellcolor{red!25} Wrong & \cellcolor{green!25} Correct \\
     \hline 
     \cellcolor{blue!25} 8 & \cellcolor{red!25} Wrong & \cellcolor{red!25} Wrong
@@ -118,7 +118,8 @@ the two queries where the chatbot failed to give a suitable answer.
     \caption{The first incorrect answer, with the chatbot answering incorrectly. \label{fig:WrongAnswer1}}
 \end{figure}
 
-\noindent This question was answered incorrectly due to the chatbot's misinterpretation of the related policy. Work submitted \textbf{up to} 
+\noindent This question was answered incorrectly across all vector stores due to the chatbot's misinterpretation of the related policy, suggesting 
+an LLM-related limitation. Work submitted \textbf{up to} 
 1 hour after a deadline does \textbf{not} receive any grade penalty, though the chatbot likely read that work submitted \textbf{between 1 hour and 
 24 hours} after a deadline \textbf{does} incur a penalty. As such, this misinterpretation led to the question being answered incorrectly.
 
