@@ -15,11 +15,11 @@ with more time and funding this project could have been expanded upon further, w
 on. In this version, the chatbot runs locally.
 
 # Running locally
-**Running the chatbot locally requires you to have a system environment variable set titled `OPENAI_API_KEY` with a valid OpenAI API key stored in it. If you do not have one, please let me know before assuming the code doesn't work.**
+**Running the chatbot locally requires you to have a system environment variable set titled `OPENAI_API_KEY` with a valid OpenAI API key stored in it. If you do not have an API key, or you do not have a system environment variable of that name, please consult OpenAI's guides on both of these topics before assuming the code doesn't work.**
 
 This project has multiple dependencies before it can be run. These are reflected in the project's requirements.txt file to allow for the rapid 
 creation of your own virtual environment with the necessary packages. Specifically, these dependencies are:
-- Python 3.10
+- Python >= 3.10
 - FAISS-CPU >= 1.10.0
 - Langchain >= 0.3.17
 - langchain-community >= 0.3.16
@@ -29,7 +29,7 @@ creation of your own virtual environment with the necessary packages. Specifical
 - pdfminer-six >= 20240706
 - pypdf >= 5.2.0
 - streamlit >= 1.42.2
-- deepeval >= 2.6.4 **(Optional, only needed for the unrelated Evaluation script)**
+- deepeval >= 2.6.4
 
 It is worth noting that the package manager I used was UV rather than other conventional managers like Pip or Conda. I checked compatibility with 
 Pip and confirmed that the project will build successfully using it, though it took around 5 minutes to install every package, unlike UV which 
