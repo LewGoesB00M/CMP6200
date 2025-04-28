@@ -8,12 +8,17 @@ such as its governing policies.
 
 \para A thorough literature review on surrounding topics and the current state-of-the-art was conducted to allow for the chatbot's development
 and documentation of the development process and final product. The final product itself performed to a suitable degree, answering 80\% of its 
-evaluation golden dataset questions correctly in relation to its expected answers, though improvements could have been made to increase this 
+evaluation golden dataset questions correctly in relation to its expected answers, though improvements perhaps could have been made to increase this 
 percentage.
 
+\para Multiple baseline systems were tested to ensure that the chatbot was using the optimal vector store to answer questions with the highest 
+accuracy. This was verified using DeepEval's G-Eval metric paired with manual inspection where the metric was occasionally incorrect due to the 
+use of an LLM judge. Of the four FAISS vector stores accessible by the chatbot, the one with the largest chunk size and chunk overlap performed 
+the best.
+
 \para The final product performs well, meeting and in some cases exceeding its stated functional requirements, though was not 
-able to meet all of its non-functional requirements. Despite these shortcomings, the chatbot is functional and a very viable source of BCU-related 
-information using natural language prompts for specific information rather than having to manually consult long policies and web searches. 
+able to meet all of its non-functional requirements. Despite these minor shortcomings, the chatbot is functional and a very viable source of 
+BCU-related information using natural language prompts for specific information rather than having to manually consult long policies and web searches. 
 
 
 \nocite{projectGithub} % Invisible cite.
